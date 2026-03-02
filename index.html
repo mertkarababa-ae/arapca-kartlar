@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arapça Kelime Kartları</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #f7f0e6;
+    --terracotta: #bf5b38;
+    --deep: #1c1208;
+    --gold: #c9933a;
+    --sage: #7a8c6e;
+    --cream: #fffdf7;
+    --shadow: rgba(26,18,8,0.12);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--sand); font-family:'Lato',sans-serif; color:var(--deep); min-height:100vh; }
+  body::before {
+    content:''; position:fixed; inset:0;
+    background-image:
+      repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(201,147,58,0.04) 30px,rgba(201,147,58,0.04) 31px),
+      repeating-linear-gradient(-45deg,transparent,transparent 30px,rgba(201,147,58,0.04) 30px,rgba(201,147,58,0.04) 31px);
+    pointer-events:none; z-index:0;
+  }
+
+  header { position:relative; z-index:1; text-align:center; padding:36px 20px 24px; border-bottom:2px solid var(--gold); }
+  .ar-title { font-family:'Amiri',serif; font-size:2.4rem; color:var(--terracotta); direction:rtl; margin-bottom:4px; }
+  header h1 { font-family:'Playfair Display',serif; font-size:2rem; color:var(--deep); margin-bottom:6px; }
+  header p { color:var(--sage); font-size:0.82rem; letter-spacing:2px; text-transform:uppercase; }
+  .badge { display:inline-block; background:var(--terracotta); color:white; font-size:0.75rem; padding:3px 14px; border-radius:20px; margin-top:10px; letter-spacing:1px; }
+
+  /* ── FILTER + PDF TOOLBAR ── */
+  .toolbar {
+    position:relative; z-index:1;
+    display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
+    gap:8px; padding:18px 20px 6px;
+  }
+  .filter-btn {
+    background:white; border:1.5px solid var(--gold); color:var(--deep);
+    padding:7px 16px; border-radius:30px; cursor:pointer;
+    font-family:'Lato',sans-serif; font-size:0.78rem; letter-spacing:1px;
+    text-transform:uppercase; transition:all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active { background:var(--terracotta); border-color:var(--terracotta); color:white; }
+
+  /* ── PDF DOWNLOAD SECTION ── */
+  .pdf-section {
+    position:relative; z-index:1;
+    background:white; border:1.5px solid rgba(201,147,58,0.3);
+    border-radius:16px; margin:14px 24px; padding:16px 20px;
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+    box-shadow:0 2px 12px var(--shadow);
+  }
+  .pdf-label {
+    font-size:0.78rem; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--sage); font-weight:700; margin-right:4px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .pdf-label svg { width:18px; height:18px; }
+  .pdf-btn {
+    background:var(--cream); border:1.5px solid var(--gold);
+    color:var(--deep); padding:6px 14px; border-radius:8px;
+    cursor:pointer; font-family:'Lato',sans-serif; font-size:0.75rem;
+    letter-spacing:0.8px; text-transform:uppercase; transition:all 0.2s;
+    display:flex; align-items:center; gap:5px;
+  }
+  .pdf-btn:hover { background:var(--gold); color:white; border-color:var(--gold); }
+  .pdf-btn.all-btn { background:var(--terracotta); color:white; border-color:var(--terracotta); font-weight:700; }
+  .pdf-btn.all-btn:hover { background:#a04828; }
+  .pdf-btn svg { width:13px; height:13px; }
+
+  /* ── PROGRESS ── */
+  .progress-bar { position:relative; z-index:1; text-align:center; padding:4px 32px 16px; }
+  .progress-track { height:4px; background:rgba(201,147,58,0.2); border-radius:2px; max-width:400px; margin:0 auto 8px; overflow:hidden; }
+  .progress-fill { height:100%; background:linear-gradient(90deg,var(--terracotta),var(--gold)); border-radius:2px; transition:width 0.4s ease; width:0%; }
+  .progress-text { font-size:0.75rem; color:var(--sage); letter-spacing:1px; }
+
+  /* ── GRID ── */
+  .grid { position:relative; z-index:1; display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; padding:0 24px 60px; max-width:1400px; margin:0 auto; }
+
+  /* ── CARDS ── */
+  .card { perspective:900px; height:220px; cursor:pointer; }
+  .card-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+  .card.flipped .card-inner { transform:rotateY(180deg); }
+  .card-front, .card-back { position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:16px 12px 30px; box-shadow:0 4px 18px var(--shadow); }
+  .card-front { background:var(--cream); border:1.5px solid rgba(201,147,58,0.25); }
+  .card-front::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--terracotta),var(--gold)); border-radius:14px 14px 0 0; }
+  .card-icon { font-size:3.2rem; line-height:1; margin-bottom:8px; }
+  .arabic-word { font-family:'Amiri',serif; font-size:2.1rem; color:var(--terracotta); direction:rtl; line-height:1.2; text-align:center; }
+  .color-swatch { width:56px; height:56px; border-radius:50%; margin-bottom:8px; box-shadow:0 2px 10px rgba(0,0,0,0.18); border:3px solid white; }
+  .tap-hint { position:absolute; bottom:10px; font-size:0.6rem; color:rgba(122,140,110,0.6); letter-spacing:1px; text-transform:uppercase; }
+  .card-back { background:linear-gradient(145deg,#bf5b38,#8b3a22); transform:rotateY(180deg); color:white; text-align:center; }
+  .back-icon { font-size:2.4rem; opacity:0.9; margin-bottom:4px; }
+  .back-swatch { width:48px; height:48px; border-radius:50%; margin-bottom:6px; box-shadow:0 2px 8px rgba(0,0,0,0.25); border:3px solid rgba(255,255,255,0.4); }
+  .turkish { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; line-height:1.2; }
+  .pronunciation { font-size:0.82rem; opacity:0.85; font-style:italic; letter-spacing:0.5px; margin-top:4px; }
+  .arabic-back { font-family:'Amiri',serif; font-size:1.4rem; direction:rtl; opacity:0.7; margin-top:4px; }
+  .card-back .tap-hint { color:rgba(255,255,255,0.4); }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    body { background:white !important; }
+    body::before { display:none; }
+    header, .toolbar, .pdf-section, .progress-bar { display:none !important; }
+    .grid {
+      display:grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap:10px !important;
+      padding:10px !important;
+    }
+    .card {
+      perspective:none !important;
+      height:auto !important;
+      page-break-inside:avoid;
+      break-inside:avoid;
+    }
+    .card-inner { transform:none !important; position:static !important; }
+    .card-front {
+      position:static !important;
+      backface-visibility:visible !important;
+      border-radius:10px !important;
+      border:1.5px solid #c9933a !important;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1) !important;
+      padding:14px 10px 20px !important;
+      page-break-inside:avoid;
+      break-inside:avoid;
+    }
+    .card-back { display:none !important; }
+    .card-front::before { height:3px !important; border-radius:10px 10px 0 0 !important; }
+    .card-icon { font-size:2.4rem !important; }
+    .arabic-word { font-size:1.8rem !important; }
+    .tap-hint { display:none !important; }
+    .color-swatch { width:44px !important; height:44px !important; }
+
+    /* Print header */
+    .print-header { display:block !important; text-align:center; padding:12px 0 8px; border-bottom:2px solid #c9933a; margin-bottom:12px; }
+    .print-header h2 { font-family:'Playfair Display',serif; font-size:1.4rem; color:#1c1208; }
+    .print-header p { font-size:0.75rem; color:#7a8c6e; letter-spacing:2px; text-transform:uppercase; margin-top:3px; }
+
+    /* Show answer below arabic in print */
+    .card-front .print-answer {
+      display:block !important;
+      font-size:0.9rem;
+      color:#1c1208;
+      font-family:'Playfair Display',serif;
+      font-weight:700;
+      margin-top:4px;
+    }
+    .card-front .print-pron {
+      display:block !important;
+      font-size:0.68rem;
+      color:#7a8c6e;
+      font-style:italic;
+    }
+  }
+
+  .print-header { display:none; }
+  .print-answer { display:none; }
+  .print-pron { display:none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="ar-title">المُفْرَدَات العَرَبِيَّة</div>
+  <h1>Arapça Kelime Kartları</h1>
+  <p>Fasih Arapça · Ev · Renkler · Sınıf</p>
+  <span class="badge" id="total-badge">… Kelime</span>
+</header>
+
+<!-- Filter buttons -->
+<div class="toolbar">
+  <button class="filter-btn active" onclick="filter('all',this)">Tümü</button>
+  <button class="filter-btn" onclick="filter('genel',this)">🏠 Ev Genel</button>
+  <button class="filter-btn" onclick="filter('oda',this)">🚪 Odalar</button>
+  <button class="filter-btn" onclick="filter('mobilya',this)">🛋️ Mobilya</button>
+  <button class="filter-btn" onclick="filter('mutfak',this)">🍳 Mutfak</button>
+  <button class="filter-btn" onclick="filter('banyo',this)">🚿 Banyo</button>
+  <button class="filter-btn" onclick="filter('renk',this)">🎨 Renkler</button>
+  <button class="filter-btn" onclick="filter('sinif',this)">📚 Sınıf</button>
+</div>
+
+<!-- PDF Download Panel -->
+<div class="pdf-section">
+  <div class="pdf-label">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    PDF İndir:
+  </div>
+  <button class="pdf-btn all-btn" onclick="printCat('all')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Tümü
+  </button>
+  <button class="pdf-btn" onclick="printCat('genel')">🏠 Ev Genel</button>
+  <button class="pdf-btn" onclick="printCat('oda')">🚪 Odalar</button>
+  <button class="pdf-btn" onclick="printCat('mobilya')">🛋️ Mobilya</button>
+  <button class="pdf-btn" onclick="printCat('mutfak')">🍳 Mutfak</button>
+  <button class="pdf-btn" onclick="printCat('banyo')">🚿 Banyo</button>
+  <button class="pdf-btn" onclick="printCat('renk')">🎨 Renkler</button>
+  <button class="pdf-btn" onclick="printCat('sinif')">📚 Sınıf</button>
+</div>
+
+<div class="progress-bar">
+  <div class="progress-track"><div class="progress-fill" id="fill"></div></div>
+  <div class="progress-text" id="prog">0 / … öğrenildi</div>
+</div>
+
+<div class="print-header" id="print-header">
+  <h2 id="print-title">Arapça Kelime Kartları</h2>
+  <p>Fasih Arapça — Kelime Kartları</p>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const words = [
+  // EV GENEL
+  {ar:"بَيْت",tr:"Ev",pr:"Bayt",cat:"genel",icon:"🏠"},
+  {ar:"مَنْزِل",tr:"Konut",pr:"Menzil",cat:"genel",icon:"🏡"},
+  {ar:"شَقَّة",tr:"Daire",pr:"Şakka",cat:"genel",icon:"🏢"},
+  {ar:"طَابِق",tr:"Kat",pr:"Tâbik",cat:"genel",icon:"🔢"},
+  {ar:"سَقْف",tr:"Tavan",pr:"Sakf",cat:"genel",icon:"🏗️"},
+  {ar:"جِدَار",tr:"Duvar",pr:"Cidâr",cat:"genel",icon:"🧱"},
+  {ar:"أَرْضِيَّة",tr:"Zemin",pr:"Ardıyye",cat:"genel",icon:"⬜"},
+  {ar:"بَاب",tr:"Kapı",pr:"Bâb",cat:"genel",icon:"🚪"},
+  {ar:"نَافِذَة",tr:"Pencere",pr:"Nâfize",cat:"genel",icon:"🪟"},
+  {ar:"دَرَج",tr:"Merdiven",pr:"Derec",cat:"genel",icon:"🪜"},
+  // ODALAR
+  {ar:"غُرْفَة",tr:"Oda",pr:"Gurfe",cat:"oda",icon:"🛏️"},
+  {ar:"غُرْفَةُ النَّوْم",tr:"Yatak Odası",pr:"Gurfe-n-nevm",cat:"oda",icon:"🛌"},
+  {ar:"غُرْفَةُ الجُلُوس",tr:"Oturma Odası",pr:"Gurfe-l-culûs",cat:"oda",icon:"🛋️"},
+  {ar:"غُرْفَةُ الطَّعَام",tr:"Yemek Odası",pr:"Gurfe-t-taâm",cat:"oda",icon:"🍽️"},
+  {ar:"مَطْبَخ",tr:"Mutfak",pr:"Matbah",cat:"oda",icon:"👨‍🍳"},
+  {ar:"حَمَّام",tr:"Banyo",pr:"Hammâm",cat:"oda",icon:"🛁"},
+  {ar:"دَوْرَةُ المِيَاه",tr:"Tuvalet",pr:"Devretü-l-miyâh",cat:"oda",icon:"🚽"},
+  {ar:"مَكْتَب",tr:"Çalışma Odası",pr:"Mekteb",cat:"oda",icon:"💼"},
+  {ar:"صَالَة",tr:"Salon",pr:"Sâle",cat:"oda",icon:"🏛️"},
+  {ar:"شُرْفَة",tr:"Balkon",pr:"Şurfe",cat:"oda",icon:"🌇"},
+  // MOBİLYA
+  {ar:"سَرِير",tr:"Yatak",pr:"Serîr",cat:"mobilya",icon:"🛏️"},
+  {ar:"وِسَادَة",tr:"Yastık",pr:"Visâde",cat:"mobilya",icon:"😴"},
+  {ar:"غِطَاء",tr:"Yorgan",pr:"Ğitâ",cat:"mobilya",icon:"🛌"},
+  {ar:"أَرِيكَة",tr:"Kanepe",pr:"Erîke",cat:"mobilya",icon:"🛋️"},
+  {ar:"كُرْسِيٌّ",tr:"Sandalye",pr:"Kürsiyyun",cat:"mobilya",icon:"🪑"},
+  {ar:"طَاوِلَة",tr:"Masa",pr:"Tâvile",cat:"mobilya",icon:"🪵"},
+  {ar:"خِزَانَة",tr:"Dolap",pr:"Hizâne",cat:"mobilya",icon:"🗄️"},
+  {ar:"رَفٌّ",tr:"Raf",pr:"Raff",cat:"mobilya",icon:"📚"},
+  {ar:"سِجَادَة",tr:"Halı",pr:"Sicâde",cat:"mobilya",icon:"🟫"},
+  {ar:"سِتَارَة",tr:"Perde",pr:"Sitâre",cat:"mobilya",icon:"🪟"},
+  {ar:"مِصْبَاح",tr:"Lamba",pr:"Mısbâh",cat:"mobilya",icon:"💡"},
+  // MUTFAK
+  {ar:"ثَلَّاجَة",tr:"Buzdolabı",pr:"Sellâce",cat:"mutfak",icon:"🧊"},
+  {ar:"مَوْقِد",tr:"Ocak",pr:"Mevkid",cat:"mutfak",icon:"🔥"},
+  {ar:"غَسَّالَة",tr:"Çamaşır Makinesi",pr:"Ğassâle",cat:"mutfak",icon:"🫧"},
+  {ar:"صُنْبُور",tr:"Musluk",pr:"Sunbûr",cat:"mutfak",icon:"🚰"},
+  {ar:"طَنْجَرَة",tr:"Tencere",pr:"Tancere",cat:"mutfak",icon:"🫕"},
+  {ar:"مِقْلَاة",tr:"Tava",pr:"Miklâye",cat:"mutfak",icon:"🍳"},
+  {ar:"كُوب",tr:"Bardak",pr:"Kûb",cat:"mutfak",icon:"🥛"},
+  {ar:"صَحْن",tr:"Tabak",pr:"Sahın",cat:"mutfak",icon:"🍽️"},
+  {ar:"مِلْعَقَة",tr:"Kaşık",pr:"Milaka",cat:"mutfak",icon:"🥄"},
+  {ar:"شَوْكَة",tr:"Çatal",pr:"Şevke",cat:"mutfak",icon:"🍴"},
+  {ar:"سِكِّين",tr:"Bıçak",pr:"Sikkîn",cat:"mutfak",icon:"🔪"},
+  // BANYO
+  {ar:"مِرْآة",tr:"Ayna",pr:"Mir'â",cat:"banyo",icon:"🪞"},
+  {ar:"مِنْشَفَة",tr:"Havlu",pr:"Mınşefe",cat:"banyo",icon:"🧺"},
+  {ar:"صَابُون",tr:"Sabun",pr:"Sâbûn",cat:"banyo",icon:"🧼"},
+  {ar:"حَوْض",tr:"Lavabo",pr:"Havd",cat:"banyo",icon:"🫧"},
+  {ar:"دُشّ",tr:"Duş",pr:"Duşş",cat:"banyo",icon:"🚿"},
+  {ar:"فُرْشَاةُ الأَسْنَان",tr:"Diş Fırçası",pr:"Furşâte-l-esnân",cat:"banyo",icon:"🪥"},
+  {ar:"مِرْحَاض",tr:"Klozet",pr:"Mirhâd",cat:"banyo",icon:"🚽"},
+  // RENKLER
+  {ar:"أَحْمَر",tr:"Kırmızı",pr:"Ahmer",cat:"renk",color:"#e53e3e"},
+  {ar:"أَزْرَق",tr:"Mavi",pr:"Ezrak",cat:"renk",color:"#3182ce"},
+  {ar:"أَخْضَر",tr:"Yeşil",pr:"Ahdar",cat:"renk",color:"#38a169"},
+  {ar:"أَصْفَر",tr:"Sarı",pr:"Asfar",cat:"renk",color:"#d69e2e"},
+  {ar:"أَبْيَض",tr:"Beyaz",pr:"Ebyad",cat:"renk",color:"#e2e8f0",border:true},
+  {ar:"أَسْوَد",tr:"Siyah",pr:"Esvad",cat:"renk",color:"#1a202c"},
+  {ar:"بُرْتُقَالِيّ",tr:"Turuncu",pr:"Burtukâlî",cat:"renk",color:"#dd6b20"},
+  {ar:"بَنَفْسَجِيّ",tr:"Mor",pr:"Benefsecî",cat:"renk",color:"#6b46c1"},
+  {ar:"وَرْدِيّ",tr:"Pembe",pr:"Verdî",cat:"renk",color:"#d53f8c"},
+  {ar:"بُنِّيّ",tr:"Kahverengi",pr:"Bunnî",cat:"renk",color:"#744210"},
+  {ar:"رَمَادِيّ",tr:"Gri",pr:"Remâdî",cat:"renk",color:"#718096"},
+  {ar:"ذَهَبِيّ",tr:"Altın",pr:"Zehebî",cat:"renk",color:"#c9933a"},
+  // SINIF
+  {ar:"فَصْلٌ دِرَاسِيٌّ",tr:"Sınıf",pr:"Faslun dirâsî",cat:"sinif",icon:"🏫"},
+  {ar:"سَبُّورَة",tr:"Tahta",pr:"Sabbûre",cat:"sinif",icon:"🖊️"},
+  {ar:"كِتَاب",tr:"Kitap",pr:"Kitâb",cat:"sinif",icon:"📗"},
+  {ar:"كُرَّاسَة",tr:"Defter",pr:"Kürrâse",cat:"sinif",icon:"📓"},
+  {ar:"قَلَم",tr:"Kalem",pr:"Kalem",cat:"sinif",icon:"✏️"},
+  {ar:"مِسْطَرَة",tr:"Cetvel",pr:"Mistare",cat:"sinif",icon:"📏"},
+  {ar:"مِقَصّ",tr:"Makas",pr:"Mikas",cat:"sinif",icon:"✂️"},
+  {ar:"مَمْحَاة",tr:"Silgi",pr:"Mamhâ",cat:"sinif",icon:"🩹"},
+  {ar:"حَقِيبَة مَدْرَسِيَّة",tr:"Okul Çantası",pr:"Hakîbe medresîyye",cat:"sinif",icon:"🎒"},
+  {ar:"مُعَلِّم",tr:"Öğretmen (E)",pr:"Muallim",cat:"sinif",icon:"👨‍🏫"},
+  {ar:"مُعَلِّمَة",tr:"Öğretmen (K)",pr:"Muallime",cat:"sinif",icon:"👩‍🏫"},
+  {ar:"طَالِب",tr:"Öğrenci (E)",pr:"Tâlib",cat:"sinif",icon:"🧑‍🎓"},
+  {ar:"لَوْحَة",tr:"Pano / Levha",pr:"Levha",cat:"sinif",icon:"🖼️"},
+  {ar:"مِسْطَرَة الزَّاوِيَة",tr:"Gönye",pr:"Mistare-z-zâviye",cat:"sinif",icon:"📐"},
+];
+
+const catNames = {
+  all:"Tüm Kelimeler",genel:"Ev — Genel",oda:"Odalar",
+  mobilya:"Mobilya",mutfak:"Mutfak",banyo:"Banyo",renk:"Renkler",sinif:"Sınıf & Okul"
+};
+
+document.getElementById('total-badge').textContent = words.length + ' Kelime';
+document.getElementById('prog').textContent = '0 / ' + words.length + ' öğrenildi';
+
+let learned = new Set();
+let currentCat = 'all';
+
+function filter(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function render() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  const list = currentCat === 'all' ? words : words.filter(w => w.cat === currentCat);
+
+  list.forEach(w => {
+    const idx = words.indexOf(w);
+    const isColor = !!w.color;
+    const div = document.createElement('div');
+    div.className = 'card' + (learned.has(idx) ? ' flipped' : '');
+
+    const frontVisual = isColor
+      ? `<div class="color-swatch" style="background:${w.color};${w.border?'border:2px solid #cbd5e0;':''}"></div>`
+      : `<div class="card-icon">${w.icon}</div>`;
+    const backVisual = isColor
+      ? `<div class="back-swatch" style="background:${w.color};${w.border?'border:2px solid rgba(255,255,255,0.5);':''}"></div>`
+      : `<div class="back-icon">${w.icon}</div>`;
+
+    div.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          ${frontVisual}
+          <div class="arabic-word">${w.ar}</div>
+          <div class="print-answer">${w.tr}</div>
+          <div class="print-pron">[ ${w.pr} ]</div>
+          <div class="tap-hint">çevirmek için tıkla</div>
+        </div>
+        <div class="card-back">
+          ${backVisual}
+          <div class="turkish">${w.tr}</div>
+          <div class="pronunciation">[ ${w.pr} ]</div>
+          <div class="arabic-back">${w.ar}</div>
+          <div class="tap-hint">geri çevir</div>
+        </div>
+      </div>`;
+
+    div.addEventListener('click', () => {
+      div.classList.toggle('flipped');
+      if (div.classList.contains('flipped')) learned.add(idx);
+      else learned.delete(idx);
+      updateProgress();
+    });
+    grid.appendChild(div);
+  });
+  updateProgress();
+}
+
+function updateProgress() {
+  const t = words.length;
+  document.getElementById('fill').style.width = (learned.size / t * 100) + '%';
+  document.getElementById('prog').textContent = `${learned.size} / ${t} öğrenildi`;
+}
+
+// ── PDF / PRINT ──
+function printCat(cat) {
+  // Save state
+  const prevCat = currentCat;
+
+  // Show target cards
+  const list = cat === 'all' ? words : words.filter(w => w.cat === cat);
+
+  // Temporarily render only these cards, unflipped, for print
+  const grid = document.getElementById('grid');
+  const prevHTML = grid.innerHTML;
+
+  grid.innerHTML = '';
+  list.forEach(w => {
+    const isColor = !!w.color;
+    const div = document.createElement('div');
+    div.className = 'card'; // never flipped in print
+
+    const frontVisual = isColor
+      ? `<div class="color-swatch" style="background:${w.color};${w.border?'border:2px solid #cbd5e0;':''}"></div>`
+      : `<div class="card-icon">${w.icon}</div>`;
+
+    div.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          ${frontVisual}
+          <div class="arabic-word">${w.ar}</div>
+          <div class="print-answer">${w.tr}</div>
+          <div class="print-pron">[ ${w.pr} ]</div>
+        </div>
+        <div class="card-back"></div>
+      </div>`;
+    grid.appendChild(div);
+  });
+
+  // Set print header
+  const ph = document.getElementById('print-header');
+  const pt = document.getElementById('print-title');
+  pt.textContent = 'Arapça Kelime Kartları — ' + catNames[cat];
+
+  // Trigger print
+  setTimeout(() => {
+    window.print();
+    // Restore after print dialog
+    setTimeout(() => {
+      grid.innerHTML = prevHTML;
+      render();
+    }, 500);
+  }, 100);
+}
+
+render();
+</script>
+</body>
+</html>
