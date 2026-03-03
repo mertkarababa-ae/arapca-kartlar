@@ -6,136 +6,207 @@
 <title>Arapça Kelime Kartları</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --sand:#f7f0e6; --terracotta:#bf5b38; --deep:#1c1208;
-  --gold:#c9933a; --sage:#7a8c6e; --cream:#fffdf7; --shadow:rgba(26,18,8,0.12);
+:root{
+  --sand:#f7f0e6;--terracotta:#bf5b38;--deep:#1c1208;
+  --gold:#c9933a;--sage:#7a8c6e;--cream:#fffdf7;--shadow:rgba(26,18,8,0.12);
+  --green:#38a169;--red:#e53e3e;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--sand);font-family:'Lato',sans-serif;color:var(--deep);min-height:100vh;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(201,147,58,0.04) 30px,rgba(201,147,58,0.04) 31px),repeating-linear-gradient(-45deg,transparent,transparent 30px,rgba(201,147,58,0.04) 30px,rgba(201,147,58,0.04) 31px);pointer-events:none;z-index:0;}
 
 /* HEADER */
-header{position:relative;z-index:1;text-align:center;padding:32px 20px 20px;border-bottom:2px solid var(--gold);}
+header{position:relative;z-index:1;text-align:center;padding:28px 20px 16px;border-bottom:2px solid var(--gold);}
 .ar-title{font-family:'Amiri',serif;font-size:2.2rem;color:var(--terracotta);direction:rtl;margin-bottom:4px;}
-header h1{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--deep);margin-bottom:4px;}
-header p{color:var(--sage);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;}
-.badge{display:inline-block;background:var(--terracotta);color:white;font-size:0.75rem;padding:3px 14px;border-radius:20px;margin-top:8px;letter-spacing:1px;}
+header h1{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--deep);margin-bottom:4px;}
+header p{color:var(--sage);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;}
+.badge{display:inline-block;background:var(--terracotta);color:white;font-size:0.72rem;padding:3px 14px;border-radius:20px;margin-top:6px;letter-spacing:1px;}
 
 /* MODE TABS */
-.mode-tabs{position:relative;z-index:1;display:flex;justify-content:center;gap:10px;padding:16px 20px 8px;}
-.mode-tab{background:white;border:1.5px solid var(--gold);color:var(--deep);padding:8px 22px;border-radius:30px;cursor:pointer;font-family:'Lato',sans-serif;font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.2s;display:flex;align-items:center;gap:6px;}
+.mode-tabs{position:relative;z-index:1;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;padding:14px 16px 6px;}
+.mode-tab{background:white;border:1.5px solid var(--gold);color:var(--deep);padding:7px 16px;border-radius:30px;cursor:pointer;font-family:'Lato',sans-serif;font-size:0.75rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.2s;display:flex;align-items:center;gap:5px;}
 .mode-tab.active,.mode-tab:hover{background:var(--deep);border-color:var(--deep);color:white;}
 
 /* FILTERS */
-.filters{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;gap:7px;padding:10px 16px 6px;}
-.filter-btn{background:white;border:1.5px solid var(--gold);color:var(--deep);padding:6px 14px;border-radius:30px;cursor:pointer;font-family:'Lato',sans-serif;font-size:0.75rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.2s;}
+.filters{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:8px 14px 4px;}
+.filter-btn{background:white;border:1.5px solid var(--gold);color:var(--deep);padding:5px 12px;border-radius:30px;cursor:pointer;font-family:'Lato',sans-serif;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.2s;}
 .filter-btn:hover,.filter-btn.active{background:var(--terracotta);border-color:var(--terracotta);color:white;}
 
-/* PDF SECTION - collapsible */
-.pdf-wrap{position:relative;z-index:1;margin:10px 20px;border-radius:14px;overflow:hidden;border:1.5px solid rgba(201,147,58,0.3);background:white;box-shadow:0 2px 10px var(--shadow);}
-.pdf-toggle{width:100%;padding:11px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:white;border:none;font-family:'Lato',sans-serif;font-size:0.78rem;letter-spacing:1px;text-transform:uppercase;color:var(--deep);}
-.pdf-toggle .left{display:flex;align-items:center;gap:8px;color:var(--sage);font-weight:700;}
-.pdf-toggle .arrow{transition:transform 0.3s;color:var(--gold);font-size:1rem;}
-.pdf-toggle.open .arrow{transform:rotate(180deg);}
-.pdf-body{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
-.pdf-body.open{max-height:200px;}
-.pdf-inner{padding:0 14px 14px;display:flex;flex-wrap:wrap;gap:8px;}
-.pdf-btn{background:var(--cream);border:1.5px solid var(--gold);color:var(--deep);padding:6px 13px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;font-size:0.72rem;letter-spacing:0.8px;text-transform:uppercase;transition:all 0.2s;display:flex;align-items:center;gap:4px;}
-.pdf-btn:hover{background:var(--gold);color:white;border-color:var(--gold);}
-.pdf-btn.all-btn{background:var(--terracotta);color:white;border-color:var(--terracotta);font-weight:700;}
-.pdf-btn.all-btn:hover{background:#a04828;}
-
 /* PROGRESS */
-.progress-bar{position:relative;z-index:1;text-align:center;padding:8px 32px 12px;}
+.progress-bar{position:relative;z-index:1;text-align:center;padding:8px 32px 10px;}
 .progress-track{height:4px;background:rgba(201,147,58,0.2);border-radius:2px;max-width:400px;margin:0 auto 6px;overflow:hidden;}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:2px;transition:width 0.4s ease;width:0%;}
-.progress-text{font-size:0.73rem;color:var(--sage);letter-spacing:1px;}
+.progress-text{font-size:0.72rem;color:var(--sage);letter-spacing:1px;}
 
 /* ═══ GRID MODE ═══ */
 #grid-mode{position:relative;z-index:1;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:14px;padding:0 20px 60px;max-width:1400px;margin:0 auto;}
-.card{perspective:900px;height:215px;cursor:pointer;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;padding:0 16px 60px;max-width:1400px;margin:0 auto;}
+.card{perspective:900px;height:210px;cursor:pointer;}
 .card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);}
 .card.flipped .card-inner{transform:rotateY(180deg);}
-.card-front,.card-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px 12px 28px;box-shadow:0 4px 18px var(--shadow);}
+.card-front,.card-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:12px 10px 26px;box-shadow:0 4px 18px var(--shadow);}
 .card-front{background:var(--cream);border:1.5px solid rgba(201,147,58,0.25);}
 .card-front::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:14px 14px 0 0;}
-.card-icon{font-size:3rem;line-height:1;margin-bottom:6px;}
-.arabic-word{font-family:'Amiri',serif;font-size:2rem;color:var(--terracotta);direction:rtl;line-height:1.2;text-align:center;}
-.color-swatch{width:54px;height:54px;border-radius:50%;margin-bottom:8px;box-shadow:0 2px 10px rgba(0,0,0,0.18);border:3px solid white;}
-.tap-hint{position:absolute;bottom:9px;font-size:0.58rem;color:rgba(122,140,110,0.6);letter-spacing:1px;text-transform:uppercase;}
-.speak-btn{position:absolute;top:9px;right:9px;background:rgba(201,147,58,0.12);border:1.5px solid rgba(201,147,58,0.35);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;z-index:10;color:var(--terracotta);font-size:0.95rem;}
+.card-icon{font-size:2.8rem;line-height:1;margin-bottom:5px;}
+.arabic-word{font-family:'Amiri',serif;font-size:1.9rem;color:var(--terracotta);direction:rtl;line-height:1.2;text-align:center;}
+.color-swatch{width:52px;height:52px;border-radius:50%;margin-bottom:7px;box-shadow:0 2px 10px rgba(0,0,0,0.18);border:3px solid white;}
+.tap-hint{position:absolute;bottom:8px;font-size:0.56rem;color:rgba(122,140,110,0.6);letter-spacing:1px;text-transform:uppercase;}
+.speak-btn{position:absolute;top:8px;right:8px;background:rgba(201,147,58,0.12);border:1.5px solid rgba(201,147,58,0.35);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;z-index:10;color:var(--terracotta);font-size:0.9rem;}
 .speak-btn:hover,.speak-btn.speaking{background:var(--terracotta);color:white;border-color:var(--terracotta);}
 .speak-btn.speaking{animation:pulse 0.6s infinite alternate;}
+.learned-star{position:absolute;top:8px;left:8px;font-size:0.85rem;opacity:0;transition:opacity 0.3s;}
+.card.flipped .learned-star{opacity:1;}
 @keyframes pulse{from{transform:scale(1);}to{transform:scale(1.15);}}
 .card-back{background:linear-gradient(145deg,#bf5b38,#8b3a22);transform:rotateY(180deg);color:white;text-align:center;}
-.back-icon{font-size:2.3rem;opacity:0.9;margin-bottom:4px;}
-.back-swatch{width:46px;height:46px;border-radius:50%;margin-bottom:6px;box-shadow:0 2px 8px rgba(0,0,0,0.25);border:3px solid rgba(255,255,255,0.4);}
-.turkish{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;line-height:1.2;}
-.pronunciation{font-size:0.8rem;opacity:0.85;font-style:italic;margin-top:4px;}
-.arabic-back{font-family:'Amiri',serif;font-size:1.35rem;direction:rtl;opacity:0.7;margin-top:4px;}
+.back-icon{font-size:2.2rem;opacity:0.9;margin-bottom:3px;}
+.back-swatch{width:44px;height:44px;border-radius:50%;margin-bottom:5px;box-shadow:0 2px 8px rgba(0,0,0,0.25);border:3px solid rgba(255,255,255,0.4);}
+.turkish{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;line-height:1.2;}
+.pronunciation{font-size:0.75rem;opacity:0.85;font-style:italic;margin-top:3px;}
+.arabic-back{font-family:'Amiri',serif;font-size:1.25rem;direction:rtl;opacity:0.7;margin-top:3px;}
 .card-back .tap-hint{color:rgba(255,255,255,0.4);}
 
 /* ═══ SWIPE MODE ═══ */
-#swipe-mode{display:none;position:relative;z-index:1;padding:0 20px 40px;}
-.swipe-counter{text-align:center;font-size:0.8rem;color:var(--sage);letter-spacing:1px;padding:8px 0 14px;}
-.swipe-arena{position:relative;height:340px;display:flex;justify-content:center;align-items:center;}
-.swipe-card{position:absolute;width:min(320px,88vw);height:310px;border-radius:20px;cursor:grab;user-select:none;touch-action:none;box-shadow:0 8px 32px rgba(26,18,8,0.18);}
+#swipe-mode{display:none;position:relative;z-index:1;padding:0 20px 30px;}
+.swipe-settings{display:flex;justify-content:center;align-items:center;gap:10px;padding:8px 0 12px;flex-wrap:wrap;}
+.swipe-settings label{font-size:0.75rem;color:var(--sage);letter-spacing:1px;text-transform:uppercase;}
+.swipe-count-select{background:white;border:1.5px solid var(--gold);color:var(--deep);padding:5px 12px;border-radius:20px;font-family:'Lato',sans-serif;font-size:0.8rem;cursor:pointer;}
+.swipe-start-btn{background:var(--terracotta);color:white;border:none;padding:6px 18px;border-radius:20px;font-family:'Lato',sans-serif;font-size:0.78rem;letter-spacing:1px;cursor:pointer;transition:all 0.2s;}
+.swipe-start-btn:hover{background:#a04828;}
+.swipe-counter{text-align:center;font-size:0.78rem;color:var(--sage);letter-spacing:1px;padding:4px 0 12px;}
+.swipe-arena{position:relative;height:330px;display:flex;justify-content:center;align-items:center;}
+.swipe-card{position:absolute;width:min(310px,86vw);height:300px;border-radius:20px;cursor:grab;user-select:none;touch-action:none;box-shadow:0 8px 32px rgba(26,18,8,0.18);}
 .swipe-card:active{cursor:grabbing;}
-.swipe-front{position:absolute;inset:0;border-radius:20px;background:var(--cream);border:1.5px solid rgba(201,147,58,0.3);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;backface-visibility:hidden;}
+.swipe-front{position:absolute;inset:0;border-radius:20px;background:var(--cream);border:1.5px solid rgba(201,147,58,0.3);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:7px;backface-visibility:hidden;}
 .swipe-front::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:20px 20px 0 0;}
-.swipe-ar{font-family:'Amiri',serif;font-size:2.8rem;color:var(--terracotta);direction:rtl;line-height:1.2;}
-.swipe-icon{font-size:3.8rem;line-height:1;}
-.swipe-tap{font-size:0.62rem;color:rgba(122,140,110,0.6);letter-spacing:1.5px;text-transform:uppercase;position:absolute;bottom:14px;}
-.swipe-speak{position:absolute;top:12px;right:12px;background:rgba(201,147,58,0.12);border:1.5px solid rgba(201,147,58,0.35);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;color:var(--terracotta);transition:all 0.2s;}
+.swipe-ar{font-family:'Amiri',serif;font-size:2.5rem;color:var(--terracotta);direction:rtl;line-height:1.2;}
+.swipe-icon{font-size:3.4rem;line-height:1;}
+.swipe-tap{font-size:0.6rem;color:rgba(122,140,110,0.6);letter-spacing:1.5px;text-transform:uppercase;position:absolute;bottom:12px;}
+.swipe-speak{position:absolute;top:10px;right:10px;background:rgba(201,147,58,0.12);border:1.5px solid rgba(201,147,58,0.35);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--terracotta);transition:all 0.2s;}
 .swipe-speak:hover,.swipe-speak.speaking{background:var(--terracotta);color:white;}
-/* revealed back */
+.hard-badge{position:absolute;top:10px;left:10px;background:#e53e3e;color:white;font-size:0.6rem;padding:2px 7px;border-radius:10px;letter-spacing:1px;font-weight:700;display:none;}
+.swipe-card.is-hard .hard-badge{display:block;}
 .swipe-card.revealed .swipe-front{display:none;}
-.swipe-back{display:none;position:absolute;inset:0;border-radius:20px;background:linear-gradient(145deg,#bf5b38,#8b3a22);color:white;flex-direction:column;justify-content:center;align-items:center;gap:6px;}
+.swipe-back{display:none;position:absolute;inset:0;border-radius:20px;background:linear-gradient(145deg,#bf5b38,#8b3a22);color:white;flex-direction:column;justify-content:center;align-items:center;gap:5px;}
 .swipe-card.revealed .swipe-back{display:flex;}
-.swipe-tr{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;}
-.swipe-pr{font-size:0.9rem;opacity:0.85;font-style:italic;}
-.swipe-ar-back{font-family:'Amiri',serif;font-size:1.6rem;direction:rtl;opacity:0.7;}
-/* drag indicators */
-.swipe-card .like-label,.swipe-card .nope-label{position:absolute;top:24px;font-size:1.4rem;font-weight:700;letter-spacing:2px;opacity:0;transition:opacity 0.1s;border:3px solid;padding:4px 12px;border-radius:8px;}
-.swipe-card .like-label{left:20px;color:#38a169;border-color:#38a169;transform:rotate(-15deg);}
-.swipe-card .nope-label{right:20px;color:#e53e3e;border-color:#e53e3e;transform:rotate(15deg);}
-/* swipe buttons */
-.swipe-btns{display:flex;justify-content:center;align-items:center;gap:20px;margin-top:16px;}
-.swipe-btn{width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.15);transition:transform 0.15s;}
+.swipe-tr{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;}
+.swipe-pr{font-size:0.85rem;opacity:0.85;font-style:italic;}
+.swipe-ar-back{font-family:'Amiri',serif;font-size:1.5rem;direction:rtl;opacity:0.7;}
+.swipe-card .like-label,.swipe-card .nope-label{position:absolute;top:22px;font-size:1.3rem;font-weight:700;letter-spacing:2px;opacity:0;transition:opacity 0.1s;border:3px solid;padding:4px 10px;border-radius:8px;}
+.swipe-card .like-label{left:18px;color:#38a169;border-color:#38a169;transform:rotate(-15deg);}
+.swipe-card .nope-label{right:18px;color:#e53e3e;border-color:#e53e3e;transform:rotate(15deg);}
+.swipe-btns{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:14px;}
+.swipe-btn{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.15);transition:transform 0.15s;}
 .swipe-btn:hover{transform:scale(1.1);}
 .btn-no{background:white;color:#e53e3e;}
-.btn-flip{background:white;color:var(--gold);width:48px;height:48px;font-size:1.2rem;}
+.btn-flip{background:white;color:var(--gold);width:46px;height:46px;font-size:1.2rem;}
 .btn-yes{background:white;color:#38a169;}
-.swipe-hint{display:flex;justify-content:center;gap:28px;margin-top:10px;font-size:0.7rem;color:var(--sage);letter-spacing:1px;}
-.swipe-hint span{display:flex;align-items:center;gap:4px;}
-/* stacked bg cards */
+.swipe-hint{display:flex;justify-content:center;gap:24px;margin-top:8px;font-size:0.68rem;color:var(--sage);letter-spacing:1px;}
 .swipe-bg{pointer-events:none;transform:scale(0.95) translateY(10px);z-index:-1;opacity:0.5;}
 .swipe-bg2{pointer-events:none;transform:scale(0.9) translateY(20px);z-index:-2;opacity:0.3;}
+.hard-words-panel{background:white;border:1.5px solid var(--gold);border-radius:12px;padding:12px 16px;margin:10px 0 0;font-size:0.75rem;color:var(--sage);}
+.hard-words-panel strong{color:var(--terracotta);font-size:0.78rem;}
+
+/* ═══ QUIZ MODE ═══ */
+#quiz-mode{display:none;position:relative;z-index:1;padding:0 20px 40px;}
+.quiz-settings{display:flex;justify-content:center;gap:10px;padding:10px 0 14px;flex-wrap:wrap;}
+.quiz-settings select,.quiz-settings button{background:white;border:1.5px solid var(--gold);color:var(--deep);padding:6px 14px;border-radius:20px;font-family:'Lato',sans-serif;font-size:0.78rem;cursor:pointer;}
+.quiz-settings button{background:var(--terracotta);color:white;border-color:var(--terracotta);}
+.quiz-score-bar{display:flex;justify-content:center;gap:20px;padding:0 0 12px;font-size:0.78rem;}
+.quiz-score-bar span{display:flex;align-items:center;gap:4px;}
+.q-correct{color:var(--green);}
+.q-wrong{color:var(--red);}
+.quiz-card{max-width:420px;margin:0 auto;background:var(--cream);border-radius:18px;border:1.5px solid rgba(201,147,58,0.3);box-shadow:0 6px 24px var(--shadow);padding:28px 24px 24px;text-align:center;position:relative;}
+.quiz-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:18px 18px 0 0;}
+.quiz-q-icon{font-size:3.2rem;margin-bottom:8px;}
+.quiz-q-ar{font-family:'Amiri',serif;font-size:3rem;color:var(--terracotta);direction:rtl;line-height:1.2;margin-bottom:4px;}
+.quiz-q-pr{font-size:0.82rem;color:var(--sage);font-style:italic;margin-bottom:16px;}
+.quiz-speak{background:rgba(201,147,58,0.12);border:1.5px solid rgba(201,147,58,0.35);border-radius:20px;padding:4px 12px;cursor:pointer;font-size:0.75rem;color:var(--terracotta);margin-bottom:16px;display:inline-flex;align-items:center;gap:4px;}
+.quiz-speak:hover{background:var(--terracotta);color:white;}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+.quiz-opt{background:white;border:1.5px solid rgba(201,147,58,0.3);border-radius:12px;padding:12px 10px;cursor:pointer;font-family:'Lato',sans-serif;font-size:0.88rem;transition:all 0.2s;text-align:center;line-height:1.3;}
+.quiz-opt:hover{border-color:var(--gold);background:#fffbe8;}
+.quiz-opt.correct{background:#f0fff4;border-color:var(--green);color:var(--green);}
+.quiz-opt.wrong{background:#fff5f5;border-color:var(--red);color:var(--red);}
+.quiz-opt.reveal{background:#f0fff4;border-color:var(--green);color:var(--green);}
+.quiz-opt:disabled{cursor:default;}
+.quiz-feedback{margin-top:12px;font-size:0.85rem;min-height:24px;font-style:italic;}
+.quiz-feedback.ok{color:var(--green);}
+.quiz-feedback.no{color:var(--red);}
+.quiz-next{margin-top:14px;background:var(--terracotta);color:white;border:none;padding:8px 28px;border-radius:20px;font-family:'Lato',sans-serif;font-size:0.82rem;letter-spacing:1px;cursor:pointer;display:none;}
+.quiz-next:hover{background:#a04828;}
+.quiz-progress{text-align:center;font-size:0.72rem;color:var(--sage);margin-bottom:10px;letter-spacing:1px;}
+.quiz-result{max-width:380px;margin:0 auto;text-align:center;background:var(--cream);border-radius:18px;padding:32px 24px;border:1.5px solid rgba(201,147,58,0.3);box-shadow:0 6px 24px var(--shadow);}
+.quiz-result .emoji{font-size:3.5rem;}
+.quiz-result h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--terracotta);margin:10px 0 6px;}
+.quiz-result p{font-size:0.9rem;color:var(--sage);margin-bottom:16px;}
+.quiz-result button{background:var(--terracotta);color:white;border:none;padding:9px 28px;border-radius:20px;font-family:'Lato',sans-serif;font-size:0.82rem;cursor:pointer;}
+
+/* ═══ YAZMA MODE ═══ */
+#write-mode{display:none;position:relative;z-index:1;padding:0 20px 40px;}
+.write-settings{display:flex;justify-content:center;gap:10px;padding:10px 0 14px;flex-wrap:wrap;}
+.write-card{max-width:440px;margin:0 auto;background:var(--cream);border-radius:18px;border:1.5px solid rgba(201,147,58,0.3);box-shadow:0 6px 24px var(--shadow);padding:28px 24px 24px;text-align:center;position:relative;}
+.write-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:18px 18px 0 0;}
+.write-q-label{font-size:0.7rem;color:var(--sage);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.write-turkish{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--deep);margin-bottom:4px;}
+.write-pr{font-size:0.82rem;color:var(--sage);font-style:italic;margin-bottom:16px;}
+.write-hint-btn{background:transparent;border:1px dashed var(--gold);color:var(--gold);padding:3px 10px;border-radius:10px;font-size:0.7rem;cursor:pointer;margin-bottom:12px;}
+.write-hint-ar{font-family:'Amiri',serif;font-size:1.8rem;color:rgba(191,91,56,0.3);direction:rtl;letter-spacing:4px;margin-bottom:10px;min-height:40px;}
+.write-input-wrap{position:relative;margin-bottom:12px;}
+.write-input{width:100%;font-family:'Amiri',serif;font-size:1.8rem;direction:rtl;text-align:center;background:white;border:2px solid rgba(201,147,58,0.3);border-radius:12px;padding:10px 14px;color:var(--deep);outline:none;transition:border 0.2s;}
+.write-input:focus{border-color:var(--gold);}
+.write-input.correct{border-color:var(--green);background:#f0fff4;}
+.write-input.wrong{border-color:var(--red);background:#fff5f5;}
+.write-submit{background:var(--terracotta);color:white;border:none;padding:8px 26px;border-radius:20px;font-family:'Lato',sans-serif;font-size:0.82rem;cursor:pointer;margin-right:8px;}
+.write-skip{background:white;color:var(--sage);border:1.5px solid rgba(122,140,110,0.4);padding:8px 18px;border-radius:20px;font-family:'Lato',sans-serif;font-size:0.82rem;cursor:pointer;}
+.write-feedback{margin-top:10px;font-size:0.9rem;min-height:26px;}
+.write-feedback.ok{color:var(--green);}
+.write-feedback.no{color:var(--red);}
+.write-correct-ans{font-family:'Amiri',serif;font-size:1.6rem;direction:rtl;color:var(--terracotta);margin-top:4px;}
+.write-next{margin-top:12px;background:var(--deep);color:white;border:none;padding:8px 26px;border-radius:20px;font-family:'Lato',sans-serif;font-size:0.82rem;cursor:pointer;display:none;}
+.write-progress{text-align:center;font-size:0.72rem;color:var(--sage);margin-bottom:10px;letter-spacing:1px;}
+.write-score-bar{display:flex;justify-content:center;gap:20px;padding:0 0 10px;font-size:0.78rem;}
+/* Arabic keyboard helper */
+.ar-keyboard{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin-top:12px;max-width:420px;margin-left:auto;margin-right:auto;}
+.ar-key{background:white;border:1.5px solid rgba(201,147,58,0.35);border-radius:6px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'Amiri',serif;font-size:1.1rem;color:var(--deep);transition:all 0.15s;}
+.ar-key:hover{background:var(--gold);color:white;border-color:var(--gold);}
+.ar-key.wide{width:56px;font-size:0.7rem;font-family:'Lato',sans-serif;letter-spacing:0.5px;}
+
+/* PDF collapsible */
+.pdf-wrap{position:relative;z-index:1;margin:8px 16px;border-radius:12px;overflow:hidden;border:1.5px solid rgba(201,147,58,0.3);background:white;box-shadow:0 2px 10px var(--shadow);}
+.pdf-toggle{width:100%;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:white;border:none;font-family:'Lato',sans-serif;font-size:0.76rem;letter-spacing:1px;text-transform:uppercase;color:var(--deep);}
+.pdf-toggle .left{display:flex;align-items:center;gap:8px;color:var(--sage);font-weight:700;}
+.pdf-toggle .arrow{transition:transform 0.3s;color:var(--gold);}
+.pdf-toggle.open .arrow{transform:rotate(180deg);}
+.pdf-body{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.pdf-body.open{max-height:200px;}
+.pdf-inner{padding:0 12px 12px;display:flex;flex-wrap:wrap;gap:7px;}
+.pdf-btn{background:var(--cream);border:1.5px solid var(--gold);color:var(--deep);padding:5px 11px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;font-size:0.7rem;letter-spacing:0.8px;text-transform:uppercase;transition:all 0.2s;}
+.pdf-btn:hover{background:var(--gold);color:white;}
+.pdf-btn.all-btn{background:var(--terracotta);color:white;border-color:var(--terracotta);font-weight:700;}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--deep);color:white;padding:10px 20px;border-radius:20px;font-size:0.82rem;letter-spacing:1px;z-index:999;transition:transform 0.3s ease;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
 
 /* PRINT */
 @media print{
   body{background:white!important;}
-  body::before{display:none;}
-  header,.mode-tabs,.filters,.pdf-wrap,.progress-bar,#swipe-mode,.speak-btn{display:none!important;}
+  body::before,.mode-tabs,.filters,.pdf-wrap,.progress-bar,#swipe-mode,#quiz-mode,#write-mode,.speak-btn,.toast{display:none!important;}
   #grid-mode{display:block!important;}
-  .grid{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:8px!important;padding:8px!important;}
+  .grid{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:7px!important;padding:7px!important;}
   .card{perspective:none!important;height:auto!important;page-break-inside:avoid;break-inside:avoid;}
   .card-inner{transform:none!important;position:static!important;}
-  .card-front{position:static!important;backface-visibility:visible!important;border-radius:10px!important;border:1.5px solid #c9933a!important;box-shadow:none!important;padding:12px 10px 18px!important;page-break-inside:avoid;}
+  .card-front{position:static!important;backface-visibility:visible!important;border-radius:8px!important;border:1.5px solid #c9933a!important;box-shadow:none!important;padding:10px 8px 16px!important;}
   .card-back{display:none!important;}
-  .card-front::before{height:3px!important;}
-  .card-icon{font-size:2rem!important;}
-  .arabic-word{font-size:1.6rem!important;}
-  .tap-hint{display:none!important;}
-  .color-swatch{width:40px!important;height:40px!important;}
-  .print-header{display:block!important;text-align:center;padding:10px 0 6px;border-bottom:2px solid #c9933a;margin-bottom:10px;}
-  .print-header h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:#1c1208;}
-  .print-header p{font-size:0.7rem;color:#7a8c6e;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
-  .card-front .print-answer{display:block!important;font-size:0.85rem;color:#1c1208;font-family:'Playfair Display',serif;font-weight:700;margin-top:3px;}
-  .card-front .print-pron{display:block!important;font-size:0.65rem;color:#7a8c6e;font-style:italic;}
+  .card-icon{font-size:1.8rem!important;}
+  .arabic-word{font-size:1.5rem!important;}
+  .tap-hint,.speak-btn,.learned-star{display:none!important;}
+  .color-swatch{width:38px!important;height:38px!important;}
+  .card-front .print-answer{display:block!important;font-size:0.82rem;color:#1c1208;font-family:'Playfair Display',serif;font-weight:700;margin-top:2px;}
+  .card-front .print-pron{display:block!important;font-size:0.62rem;color:#7a8c6e;font-style:italic;}
+  header{padding:8px 0 6px!important;}
+  header p{display:none!important;}
 }
-.print-header{display:none;}
 .print-answer{display:none;}
 .print-pron{display:none;}
 </style>
@@ -145,31 +216,35 @@ header p{color:var(--sage);font-size:0.8rem;letter-spacing:2px;text-transform:up
 <header>
   <div class="ar-title">المُفْرَدَات العَرَبِيَّة</div>
   <h1>Arapça Kelime Kartları</h1>
-  <p>Fasih Arapça · Ev · Renkler · Sınıf · Rakamlar</p>
+  <p>Fasih Arapça · 10 Konu · 500+ Kelime</p>
   <span class="badge" id="total-badge">… Kelime</span>
 </header>
 
-<!-- Mode tabs -->
 <div class="mode-tabs">
-  <button class="mode-tab active" id="tab-grid" onclick="setMode('grid')">⊞ Kart Görünümü</button>
-  <button class="mode-tab" id="tab-swipe" onclick="setMode('swipe')">👆 Swipe Modu</button>
+  <button class="mode-tab active" id="tab-grid" onclick="setMode('grid')">⊞ Kartlar</button>
+  <button class="mode-tab" id="tab-swipe" onclick="setMode('swipe')">👆 Swipe</button>
+  <button class="mode-tab" id="tab-quiz" onclick="setMode('quiz')">🧩 Quiz</button>
+  <button class="mode-tab" id="tab-write" onclick="setMode('write')">✍️ Yaz</button>
 </div>
 
-<!-- Filters -->
-<div class="filters">
+<div class="filters" id="filters">
   <button class="filter-btn active" onclick="filter('all',this)">Tümü</button>
   <button class="filter-btn" onclick="filter('baslangic',this)">🌱 Başlangıç</button>
   <button class="filter-btn" onclick="filter('rakam',this)">🔢 Rakamlar</button>
-  <button class="filter-btn" onclick="filter('genel',this)">🏠 Ev Genel</button>
+  <button class="filter-btn" onclick="filter('genel',this)">🏠 Ev</button>
   <button class="filter-btn" onclick="filter('oda',this)">🚪 Odalar</button>
   <button class="filter-btn" onclick="filter('mobilya',this)">🛋️ Mobilya</button>
   <button class="filter-btn" onclick="filter('mutfak',this)">🍳 Mutfak</button>
   <button class="filter-btn" onclick="filter('banyo',this)">🚿 Banyo</button>
   <button class="filter-btn" onclick="filter('renk',this)">🎨 Renkler</button>
   <button class="filter-btn" onclick="filter('sinif',this)">📚 Sınıf</button>
+  <button class="filter-btn" onclick="filter('hayvan',this)">🐾 Hayvanlar</button>
+  <button class="filter-btn" onclick="filter('meslek',this)">👷 Meslekler</button>
+  <button class="filter-btn" onclick="filter('gida',this)">🍎 Gıda</button>
+  <button class="filter-btn" onclick="filter('fiil',this)">🏃 Fiiller</button>
+  <button class="filter-btn" onclick="filter('vucut',this)">🫀 Vücut</button>
 </div>
 
-<!-- PDF Panel (collapsible) -->
 <div class="pdf-wrap">
   <button class="pdf-toggle" id="pdfToggle" onclick="togglePdf()">
     <span class="left">📄 PDF İndir</span>
@@ -178,39 +253,54 @@ header p{color:var(--sage);font-size:0.8rem;letter-spacing:2px;text-transform:up
   <div class="pdf-body" id="pdfBody">
     <div class="pdf-inner">
       <button class="pdf-btn all-btn" onclick="printCat('all')">🖨️ Tümü</button>
-      <button class="pdf-btn" onclick="printCat('baslangic')">🌱 Başlangıç</button>
-      <button class="pdf-btn" onclick="printCat('rakam')">🔢 Rakamlar</button>
-      <button class="pdf-btn" onclick="printCat('genel')">🏠 Ev Genel</button>
-      <button class="pdf-btn" onclick="printCat('oda')">🚪 Odalar</button>
-      <button class="pdf-btn" onclick="printCat('mobilya')">🛋️ Mobilya</button>
-      <button class="pdf-btn" onclick="printCat('mutfak')">🍳 Mutfak</button>
-      <button class="pdf-btn" onclick="printCat('banyo')">🚿 Banyo</button>
-      <button class="pdf-btn" onclick="printCat('renk')">🎨 Renkler</button>
-      <button class="pdf-btn" onclick="printCat('sinif')">📚 Sınıf</button>
+      <button class="pdf-btn" onclick="printCat('baslangic')">Başlangıç</button>
+      <button class="pdf-btn" onclick="printCat('rakam')">Rakamlar</button>
+      <button class="pdf-btn" onclick="printCat('genel')">Ev</button>
+      <button class="pdf-btn" onclick="printCat('oda')">Odalar</button>
+      <button class="pdf-btn" onclick="printCat('mobilya')">Mobilya</button>
+      <button class="pdf-btn" onclick="printCat('mutfak')">Mutfak</button>
+      <button class="pdf-btn" onclick="printCat('banyo')">Banyo</button>
+      <button class="pdf-btn" onclick="printCat('renk')">Renkler</button>
+      <button class="pdf-btn" onclick="printCat('sinif')">Sınıf</button>
+      <button class="pdf-btn" onclick="printCat('hayvan')">Hayvanlar</button>
+      <button class="pdf-btn" onclick="printCat('meslek')">Meslekler</button>
+      <button class="pdf-btn" onclick="printCat('gida')">Gıda</button>
+      <button class="pdf-btn" onclick="printCat('fiil')">Fiiller</button>
+      <button class="pdf-btn" onclick="printCat('vucut')">Vücut</button>
     </div>
   </div>
 </div>
 
-<!-- Progress -->
 <div class="progress-bar">
   <div class="progress-track"><div class="progress-fill" id="fill"></div></div>
   <div class="progress-text" id="prog">0 / … öğrenildi</div>
 </div>
 
-<!-- Print header (hidden normally) -->
-<div class="print-header" id="print-header">
-  <h2 id="print-title">Arapça Kelime Kartları</h2>
-  <p>Fasih Arapça — Kelime Kartları</p>
-</div>
-
-<!-- GRID MODE -->
+<!-- GRID -->
 <div id="grid-mode">
   <div class="grid" id="grid"></div>
 </div>
 
-<!-- SWIPE MODE -->
+<!-- SWIPE -->
 <div id="swipe-mode">
-  <div class="swipe-counter" id="swipe-counter">1 / …</div>
+  <div class="swipe-settings">
+    <label>Kart sayısı:</label>
+    <select class="swipe-count-select" id="swipe-count-sel">
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50" selected>50</option>
+      <option value="100">100</option>
+      <option value="all">Hepsi</option>
+    </select>
+    <label>Sıralama:</label>
+    <select class="swipe-count-select" id="swipe-order-sel">
+      <option value="random">Rastgele</option>
+      <option value="hard">Zor Önce</option>
+      <option value="order">Sıralı</option>
+    </select>
+    <button class="swipe-start-btn" onclick="initSwipe()">▶ Başla</button>
+  </div>
+  <div class="swipe-counter" id="swipe-counter">—</div>
   <div class="swipe-arena" id="swipe-arena">
     <div class="swipe-card swipe-bg2" id="swipe-bg2"></div>
     <div class="swipe-card swipe-bg" id="swipe-bg"></div>
@@ -221,144 +311,445 @@ header p{color:var(--sage);font-size:0.8rem;letter-spacing:2px;text-transform:up
     <button class="swipe-btn btn-flip" onclick="flipSwipeCard()" title="Çevir">↺</button>
     <button class="swipe-btn btn-yes" onclick="swipeCard('right')" title="Öğrendim">✓</button>
   </div>
-  <div class="swipe-hint">
-    <span>← Bilmiyorum</span>
-    <span>Öğrendim →</span>
+  <div class="swipe-hint"><span>← Bilmiyorum</span><span>Öğrendim →</span></div>
+  <div class="hard-words-panel" id="hard-panel" style="display:none">
+    <strong>🔴 Tekrar Gerekli:</strong> <span id="hard-list"></span>
   </div>
 </div>
 
+<!-- QUIZ -->
+<div id="quiz-mode">
+  <div class="quiz-settings">
+    <select id="quiz-count-sel"><option value="10">10 Soru</option><option value="20" selected>20 Soru</option><option value="30">30 Soru</option><option value="50">50 Soru</option></select>
+    <select id="quiz-dir-sel"><option value="ar2tr">Arapça → Türkçe</option><option value="tr2ar">Türkçe → Arapça</option></select>
+    <button onclick="initQuiz()">▶ Başla</button>
+  </div>
+  <div class="quiz-score-bar"><span class="q-correct">✓ <span id="q-ok">0</span></span><span class="q-wrong">✗ <span id="q-err">0</span></span></div>
+  <div class="quiz-progress" id="quiz-prog">—</div>
+  <div id="quiz-area"></div>
+</div>
+
+<!-- WRITE -->
+<div id="write-mode">
+  <div class="write-settings">
+    <select id="write-count-sel" class="swipe-count-select"><option value="10">10</option><option value="20" selected>20</option><option value="30">30</option><option value="50">50</option></select>
+    <button class="swipe-start-btn" onclick="initWrite()">▶ Başla</button>
+  </div>
+  <div class="write-score-bar"><span class="q-correct">✓ <span id="w-ok">0</span></span><span class="q-wrong">✗ <span id="w-err">0</span></span></div>
+  <div class="write-progress" id="write-prog">—</div>
+  <div id="write-area"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
+// ═══════════════════════════════════════════
+// WORDS DATABASE — 500+ words
+// ═══════════════════════════════════════════
 const words = [
-  // BAŞLANGIÇ
-  {ar:"مَرْحَبًا",tr:"Merhaba",pr:"Merhaben",cat:"baslangic",icon:"👋"},
-  {ar:"شُكْرًا",tr:"Teşekkürler",pr:"Şükren",cat:"baslangic",icon:"🙏"},
-  {ar:"نَعَم",tr:"Evet",pr:"Na'am",cat:"baslangic",icon:"✅"},
-  {ar:"لَا",tr:"Hayır",pr:"Lâ",cat:"baslangic",icon:"❌"},
-  {ar:"مِنْ فَضْلِك",tr:"Lütfen",pr:"Min fadlik",cat:"baslangic",icon:"🤲"},
-  {ar:"مَاء",tr:"Su",pr:"Mâ",cat:"baslangic",icon:"💧"},
-  {ar:"طَعَام",tr:"Yemek",pr:"Taâm",cat:"baslangic",icon:"🍽️"},
-  {ar:"يَوْم",tr:"Gün",pr:"Yevm",cat:"baslangic",icon:"☀️"},
-  {ar:"لَيْل",tr:"Gece",pr:"Leyl",cat:"baslangic",icon:"🌙"},
-  {ar:"اسْم",tr:"İsim / Ad",pr:"İsm",cat:"baslangic",icon:"🏷️"},
-  {ar:"رَجُل",tr:"Adam / Erkek",pr:"Racül",cat:"baslangic",icon:"👨"},
-  {ar:"اِمْرَأَة",tr:"Kadın",pr:"İmraeh",cat:"baslangic",icon:"👩"},
-  {ar:"وَلَد",tr:"Çocuk / Oğlan",pr:"Veled",cat:"baslangic",icon:"👦"},
-  {ar:"بِنْت",tr:"Kız",pr:"Bint",cat:"baslangic",icon:"👧"},
-  {ar:"كَبِير",tr:"Büyük",pr:"Kebîr",cat:"baslangic",icon:"⬆️"},
-  {ar:"صَغِير",tr:"Küçük",pr:"Sağîr",cat:"baslangic",icon:"⬇️"},
-  {ar:"جَيِّد",tr:"İyi",pr:"Ceyyid",cat:"baslangic",icon:"👍"},
-  {ar:"سَيِّئ",tr:"Kötü",pr:"Seyyî",cat:"baslangic",icon:"👎"},
-  // RAKAMLAR
-  {ar:"صِفْر",tr:"Sıfır — 0",pr:"Sıfr",cat:"rakam",icon:"0️⃣"},
-  {ar:"وَاحِد",tr:"Bir — 1",pr:"Vâhid",cat:"rakam",icon:"1️⃣"},
-  {ar:"اِثْنَان",tr:"İki — 2",pr:"İsnân",cat:"rakam",icon:"2️⃣"},
-  {ar:"ثَلَاثَة",tr:"Üç — 3",pr:"Selâse",cat:"rakam",icon:"3️⃣"},
-  {ar:"أَرْبَعَة",tr:"Dört — 4",pr:"Erba'a",cat:"rakam",icon:"4️⃣"},
-  {ar:"خَمْسَة",tr:"Beş — 5",pr:"Hamse",cat:"rakam",icon:"5️⃣"},
-  {ar:"سِتَّة",tr:"Altı — 6",pr:"Sitte",cat:"rakam",icon:"6️⃣"},
-  {ar:"سَبْعَة",tr:"Yedi — 7",pr:"Seb'a",cat:"rakam",icon:"7️⃣"},
-  {ar:"ثَمَانِيَة",tr:"Sekiz — 8",pr:"Semâniye",cat:"rakam",icon:"8️⃣"},
-  {ar:"تِسْعَة",tr:"Dokuz — 9",pr:"Tis'a",cat:"rakam",icon:"9️⃣"},
-  {ar:"عَشَرَة",tr:"On — 10",pr:"Aşere",cat:"rakam",icon:"🔟"},
-  {ar:"عِشْرُون",tr:"Yirmi — 20",pr:"İşrûn",cat:"rakam",icon:"2️⃣0️⃣"},
-  {ar:"مِئَة",tr:"Yüz — 100",pr:"Mi'e",cat:"rakam",icon:"💯"},
-  // EV GENEL
-  {ar:"بَيْت",tr:"Ev",pr:"Bayt",cat:"genel",icon:"🏠"},
-  {ar:"مَنْزِل",tr:"Konut",pr:"Menzil",cat:"genel",icon:"🏡"},
-  {ar:"شَقَّة",tr:"Daire",pr:"Şakka",cat:"genel",icon:"🏢"},
-  {ar:"طَابِق",tr:"Kat",pr:"Tâbik",cat:"genel",icon:"🔢"},
-  {ar:"سَقْف",tr:"Tavan",pr:"Sakf",cat:"genel",icon:"🏗️"},
-  {ar:"جِدَار",tr:"Duvar",pr:"Cidâr",cat:"genel",icon:"🧱"},
-  {ar:"أَرْضِيَّة",tr:"Zemin",pr:"Ardıyye",cat:"genel",icon:"⬜"},
-  {ar:"بَاب",tr:"Kapı",pr:"Bâb",cat:"genel",icon:"🚪"},
-  {ar:"نَافِذَة",tr:"Pencere",pr:"Nâfize",cat:"genel",icon:"🪟"},
-  {ar:"دَرَج",tr:"Merdiven",pr:"Derec",cat:"genel",icon:"🪜"},
-  // ODALAR
-  {ar:"غُرْفَة",tr:"Oda",pr:"Gurfe",cat:"oda",icon:"🛏️"},
-  {ar:"غُرْفَةُ النَّوْم",tr:"Yatak Odası",pr:"Gurfe-n-nevm",cat:"oda",icon:"🛌"},
-  {ar:"غُرْفَةُ الجُلُوس",tr:"Oturma Odası",pr:"Gurfe-l-culûs",cat:"oda",icon:"🛋️"},
-  {ar:"غُرْفَةُ الطَّعَام",tr:"Yemek Odası",pr:"Gurfe-t-taâm",cat:"oda",icon:"🍽️"},
-  {ar:"مَطْبَخ",tr:"Mutfak",pr:"Matbah",cat:"oda",icon:"👨‍🍳"},
-  {ar:"حَمَّام",tr:"Banyo",pr:"Hammâm",cat:"oda",icon:"🛁"},
-  {ar:"دَوْرَةُ المِيَاه",tr:"Tuvalet",pr:"Devretü-l-miyâh",cat:"oda",icon:"🚽"},
-  {ar:"مَكْتَب",tr:"Çalışma Odası",pr:"Mekteb",cat:"oda",icon:"💼"},
-  {ar:"صَالَة",tr:"Salon",pr:"Sâle",cat:"oda",icon:"🏛️"},
-  {ar:"شُرْفَة",tr:"Balkon",pr:"Şurfe",cat:"oda",icon:"🌇"},
-  // MOBİLYA
-  {ar:"سَرِير",tr:"Yatak",pr:"Serîr",cat:"mobilya",icon:"🛏️"},
-  {ar:"وِسَادَة",tr:"Yastık",pr:"Visâde",cat:"mobilya",icon:"😴"},
-  {ar:"أَرِيكَة",tr:"Kanepe",pr:"Erîke",cat:"mobilya",icon:"🛋️"},
-  {ar:"كُرْسِيٌّ",tr:"Sandalye",pr:"Kürsiyyun",cat:"mobilya",icon:"🪑"},
-  {ar:"طَاوِلَة",tr:"Masa",pr:"Tâvile",cat:"mobilya",icon:"🪵"},
-  {ar:"خِزَانَة",tr:"Dolap",pr:"Hizâne",cat:"mobilya",icon:"🗄️"},
-  {ar:"رَفٌّ",tr:"Raf",pr:"Raff",cat:"mobilya",icon:"📚"},
-  {ar:"سِجَادَة",tr:"Halı",pr:"Sicâde",cat:"mobilya",icon:"🟫"},
-  {ar:"سِتَارَة",tr:"Perde",pr:"Sitâre",cat:"mobilya",icon:"🪟"},
-  {ar:"مِصْبَاح",tr:"Lamba",pr:"Mısbâh",cat:"mobilya",icon:"💡"},
-  // MUTFAK
-  {ar:"ثَلَّاجَة",tr:"Buzdolabı",pr:"Sellâce",cat:"mutfak",icon:"🧊"},
-  {ar:"مَوْقِد",tr:"Ocak",pr:"Mevkid",cat:"mutfak",icon:"🔥"},
-  {ar:"غَسَّالَة",tr:"Çamaşır Makinesi",pr:"Ğassâle",cat:"mutfak",icon:"🫧"},
-  {ar:"صُنْبُور",tr:"Musluk",pr:"Sunbûr",cat:"mutfak",icon:"🚰"},
-  {ar:"طَنْجَرَة",tr:"Tencere",pr:"Tancere",cat:"mutfak",icon:"🫕"},
-  {ar:"مِقْلَاة",tr:"Tava",pr:"Miklâye",cat:"mutfak",icon:"🍳"},
-  {ar:"كُوب",tr:"Bardak",pr:"Kûb",cat:"mutfak",icon:"🥛"},
-  {ar:"صَحْن",tr:"Tabak",pr:"Sahın",cat:"mutfak",icon:"🍽️"},
-  {ar:"مِلْعَقَة",tr:"Kaşık",pr:"Milaka",cat:"mutfak",icon:"🥄"},
-  {ar:"شَوْكَة",tr:"Çatal",pr:"Şevke",cat:"mutfak",icon:"🍴"},
-  {ar:"سِكِّين",tr:"Bıçak",pr:"Sikkîn",cat:"mutfak",icon:"🔪"},
-  // BANYO
-  {ar:"مِرْآة",tr:"Ayna",pr:"Mir'â",cat:"banyo",icon:"🪞"},
-  {ar:"مِنْشَفَة",tr:"Havlu",pr:"Mınşefe",cat:"banyo",icon:"🧺"},
-  {ar:"صَابُون",tr:"Sabun",pr:"Sâbûn",cat:"banyo",icon:"🧼"},
-  {ar:"حَوْض",tr:"Lavabo",pr:"Havd",cat:"banyo",icon:"🫧"},
-  {ar:"دُشّ",tr:"Duş",pr:"Duşş",cat:"banyo",icon:"🚿"},
-  {ar:"فُرْشَاةُ الأَسْنَان",tr:"Diş Fırçası",pr:"Furşâte-l-esnân",cat:"banyo",icon:"🪥"},
-  {ar:"مِرْحَاض",tr:"Klozet",pr:"Mirhâd",cat:"banyo",icon:"🚽"},
-  // RENKLER
-  {ar:"أَحْمَر",tr:"Kırmızı",pr:"Ahmer",cat:"renk",color:"#e53e3e"},
-  {ar:"أَزْرَق",tr:"Mavi",pr:"Ezrak",cat:"renk",color:"#3182ce"},
-  {ar:"أَخْضَر",tr:"Yeşil",pr:"Ahdar",cat:"renk",color:"#38a169"},
-  {ar:"أَصْفَر",tr:"Sarı",pr:"Asfar",cat:"renk",color:"#d69e2e"},
-  {ar:"أَبْيَض",tr:"Beyaz",pr:"Ebyad",cat:"renk",color:"#e2e8f0",border:true},
-  {ar:"أَسْوَد",tr:"Siyah",pr:"Esvad",cat:"renk",color:"#1a202c"},
-  {ar:"بُرْتُقَالِيّ",tr:"Turuncu",pr:"Burtukâlî",cat:"renk",color:"#dd6b20"},
-  {ar:"بَنَفْسَجِيّ",tr:"Mor",pr:"Benefsecî",cat:"renk",color:"#6b46c1"},
-  {ar:"وَرْدِيّ",tr:"Pembe",pr:"Verdî",cat:"renk",color:"#d53f8c"},
-  {ar:"بُنِّيّ",tr:"Kahverengi",pr:"Bunnî",cat:"renk",color:"#744210"},
-  {ar:"رَمَادِيّ",tr:"Gri",pr:"Remâdî",cat:"renk",color:"#718096"},
-  {ar:"ذَهَبِيّ",tr:"Altın",pr:"Zehebî",cat:"renk",color:"#c9933a"},
-  // SINIF
-  {ar:"فَصْلٌ دِرَاسِيٌّ",tr:"Sınıf",pr:"Faslun dirâsî",cat:"sinif",icon:"🏫"},
-  {ar:"سَبُّورَة",tr:"Tahta",pr:"Sabbûre",cat:"sinif",icon:"🖊️"},
-  {ar:"كِتَاب",tr:"Kitap",pr:"Kitâb",cat:"sinif",icon:"📗"},
-  {ar:"كُرَّاسَة",tr:"Defter",pr:"Kürrâse",cat:"sinif",icon:"📓"},
-  {ar:"قَلَم",tr:"Kalem",pr:"Kalem",cat:"sinif",icon:"✏️"},
-  {ar:"مِسْطَرَة",tr:"Cetvel",pr:"Mistare",cat:"sinif",icon:"📏"},
-  {ar:"مِقَصّ",tr:"Makas",pr:"Mikas",cat:"sinif",icon:"✂️"},
-  {ar:"مَمْحَاة",tr:"Silgi",pr:"Mamhâ",cat:"sinif",icon:"🩹"},
-  {ar:"حَقِيبَة مَدْرَسِيَّة",tr:"Okul Çantası",pr:"Hakîbe medresîyye",cat:"sinif",icon:"🎒"},
-  {ar:"مُعَلِّم",tr:"Öğretmen (E)",pr:"Muallim",cat:"sinif",icon:"👨‍🏫"},
-  {ar:"مُعَلِّمَة",tr:"Öğretmen (K)",pr:"Muallime",cat:"sinif",icon:"👩‍🏫"},
-  {ar:"طَالِب",tr:"Öğrenci (E)",pr:"Tâlib",cat:"sinif",icon:"🧑‍🎓"},
-  {ar:"لَوْحَة",tr:"Pano",pr:"Levha",cat:"sinif",icon:"🖼️"},
-  {ar:"مِسْطَرَة الزَّاوِيَة",tr:"Gönye",pr:"Mistare-z-zâviye",cat:"sinif",icon:"📐"},
+// BAŞLANGIÇ (temel ifadeler)
+{ar:"مَرْحَبًا",tr:"Merhaba",pr:"Merhaben",cat:"baslangic",icon:"👋"},
+{ar:"أَهْلًا",tr:"Hoş geldin",pr:"Ehlen",cat:"baslangic",icon:"😊"},
+{ar:"شُكْرًا",tr:"Teşekkürler",pr:"Şükren",cat:"baslangic",icon:"🙏"},
+{ar:"عَفْوًا",tr:"Rica ederim",pr:"Afven",cat:"baslangic",icon:"🤗"},
+{ar:"نَعَم",tr:"Evet",pr:"Na'am",cat:"baslangic",icon:"✅"},
+{ar:"لَا",tr:"Hayır",pr:"Lâ",cat:"baslangic",icon:"❌"},
+{ar:"مِنْ فَضْلِك",tr:"Lütfen",pr:"Min fadlik",cat:"baslangic",icon:"🤲"},
+{ar:"مَاء",tr:"Su",pr:"Mâ",cat:"baslangic",icon:"💧"},
+{ar:"طَعَام",tr:"Yemek",pr:"Taâm",cat:"baslangic",icon:"🍽️"},
+{ar:"يَوْم",tr:"Gün",pr:"Yevm",cat:"baslangic",icon:"☀️"},
+{ar:"لَيْل",tr:"Gece",pr:"Leyl",cat:"baslangic",icon:"🌙"},
+{ar:"اسْم",tr:"İsim / Ad",pr:"İsm",cat:"baslangic",icon:"🏷️"},
+{ar:"رَجُل",tr:"Adam / Erkek",pr:"Racül",cat:"baslangic",icon:"👨"},
+{ar:"اِمْرَأَة",tr:"Kadın",pr:"İmraeh",cat:"baslangic",icon:"👩"},
+{ar:"وَلَد",tr:"Çocuk / Oğlan",pr:"Veled",cat:"baslangic",icon:"👦"},
+{ar:"بِنْت",tr:"Kız",pr:"Bint",cat:"baslangic",icon:"👧"},
+{ar:"كَبِير",tr:"Büyük",pr:"Kebîr",cat:"baslangic",icon:"⬆️"},
+{ar:"صَغِير",tr:"Küçük",pr:"Sağîr",cat:"baslangic",icon:"⬇️"},
+{ar:"جَيِّد",tr:"İyi",pr:"Ceyyid",cat:"baslangic",icon:"👍"},
+{ar:"سَيِّئ",tr:"Kötü",pr:"Seyyî",cat:"baslangic",icon:"👎"},
+{ar:"صَبَاحُ الخَيْر",tr:"Günaydın",pr:"Sabâhu-l-hayr",cat:"baslangic",icon:"🌅"},
+{ar:"مَسَاءُ الخَيْر",tr:"İyi akşamlar",pr:"Mesâu-l-hayr",cat:"baslangic",icon:"🌆"},
+{ar:"مَعَ السَّلَامَة",tr:"Güle güle",pr:"Maa-s-selâme",cat:"baslangic",icon:"👋"},
+{ar:"كَيْفَ حَالُك",tr:"Nasılsın?",pr:"Keyfe hâlük",cat:"baslangic",icon:"🤔"},
+{ar:"بِخَيْر",tr:"İyiyim",pr:"Bihayr",cat:"baslangic",icon:"😌"},
+{ar:"أَنَا",tr:"Ben",pr:"Ene",cat:"baslangic",icon:"👤"},
+{ar:"أَنْتَ",tr:"Sen (erkek)",pr:"Ente",cat:"baslangic",icon:"👆"},
+{ar:"هُوَ",tr:"O (erkek)",pr:"Hüve",cat:"baslangic",icon:"👉"},
+{ar:"هِيَ",tr:"O (kadın)",pr:"Hiye",cat:"baslangic",icon:"👈"},
+{ar:"نَحْنُ",tr:"Biz",pr:"Nahnu",cat:"baslangic",icon:"👫"},
+// RAKAMLAR
+{ar:"صِفْر",tr:"Sıfır — 0",pr:"Sıfr",cat:"rakam",icon:"0️⃣"},
+{ar:"وَاحِد",tr:"Bir — 1",pr:"Vâhid",cat:"rakam",icon:"1️⃣"},
+{ar:"اِثْنَان",tr:"İki — 2",pr:"İsnân",cat:"rakam",icon:"2️⃣"},
+{ar:"ثَلَاثَة",tr:"Üç — 3",pr:"Selâse",cat:"rakam",icon:"3️⃣"},
+{ar:"أَرْبَعَة",tr:"Dört — 4",pr:"Erba'a",cat:"rakam",icon:"4️⃣"},
+{ar:"خَمْسَة",tr:"Beş — 5",pr:"Hamse",cat:"rakam",icon:"5️⃣"},
+{ar:"سِتَّة",tr:"Altı — 6",pr:"Sitte",cat:"rakam",icon:"6️⃣"},
+{ar:"سَبْعَة",tr:"Yedi — 7",pr:"Seb'a",cat:"rakam",icon:"7️⃣"},
+{ar:"ثَمَانِيَة",tr:"Sekiz — 8",pr:"Semâniye",cat:"rakam",icon:"8️⃣"},
+{ar:"تِسْعَة",tr:"Dokuz — 9",pr:"Tis'a",cat:"rakam",icon:"9️⃣"},
+{ar:"عَشَرَة",tr:"On — 10",pr:"Aşere",cat:"rakam",icon:"🔟"},
+{ar:"أَحَدَ عَشَر",tr:"On Bir — 11",pr:"Ahade aşer",cat:"rakam",icon:"🔢"},
+{ar:"اِثْنَا عَشَر",tr:"On İki — 12",pr:"İsnâ aşer",cat:"rakam",icon:"🔢"},
+{ar:"خَمْسَة عَشَر",tr:"On Beş — 15",pr:"Hamse aşer",cat:"rakam",icon:"🔢"},
+{ar:"عِشْرُون",tr:"Yirmi — 20",pr:"İşrûn",cat:"rakam",icon:"🔢"},
+{ar:"ثَلَاثُون",tr:"Otuz — 30",pr:"Selâsûn",cat:"rakam",icon:"🔢"},
+{ar:"أَرْبَعُون",tr:"Kırk — 40",pr:"Erba'ûn",cat:"rakam",icon:"🔢"},
+{ar:"خَمْسُون",tr:"Elli — 50",pr:"Hamsûn",cat:"rakam",icon:"🔢"},
+{ar:"مِئَة",tr:"Yüz — 100",pr:"Mi'e",cat:"rakam",icon:"💯"},
+{ar:"أَلْف",tr:"Bin — 1000",pr:"Elf",cat:"rakam",icon:"🔢"},
+// EV GENEL
+{ar:"بَيْت",tr:"Ev",pr:"Bayt",cat:"genel",icon:"🏠"},
+{ar:"مَنْزِل",tr:"Konut",pr:"Menzil",cat:"genel",icon:"🏡"},
+{ar:"شَقَّة",tr:"Daire",pr:"Şakka",cat:"genel",icon:"🏢"},
+{ar:"طَابِق",tr:"Kat",pr:"Tâbik",cat:"genel",icon:"🔢"},
+{ar:"سَقْف",tr:"Tavan",pr:"Sakf",cat:"genel",icon:"🏗️"},
+{ar:"جِدَار",tr:"Duvar",pr:"Cidâr",cat:"genel",icon:"🧱"},
+{ar:"أَرْضِيَّة",tr:"Zemin",pr:"Ardıyye",cat:"genel",icon:"⬜"},
+{ar:"بَاب",tr:"Kapı",pr:"Bâb",cat:"genel",icon:"🚪"},
+{ar:"نَافِذَة",tr:"Pencere",pr:"Nâfize",cat:"genel",icon:"🪟"},
+{ar:"دَرَج",tr:"Merdiven",pr:"Derec",cat:"genel",icon:"🪜"},
+{ar:"حَدِيقَة",tr:"Bahçe",pr:"Hadîka",cat:"genel",icon:"🌿"},
+{ar:"مِفْتَاح",tr:"Anahtar",pr:"Miftâh",cat:"genel",icon:"🔑"},
+{ar:"قُفْل",tr:"Kilit",pr:"Kufl",cat:"genel",icon:"🔒"},
+{ar:"سُقُوف",tr:"Çatı",pr:"Sukûf",cat:"genel",icon:"🏠"},
+{ar:"مَدْخَل",tr:"Giriş",pr:"Medhel",cat:"genel",icon:"🚶"},
+{ar:"مَخْرَج",tr:"Çıkış",pr:"Mahreç",cat:"genel",icon:"🚶‍♂️"},
+{ar:"مُرآب",tr:"Garaj",pr:"Mürâb",cat:"genel",icon:"🚗"},
+{ar:"سَطْح",tr:"Teras",pr:"Sath",cat:"genel",icon:"🌇"},
+// ODALAR
+{ar:"غُرْفَة",tr:"Oda",pr:"Gurfe",cat:"oda",icon:"🛏️"},
+{ar:"غُرْفَةُ النَّوْم",tr:"Yatak Odası",pr:"Gurfe-n-nevm",cat:"oda",icon:"🛌"},
+{ar:"غُرْفَةُ الجُلُوس",tr:"Oturma Odası",pr:"Gurfe-l-culûs",cat:"oda",icon:"🛋️"},
+{ar:"غُرْفَةُ الطَّعَام",tr:"Yemek Odası",pr:"Gurfe-t-taâm",cat:"oda",icon:"🍽️"},
+{ar:"مَطْبَخ",tr:"Mutfak",pr:"Matbah",cat:"oda",icon:"👨‍🍳"},
+{ar:"حَمَّام",tr:"Banyo",pr:"Hammâm",cat:"oda",icon:"🛁"},
+{ar:"دَوْرَةُ المِيَاه",tr:"Tuvalet",pr:"Devretü-l-miyâh",cat:"oda",icon:"🚽"},
+{ar:"مَكْتَب",tr:"Çalışma Odası",pr:"Mekteb",cat:"oda",icon:"💼"},
+{ar:"صَالَة",tr:"Salon",pr:"Sâle",cat:"oda",icon:"🏛️"},
+{ar:"شُرْفَة",tr:"Balkon",pr:"Şurfe",cat:"oda",icon:"🌇"},
+{ar:"مَخْزَن",tr:"Depo",pr:"Mahzen",cat:"oda",icon:"📦"},
+{ar:"غُرْفَةُ الأَطْفَال",tr:"Çocuk Odası",pr:"Gurfe-l-etfâl",cat:"oda",icon:"🧸"},
+// MOBİLYA
+{ar:"سَرِير",tr:"Yatak",pr:"Serîr",cat:"mobilya",icon:"🛏️"},
+{ar:"وِسَادَة",tr:"Yastık",pr:"Visâde",cat:"mobilya",icon:"😴"},
+{ar:"أَرِيكَة",tr:"Kanepe",pr:"Erîke",cat:"mobilya",icon:"🛋️"},
+{ar:"كُرْسِيٌّ",tr:"Sandalye",pr:"Kürsiyyun",cat:"mobilya",icon:"🪑"},
+{ar:"طَاوِلَة",tr:"Masa",pr:"Tâvile",cat:"mobilya",icon:"🪵"},
+{ar:"خِزَانَة",tr:"Dolap",pr:"Hizâne",cat:"mobilya",icon:"🗄️"},
+{ar:"رَفٌّ",tr:"Raf",pr:"Raff",cat:"mobilya",icon:"📚"},
+{ar:"سِجَادَة",tr:"Halı",pr:"Sicâde",cat:"mobilya",icon:"🟫"},
+{ar:"سِتَارَة",tr:"Perde",pr:"Sitâre",cat:"mobilya",icon:"🪟"},
+{ar:"مِصْبَاح",tr:"Lamba",pr:"Mısbâh",cat:"mobilya",icon:"💡"},
+{ar:"مِرْآة",tr:"Ayna",pr:"Mir'â",cat:"mobilya",icon:"🪞"},
+{ar:"تَلْفَاز",tr:"Televizyon",pr:"Tilfâz",cat:"mobilya",icon:"📺"},
+{ar:"بِسَاط",tr:"Kilim",pr:"Bisât",cat:"mobilya",icon:"🟫"},
+{ar:"طَاوِلَةُ القَهْوَة",tr:"Sehpa",pr:"Tâviletü-l-kahve",cat:"mobilya",icon:"☕"},
+// MUTFAK
+{ar:"ثَلَّاجَة",tr:"Buzdolabı",pr:"Sellâce",cat:"mutfak",icon:"🧊"},
+{ar:"مَوْقِد",tr:"Ocak",pr:"Mevkid",cat:"mutfak",icon:"🔥"},
+{ar:"غَسَّالَة",tr:"Çamaşır Makinesi",pr:"Ğassâle",cat:"mutfak",icon:"🫧"},
+{ar:"صُنْبُور",tr:"Musluk",pr:"Sunbûr",cat:"mutfak",icon:"🚰"},
+{ar:"طَنْجَرَة",tr:"Tencere",pr:"Tancere",cat:"mutfak",icon:"🫕"},
+{ar:"مِقْلَاة",tr:"Tava",pr:"Miklâye",cat:"mutfak",icon:"🍳"},
+{ar:"كُوب",tr:"Bardak",pr:"Kûb",cat:"mutfak",icon:"🥛"},
+{ar:"صَحْن",tr:"Tabak",pr:"Sahın",cat:"mutfak",icon:"🍽️"},
+{ar:"مِلْعَقَة",tr:"Kaşık",pr:"Milaka",cat:"mutfak",icon:"🥄"},
+{ar:"شَوْكَة",tr:"Çatal",pr:"Şevke",cat:"mutfak",icon:"🍴"},
+{ar:"سِكِّين",tr:"Bıçak",pr:"Sikkîn",cat:"mutfak",icon:"🔪"},
+{ar:"فُرْن",tr:"Fırın",pr:"Fürn",cat:"mutfak",icon:"🫙"},
+{ar:"مِيكْرُوِيف",tr:"Mikrodalga",pr:"Mikrûveyf",cat:"mutfak",icon:"📡"},
+{ar:"إِبْرِيق",tr:"Çaydanlık",pr:"İbrîk",cat:"mutfak",icon:"🫖"},
+{ar:"طَبَّاخ",tr:"Pişirici",pr:"Tabbâh",cat:"mutfak",icon:"🍲"},
+// BANYO
+{ar:"مِنْشَفَة",tr:"Havlu",pr:"Mınşefe",cat:"banyo",icon:"🧺"},
+{ar:"صَابُون",tr:"Sabun",pr:"Sâbûn",cat:"banyo",icon:"🧼"},
+{ar:"حَوْض",tr:"Lavabo",pr:"Havd",cat:"banyo",icon:"🫧"},
+{ar:"دُشّ",tr:"Duş",pr:"Duşş",cat:"banyo",icon:"🚿"},
+{ar:"فُرْشَاةُ الأَسْنَان",tr:"Diş Fırçası",pr:"Furşâte-l-esnân",cat:"banyo",icon:"🪥"},
+{ar:"مِرْحَاض",tr:"Klozet",pr:"Mirhâd",cat:"banyo",icon:"🚽"},
+{ar:"مَعْجُونُ الأَسْنَان",tr:"Diş Macunu",pr:"Ma'cûnu-l-esnân",cat:"banyo",icon:"🦷"},
+{ar:"شَامْبُو",tr:"Şampuan",pr:"Şâmbû",cat:"banyo",icon:"🧴"},
+{ar:"حَمَّام السِّبَاحَة",tr:"Küvet",pr:"Hammâm-üs-sibâha",cat:"banyo",icon:"🛁"},
+{ar:"مِشْط",tr:"Tarak",pr:"Mişt",cat:"banyo",icon:"🪮"},
+// RENKLER
+{ar:"أَحْمَر",tr:"Kırmızı",pr:"Ahmer",cat:"renk",color:"#e53e3e"},
+{ar:"أَزْرَق",tr:"Mavi",pr:"Ezrak",cat:"renk",color:"#3182ce"},
+{ar:"أَخْضَر",tr:"Yeşil",pr:"Ahdar",cat:"renk",color:"#38a169"},
+{ar:"أَصْفَر",tr:"Sarı",pr:"Asfar",cat:"renk",color:"#d69e2e"},
+{ar:"أَبْيَض",tr:"Beyaz",pr:"Ebyad",cat:"renk",color:"#e2e8f0",border:true},
+{ar:"أَسْوَد",tr:"Siyah",pr:"Esvad",cat:"renk",color:"#1a202c"},
+{ar:"بُرْتُقَالِيّ",tr:"Turuncu",pr:"Burtukâlî",cat:"renk",color:"#dd6b20"},
+{ar:"بَنَفْسَجِيّ",tr:"Mor",pr:"Benefsecî",cat:"renk",color:"#6b46c1"},
+{ar:"وَرْدِيّ",tr:"Pembe",pr:"Verdî",cat:"renk",color:"#d53f8c"},
+{ar:"بُنِّيّ",tr:"Kahverengi",pr:"Bunnî",cat:"renk",color:"#744210"},
+{ar:"رَمَادِيّ",tr:"Gri",pr:"Remâdî",cat:"renk",color:"#718096"},
+{ar:"ذَهَبِيّ",tr:"Altın",pr:"Zehebî",cat:"renk",color:"#c9933a"},
+{ar:"فِضِّيّ",tr:"Gümüş",pr:"Fıddî",cat:"renk",color:"#a0aec0"},
+{ar:"زَيْتُونِيّ",tr:"Zeytin Yeşili",pr:"Zeytûnî",cat:"renk",color:"#6b7c3d"},
+// SINIF
+{ar:"فَصْلٌ دِرَاسِيٌّ",tr:"Sınıf",pr:"Faslun dirâsî",cat:"sinif",icon:"🏫"},
+{ar:"سَبُّورَة",tr:"Tahta",pr:"Sabbûre",cat:"sinif",icon:"🖊️"},
+{ar:"كِتَاب",tr:"Kitap",pr:"Kitâb",cat:"sinif",icon:"📗"},
+{ar:"كُرَّاسَة",tr:"Defter",pr:"Kürrâse",cat:"sinif",icon:"📓"},
+{ar:"قَلَم",tr:"Kalem",pr:"Kalem",cat:"sinif",icon:"✏️"},
+{ar:"مِسْطَرَة",tr:"Cetvel",pr:"Mistare",cat:"sinif",icon:"📏"},
+{ar:"مِقَصّ",tr:"Makas",pr:"Mikas",cat:"sinif",icon:"✂️"},
+{ar:"مَمْحَاة",tr:"Silgi",pr:"Mamhâ",cat:"sinif",icon:"🩹"},
+{ar:"حَقِيبَة مَدْرَسِيَّة",tr:"Okul Çantası",pr:"Hakîbe medresîyye",cat:"sinif",icon:"🎒"},
+{ar:"مُعَلِّم",tr:"Öğretmen (E)",pr:"Muallim",cat:"sinif",icon:"👨‍🏫"},
+{ar:"مُعَلِّمَة",tr:"Öğretmen (K)",pr:"Muallime",cat:"sinif",icon:"👩‍🏫"},
+{ar:"طَالِب",tr:"Öğrenci (E)",pr:"Tâlib",cat:"sinif",icon:"🧑‍🎓"},
+{ar:"لَوْحَة",tr:"Pano",pr:"Levha",cat:"sinif",icon:"🖼️"},
+{ar:"مِسْطَرَة الزَّاوِيَة",tr:"Gönye",pr:"Mistare-z-zâviye",cat:"sinif",icon:"📐"},
+{ar:"مَدْرَسَة",tr:"Okul",pr:"Medrese",cat:"sinif",icon:"🏫"},
+{ar:"جَامِعَة",tr:"Üniversite",pr:"Câmia",cat:"sinif",icon:"🎓"},
+{ar:"دَرْس",tr:"Ders",pr:"Ders",cat:"sinif",icon:"📖"},
+{ar:"وَاجِب",tr:"Ödev",pr:"Vâcib",cat:"sinif",icon:"📝"},
+{ar:"اِمْتِحَان",tr:"Sınav",pr:"İmtihân",cat:"sinif",icon:"📋"},
+{ar:"نَجَاح",tr:"Başarı",pr:"Necâh",cat:"sinif",icon:"🏆"},
+// HAYVANLAR
+{ar:"كَلْب",tr:"Köpek",pr:"Kelb",cat:"hayvan",icon:"🐕"},
+{ar:"قِطّ",tr:"Kedi",pr:"Kıtt",cat:"hayvan",icon:"🐈"},
+{ar:"حِصَان",tr:"At",pr:"Hısân",cat:"hayvan",icon:"🐴"},
+{ar:"بَقَرَة",tr:"İnek",pr:"Bakara",cat:"hayvan",icon:"🐄"},
+{ar:"خَرُوف",tr:"Koyun",pr:"Harûf",cat:"hayvan",icon:"🐑"},
+{ar:"دَجَاجَة",tr:"Tavuk",pr:"Decâca",cat:"hayvan",icon:"🐔"},
+{ar:"أَسَد",tr:"Aslan",pr:"Esed",cat:"hayvan",icon:"🦁"},
+{ar:"نَمِر",tr:"Kaplan",pr:"Nemir",cat:"hayvan",icon:"🐯"},
+{ar:"فِيل",tr:"Fil",pr:"Fîl",cat:"hayvan",icon:"🐘"},
+{ar:"قِرْد",tr:"Maymun",pr:"Kird",cat:"hayvan",icon:"🐒"},
+{ar:"أَرْنَب",tr:"Tavşan",pr:"Erneb",cat:"hayvan",icon:"🐇"},
+{ar:"سَمَكَة",tr:"Balık",pr:"Semeke",cat:"hayvan",icon:"🐟"},
+{ar:"طَائِر",tr:"Kuş",pr:"Tâir",cat:"hayvan",icon:"🐦"},
+{ar:"نَسْر",tr:"Kartal",pr:"Nesr",cat:"hayvan",icon:"🦅"},
+{ar:"بُومَة",tr:"Baykuş",pr:"Büme",cat:"hayvan",icon:"🦉"},
+{ar:"تِمْسَاح",tr:"Timsah",pr:"Timsâh",cat:"hayvan",icon:"🐊"},
+{ar:"أَفْعَى",tr:"Yılan",pr:"Ef'â",cat:"hayvan",icon:"🐍"},
+{ar:"ضُفْدَع",tr:"Kurbağa",pr:"Dufdea",cat:"hayvan",icon:"🐸"},
+{ar:"نَحْلَة",tr:"Arı",pr:"Nahle",cat:"hayvan",icon:"🐝"},
+{ar:"فَرَاشَة",tr:"Kelebek",pr:"Ferâşe",cat:"hayvan",icon:"🦋"},
+{ar:"دُبّ",tr:"Ayı",pr:"Dubb",cat:"hayvan",icon:"🐻"},
+{ar:"ذِئْب",tr:"Kurt",pr:"Zi'b",cat:"hayvan",icon:"🐺"},
+{ar:"ثَعْلَب",tr:"Tilki",pr:"Sa'leb",cat:"hayvan",icon:"🦊"},
+{ar:"غَزَال",tr:"Ceylan",pr:"Ğazâl",cat:"hayvan",icon:"🦌"},
+{ar:"دَلْفِين",tr:"Yunus",pr:"Delfîn",cat:"hayvan",icon:"🐬"},
+{ar:"حُوت",tr:"Balina",pr:"Hût",cat:"hayvan",icon:"🐋"},
+{ar:"قِطّ البَحْر",tr:"Fok",pr:"Kıttu-l-bahr",cat:"hayvan",icon:"🦭"},
+{ar:"بَطَّة",tr:"Ördek",pr:"Batte",cat:"hayvan",icon:"🦆"},
+{ar:"حَمَامَة",tr:"Güvercin",pr:"Hamâme",cat:"hayvan",icon:"🕊️"},
+{ar:"عُصْفُور",tr:"Serçe",pr:"Usfûr",cat:"hayvan",icon:"🐤"},
+// MESLEKLER
+{ar:"طَبِيب",tr:"Doktor",pr:"Tabîb",cat:"meslek",icon:"👨‍⚕️"},
+{ar:"مُهَنْدِس",tr:"Mühendis",pr:"Mühendis",cat:"meslek",icon:"👷"},
+{ar:"مُعَلِّم",tr:"Öğretmen",pr:"Muallim",cat:"meslek",icon:"👨‍🏫"},
+{ar:"مُحَامٍ",tr:"Avukat",pr:"Muhâmî",cat:"meslek",icon:"⚖️"},
+{ar:"شُرْطِيّ",tr:"Polis",pr:"Şurtî",cat:"meslek",icon:"👮"},
+{ar:"طَبَّاخ",tr:"Aşçı",pr:"Tabbâh",cat:"meslek",icon:"👨‍🍳"},
+{ar:"سَائِق",tr:"Şoför",pr:"Sâik",cat:"meslek",icon:"🚗"},
+{ar:"مُمَرِّض",tr:"Hemşire",pr:"Mümerrid",cat:"meslek",icon:"👩‍⚕️"},
+{ar:"صَيْدَلَانِيّ",tr:"Eczacı",pr:"Saydelânî",cat:"meslek",icon:"💊"},
+{ar:"مِعْمَارِيّ",tr:"Mimar",pr:"Mi'mârî",cat:"meslek",icon:"🏗️"},
+{ar:"فَنَّان",tr:"Sanatçı",pr:"Fennân",cat:"meslek",icon:"🎨"},
+{ar:"كَاتِب",tr:"Yazar",pr:"Kâtib",cat:"meslek",icon:"✍️"},
+{ar:"صَحَفِيّ",tr:"Gazeteci",pr:"Sahefî",cat:"meslek",icon:"📰"},
+{ar:"مُحَاسِب",tr:"Muhasebeci",pr:"Muhâsib",cat:"meslek",icon:"🧮"},
+{ar:"بَيْطَرِيّ",tr:"Veteriner",pr:"Baytarî",cat:"meslek",icon:"🐾"},
+{ar:"رَجُلُ الإِطْفَاء",tr:"İtfaiyeci",pr:"Recülü-l-itfâ",cat:"meslek",icon:"🧑‍🚒"},
+{ar:"طَيَّار",tr:"Pilot",pr:"Tayyâr",cat:"meslek",icon:"✈️"},
+{ar:"بَحَّار",tr:"Denizci",pr:"Bahhâr",cat:"meslek",icon:"⚓"},
+{ar:"نَجَّار",tr:"Marangoz",pr:"Neccâr",cat:"meslek",icon:"🪚"},
+{ar:"حَدَّاد",tr:"Demirci",pr:"Haddâd",cat:"meslek",icon:"⚒️"},
+{ar:"خَبَّاز",tr:"Fırıncı",pr:"Habbâz",cat:"meslek",icon:"🍞"},
+{ar:"مُوَظَّف",tr:"Memur",pr:"Muvazzaf",cat:"meslek",icon:"💼"},
+{ar:"تَاجِر",tr:"Tüccar",pr:"Tâcir",cat:"meslek",icon:"🛒"},
+{ar:"مُدِير",tr:"Müdür",pr:"Müdîr",cat:"meslek",icon:"👔"},
+{ar:"عَامِل",tr:"İşçi",pr:"Âmil",cat:"meslek",icon:"🔧"},
+// GIDA
+{ar:"خُبْز",tr:"Ekmek",pr:"Hubz",cat:"gida",icon:"🍞"},
+{ar:"أَرُزّ",tr:"Pirinç",pr:"Eruzz",cat:"gida",icon:"🍚"},
+{ar:"لَحْم",tr:"Et",pr:"Lahm",cat:"gida",icon:"🥩"},
+{ar:"دَجَاج",tr:"Tavuk eti",pr:"Decâc",cat:"gida",icon:"🍗"},
+{ar:"سَمَك",tr:"Balık",pr:"Semek",cat:"gida",icon:"🐟"},
+{ar:"بَيْض",tr:"Yumurta",pr:"Bayd",cat:"gida",icon:"🥚"},
+{ar:"حَلِيب",tr:"Süt",pr:"Halîb",cat:"gida",icon:"🥛"},
+{ar:"جُبْن",tr:"Peynir",pr:"Cubn",cat:"gida",icon:"🧀"},
+{ar:"زُبْدَة",tr:"Tereyağı",pr:"Zübde",cat:"gida",icon:"🧈"},
+{ar:"زَيْت",tr:"Yağ",pr:"Zeyt",cat:"gida",icon:"🫙"},
+{ar:"سُكَّر",tr:"Şeker",pr:"Sükker",cat:"gida",icon:"🍬"},
+{ar:"مِلْح",tr:"Tuz",pr:"Milh",cat:"gida",icon:"🧂"},
+{ar:"فُلْفُل",tr:"Biber",pr:"Fulful",cat:"gida",icon:"🌶️"},
+{ar:"تَفَّاح",tr:"Elma",pr:"Teffâh",cat:"gida",icon:"🍎"},
+{ar:"مَوْز",tr:"Muz",pr:"Mevz",cat:"gida",icon:"🍌"},
+{ar:"بُرْتُقَال",tr:"Portakal",pr:"Burtukâl",cat:"gida",icon:"🍊"},
+{ar:"عِنَب",tr:"Üzüm",pr:"İneb",cat:"gida",icon:"🍇"},
+{ar:"طَمَاطِم",tr:"Domates",pr:"Tamâtim",cat:"gida",icon:"🍅"},
+{ar:"بَطَاطِس",tr:"Patates",pr:"Batâtis",cat:"gida",icon:"🥔"},
+{ar:"بَصَل",tr:"Soğan",pr:"Besel",cat:"gida",icon:"🧅"},
+{ar:"ثَوْم",tr:"Sarımsak",pr:"Sevm",cat:"gida",icon:"🧄"},
+{ar:"جَزَر",tr:"Havuç",pr:"Cezr",cat:"gida",icon:"🥕"},
+{ar:"خِيَار",tr:"Salatalık",pr:"Hıyâr",cat:"gida",icon:"🥒"},
+{ar:"قَهْوَة",tr:"Kahve",pr:"Kahve",cat:"gida",icon:"☕"},
+{ar:"شَاي",tr:"Çay",pr:"Şây",cat:"gida",icon:"🍵"},
+{ar:"عَسَل",tr:"Bal",pr:"Asel",cat:"gida",icon:"🍯"},
+{ar:"حَلْوَى",tr:"Tatlı",pr:"Halvâ",cat:"gida",icon:"🍰"},
+{ar:"بِيتْزَا",tr:"Pizza",pr:"Bîtzâ",cat:"gida",icon:"🍕"},
+{ar:"بُرْغُل",tr:"Bulgur",pr:"Burgul",cat:"gida",icon:"🌾"},
+{ar:"شَوْرَبَة",tr:"Çorba",pr:"Şorba",cat:"gida",icon:"🍜"},
+// FİİLLER — mazi 3. tekil (هو) / Türkçesi mastar
+{ar:"أَكَلَ",tr:"Yemek yemek",pr:"Ekele",cat:"fiil",icon:"🍽️"},
+{ar:"شَرِبَ",tr:"İçmek",pr:"Şeribe",cat:"fiil",icon:"🥤"},
+{ar:"ذَهَبَ",tr:"Gitmek",pr:"Zehebe",cat:"fiil",icon:"🚶"},
+{ar:"جَاءَ",tr:"Gelmek",pr:"Câe",cat:"fiil",icon:"🚶‍♂️"},
+{ar:"رَأَى",tr:"Görmek",pr:"Raâ",cat:"fiil",icon:"👁️"},
+{ar:"سَمِعَ",tr:"Duymak / Dinlemek",pr:"Semi'a",cat:"fiil",icon:"👂"},
+{ar:"قَالَ",tr:"Söylemek / Demek",pr:"Kâle",cat:"fiil",icon:"💬"},
+{ar:"كَتَبَ",tr:"Yazmak",pr:"Ketebe",cat:"fiil",icon:"✍️"},
+{ar:"قَرَأَ",tr:"Okumak",pr:"Kara'e",cat:"fiil",icon:"📖"},
+{ar:"عَمِلَ",tr:"Çalışmak / İş yapmak",pr:"'Amile",cat:"fiil",icon:"💼"},
+{ar:"نَامَ",tr:"Uyumak",pr:"Nâme",cat:"fiil",icon:"😴"},
+{ar:"قَامَ",tr:"Kalkmak / Ayağa kalkmak",pr:"Kâme",cat:"fiil",icon:"🧍"},
+{ar:"جَلَسَ",tr:"Oturmak",pr:"Celese",cat:"fiil",icon:"🪑"},
+{ar:"فَتَحَ",tr:"Açmak",pr:"Fetaha",cat:"fiil",icon:"🔓"},
+{ar:"أَغْلَقَ",tr:"Kapatmak",pr:"Ağlaka",cat:"fiil",icon:"🔒"},
+{ar:"دَخَلَ",tr:"Girmek",pr:"Dahale",cat:"fiil",icon:"🚪"},
+{ar:"خَرَجَ",tr:"Çıkmak",pr:"Harece",cat:"fiil",icon:"🚪"},
+{ar:"عَرَفَ",tr:"Bilmek / Tanımak",pr:"'Arafe",cat:"fiil",icon:"🧠"},
+{ar:"فَهِمَ",tr:"Anlamak",pr:"Fehime",cat:"fiil",icon:"💡"},
+{ar:"أَحَبَّ",tr:"Sevmek",pr:"Ahabbe",cat:"fiil",icon:"❤️"},
+{ar:"رَكَضَ",tr:"Koşmak",pr:"Rekada",cat:"fiil",icon:"🏃"},
+{ar:"لَعِبَ",tr:"Oynamak",pr:"Le'ibe",cat:"fiil",icon:"⚽"},
+{ar:"ضَحِكَ",tr:"Gülmek",pr:"Dahike",cat:"fiil",icon:"😄"},
+{ar:"بَكَى",tr:"Ağlamak",pr:"Bekâ",cat:"fiil",icon:"😢"},
+{ar:"سَافَرَ",tr:"Seyahat etmek",pr:"Sâfere",cat:"fiil",icon:"✈️"},
+{ar:"اِشْتَرَى",tr:"Satın almak",pr:"İşterâ",cat:"fiil",icon:"🛒"},
+{ar:"بَاعَ",tr:"Satmak",pr:"Bâ'a",cat:"fiil",icon:"💰"},
+{ar:"طَبَخَ",tr:"Pişirmek / Yemek yapmak",pr:"Tabaha",cat:"fiil",icon:"🍳"},
+{ar:"غَسَلَ",tr:"Yıkamak",pr:"Ğasele",cat:"fiil",icon:"🫧"},
+{ar:"قَفَزَ",tr:"Zıplamak / Atlamak",pr:"Kafeze",cat:"fiil",icon:"🦘"},
+{ar:"وَجَدَ",tr:"Bulmak",pr:"Vecede",cat:"fiil",icon:"🔍"},
+{ar:"أَخَذَ",tr:"Almak",pr:"Ehaze",cat:"fiil",icon:"🤲"},
+{ar:"أَعْطَى",tr:"Vermek",pr:"A'tâ",cat:"fiil",icon:"🎁"},
+{ar:"سَأَلَ",tr:"Sormak",pr:"Se'ele",cat:"fiil",icon:"❓"},
+{ar:"أَجَابَ",tr:"Cevap vermek",pr:"Ecâbe",cat:"fiil",icon:"💡"},
+{ar:"نَظَرَ",tr:"Bakmak",pr:"Nazara",cat:"fiil",icon:"👀"},
+{ar:"وَقَفَ",tr:"Durmak / Ayakta durmak",pr:"Vakafe",cat:"fiil",icon:"🛑"},
+{ar:"جَرَى",tr:"Koşmak / Akmak",pr:"Cerâ",cat:"fiil",icon:"🏃‍♂️"},
+{ar:"حَمَلَ",tr:"Taşımak",pr:"Hamele",cat:"fiil",icon:"📦"},
+{ar:"فَعَلَ",tr:"Yapmak",pr:"Fe'ale",cat:"fiil",icon:"⚡"},
+// VÜCUT
+{ar:"رَأْس",tr:"Baş",pr:"Re's",cat:"vucut",icon:"🗣️"},
+{ar:"وَجْه",tr:"Yüz",pr:"Veçh",cat:"vucut",icon:"😊"},
+{ar:"شَعْر",tr:"Saç",pr:"Şa'r",cat:"vucut",icon:"💇"},
+{ar:"عَيْن",tr:"Göz",pr:"'Ayn",cat:"vucut",icon:"👁️"},
+{ar:"أُذُن",tr:"Kulak",pr:"Uzün",cat:"vucut",icon:"👂"},
+{ar:"أَنْف",tr:"Burun",pr:"Enf",cat:"vucut",icon:"👃"},
+{ar:"فَم",tr:"Ağız",pr:"Fem",cat:"vucut",icon:"👄"},
+{ar:"أَسْنَان",tr:"Dişler",pr:"Esnân",cat:"vucut",icon:"🦷"},
+{ar:"لِسَان",tr:"Dil",pr:"Lisân",cat:"vucut",icon:"👅"},
+{ar:"رَقَبَة",tr:"Boyun",pr:"Rakabe",cat:"vucut",icon:"🧣"},
+{ar:"كَتِف",tr:"Omuz",pr:"Ketif",cat:"vucut",icon:"💪"},
+{ar:"ذِرَاع",tr:"Kol",pr:"Zirâ'",cat:"vucut",icon:"💪"},
+{ar:"يَد",tr:"El",pr:"Yed",cat:"vucut",icon:"✋"},
+{ar:"إِصْبَع",tr:"Parmak",pr:"İsba'",cat:"vucut",icon:"☝️"},
+{ar:"صَدْر",tr:"Göğüs",pr:"Sadr",cat:"vucut",icon:"🫀"},
+{ar:"بَطْن",tr:"Karın",pr:"Batn",cat:"vucut",icon:"🫃"},
+{ar:"ظَهْر",tr:"Sırt",pr:"Zahr",cat:"vucut",icon:"🔙"},
+{ar:"قَدَم",tr:"Ayak",pr:"Kadem",cat:"vucut",icon:"🦶"},
+{ar:"رُكْبَة",tr:"Diz",pr:"Rukbe",cat:"vucut",icon:"🦵"},
+{ar:"سَاق",tr:"Bacak",pr:"Sâk",cat:"vucut",icon:"🦵"},
+{ar:"قَلْب",tr:"Kalp",pr:"Kalb",cat:"vucut",icon:"❤️"},
+{ar:"رِئَة",tr:"Akciğer",pr:"Ri'a",cat:"vucut",icon:"🫁"},
+{ar:"كَبِد",tr:"Karaciğer",pr:"Kebid",cat:"vucut",icon:"🫀"},
+{ar:"دِمَاغ",tr:"Beyin",pr:"Dimâğ",cat:"vucut",icon:"🧠"},
+{ar:"عَظْم",tr:"Kemik",pr:"Azm",cat:"vucut",icon:"🦴"},
 ];
 
-const catNames={all:"Tüm Kelimeler",baslangic:"Başlangıç",rakam:"Rakamlar",genel:"Ev — Genel",oda:"Odalar",mobilya:"Mobilya",mutfak:"Mutfak",banyo:"Banyo",renk:"Renkler",sinif:"Sınıf & Okul"};
+const catNames={all:"Tüm Kelimeler",baslangic:"Başlangıç",rakam:"Rakamlar",genel:"Ev — Genel",oda:"Odalar",mobilya:"Mobilya",mutfak:"Mutfak",banyo:"Banyo",renk:"Renkler",sinif:"Sınıf & Okul",hayvan:"Hayvanlar",meslek:"Meslekler",gida:"Gıda & Yemekler",fiil:"Fiiller",vucut:"Vücut Organları"};
 let learned=new Set(), currentCat='all', currentMode='grid';
+let hardWords=new Map(); // idx -> miss count
 
 document.getElementById('total-badge').textContent=words.length+' Kelime';
 document.getElementById('prog').textContent='0 / '+words.length+' öğrenildi';
 
+// ── SPEECH — GitHub Pages & cross-browser fix ──
+let voices=[];
+let voicesLoaded=false;
+
+function loadVoices(){
+  if(!window.speechSynthesis) return;
+  voices=window.speechSynthesis.getVoices();
+  if(voices.length>0) voicesLoaded=true;
+}
+
+function getArVoice(){
+  if(voices.length===0) loadVoices();
+  // Try exact ar-SA first, then any ar-*, then any arabic-script voice
+  return voices.find(v=>v.lang==='ar-SA')
+      || voices.find(v=>v.lang&&v.lang.startsWith('ar'))
+      || null;
+}
+
+if(window.speechSynthesis){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged=()=>{loadVoices();};
+  // Some browsers need a short delay
+  setTimeout(loadVoices, 300);
+  setTimeout(loadVoices, 1000);
+}
+
+function speakArabic(text,btn){
+  if(!window.speechSynthesis){
+    showToast('Tarayıcınız sesi desteklemiyor.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  if(btn&&btn.classList.contains('speaking')){
+    btn.classList.remove('speaking');
+    btn.textContent='🔊';
+    return;
+  }
+  // Reload voices if still empty
+  if(!voicesLoaded) loadVoices();
+
+  const utter=new SpeechSynthesisUtterance(text);
+  utter.lang='ar-SA';
+  utter.rate=0.8;
+  utter.pitch=1.0;
+  const arVoice=getArVoice();
+  if(arVoice){
+    utter.voice=arVoice;
+  }
+  // If no Arabic voice found, still try — browser may handle lang tag
+  if(btn){btn.classList.add('speaking');btn.textContent='🔉';}
+  utter.onend=()=>{ if(btn){btn.classList.remove('speaking');btn.textContent='🔊';} };
+  utter.onerror=(e)=>{
+    if(btn){btn.classList.remove('speaking');btn.textContent='🔊';}
+    if(e.error==='not-allowed') showToast('Ses izni gerekiyor — sayfayı tıkladıktan sonra dene.');
+    else if(!arVoice) showToast('Cihazınızda Arapça ses paketi yüklü değil.');
+  };
+  // Chrome bug fix: wrap in tiny timeout
+  setTimeout(()=>{ try{ window.speechSynthesis.speak(utter); }catch(e){} }, 50);
+}
+
+// ── TOAST ──
+function showToast(msg,dur=2200){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),dur);
+}
+
 // ── MODE ──
 function setMode(m){
   currentMode=m;
-  document.getElementById('tab-grid').classList.toggle('active',m==='grid');
-  document.getElementById('tab-swipe').classList.toggle('active',m==='swipe');
-  document.getElementById('grid-mode').style.display=m==='grid'?'block':'none';
-  document.getElementById('swipe-mode').style.display=m==='swipe'?'block':'none';
+  ['grid','swipe','quiz','write'].forEach(x=>{
+    document.getElementById('tab-'+x).classList.toggle('active',x===m);
+    document.getElementById(x+'-mode').style.display=x===m?'block':'none';
+  });
   if(m==='swipe') initSwipe();
+  if(m==='quiz') initQuiz();
+  if(m==='write') initWrite();
 }
 
 // ── FILTER ──
@@ -367,47 +758,44 @@ function filter(cat,btn){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   if(currentMode==='grid') render();
-  else initSwipe();
 }
 
 // ── PDF TOGGLE ──
 function togglePdf(){
-  const body=document.getElementById('pdfBody');
-  const toggle=document.getElementById('pdfToggle');
-  body.classList.toggle('open');
-  toggle.classList.toggle('open');
+  document.getElementById('pdfBody').classList.toggle('open');
+  document.getElementById('pdfToggle').classList.toggle('open');
 }
 
 // ── GRID RENDER ──
+function getList(){return currentCat==='all'?words:words.filter(w=>w.cat===currentCat);}
 function render(){
   const grid=document.getElementById('grid');
   grid.innerHTML='';
-  const list=currentCat==='all'?words:words.filter(w=>w.cat===currentCat);
-  list.forEach(w=>{
+  getList().forEach(w=>{
     const idx=words.indexOf(w);
     const isColor=!!w.color;
     const div=document.createElement('div');
     div.className='card'+(learned.has(idx)?' flipped':'');
     const fv=isColor?`<div class="color-swatch" style="background:${w.color};${w.border?'border:2px solid #cbd5e0;':''}"></div>`:`<div class="card-icon">${w.icon}</div>`;
     const bv=isColor?`<div class="back-swatch" style="background:${w.color};${w.border?'border:2px solid rgba(255,255,255,0.5);':''}"></div>`:`<div class="back-icon">${w.icon}</div>`;
-    div.innerHTML=`
-      <div class="card-inner">
-        <div class="card-front">
-          <button class="speak-btn" title="Seslendir">🔊</button>
-          ${fv}
-          <div class="arabic-word">${w.ar}</div>
-          <div class="print-answer">${w.tr}</div>
-          <div class="print-pron">[ ${w.pr} ]</div>
-          <div class="tap-hint">çevirmek için tıkla</div>
-        </div>
-        <div class="card-back">
-          ${bv}
-          <div class="turkish">${w.tr}</div>
-          <div class="pronunciation">[ ${w.pr} ]</div>
-          <div class="arabic-back">${w.ar}</div>
-          <div class="tap-hint">geri çevir</div>
-        </div>
-      </div>`;
+    div.innerHTML=`<div class="card-inner">
+      <div class="card-front">
+        <span class="learned-star">⭐</span>
+        <button class="speak-btn" title="Seslendir">🔊</button>
+        ${fv}
+        <div class="arabic-word">${w.ar}</div>
+        <div class="print-answer">${w.tr}</div>
+        <div class="print-pron">[ ${w.pr} ]</div>
+        <div class="tap-hint">çevirmek için tıkla</div>
+      </div>
+      <div class="card-back">
+        ${bv}
+        <div class="turkish">${w.tr}</div>
+        <div class="pronunciation">[ ${w.pr} ]</div>
+        <div class="arabic-back">${w.ar}</div>
+        <div class="tap-hint">geri çevir</div>
+      </div>
+    </div>`;
     div.querySelector('.speak-btn').addEventListener('click',e=>{e.stopPropagation();speakArabic(w.ar,e.currentTarget);});
     div.addEventListener('click',()=>{
       div.classList.toggle('flipped');
@@ -418,46 +806,74 @@ function render(){
   });
   updateProgress();
 }
-
 function updateProgress(){
   const t=words.length;
   document.getElementById('fill').style.width=(learned.size/t*100)+'%';
   document.getElementById('prog').textContent=`${learned.size} / ${t} öğrenildi`;
 }
 
-// ── SWIPE MODE ──
-let swipeList=[], swipeIdx=0, swipeRevealed=false;
-let dragStartX=0, dragStartY=0, dragging=false, dragEl=null;
+// ═══════════════════════════════════════════
+// SWIPE MODE
+// ═══════════════════════════════════════════
+let swipeList=[],swipeIdx=0,swipeRevealed=false,swipeDragging=false;
 
 function initSwipe(){
-  swipeList=currentCat==='all'?[...words]:[...words.filter(w=>w.cat===currentCat)];
+  const countSel=document.getElementById('swipe-count-sel').value;
+  const orderSel=document.getElementById('swipe-order-sel').value;
+  let base=currentCat==='all'?[...words]:[...words.filter(w=>w.cat===currentCat)];
+  
+  if(orderSel==='random') base=shuffle(base);
+  else if(orderSel==='hard'){
+    base.sort((a,b)=>{
+      const ia=words.indexOf(a),ib=words.indexOf(b);
+      return (hardWords.get(ib)||0)-(hardWords.get(ia)||0);
+    });
+  }
+  
+  const count=countSel==='all'?base.length:Math.min(parseInt(countSel),base.length);
+  swipeList=base.slice(0,count);
   swipeIdx=0; swipeRevealed=false;
   renderSwipeCard();
+  updateHardPanel();
+}
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
 }
 
 function renderSwipeCard(){
-  const arena=document.getElementById('swipe-arena');
   const main=document.getElementById('swipe-main');
   const bg=document.getElementById('swipe-bg');
   const bg2=document.getElementById('swipe-bg2');
   const counter=document.getElementById('swipe-counter');
 
   if(swipeIdx>=swipeList.length){
-    main.innerHTML=`<div class="swipe-front" style="display:flex;"><div style="text-align:center;padding:20px;"><div style="font-size:3rem;">🎉</div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-top:12px;color:var(--terracotta);">Tebrikler!</div><div style="font-size:0.85rem;color:var(--sage);margin-top:8px;">Tüm kartları tamamladın.</div></div></div><div class="swipe-back"></div>`;
+    const total=swipeList.length;
+    const okCount=swipeList.filter((w,i)=>learned.has(words.indexOf(w))).length;
+    main.innerHTML=`<div class="swipe-front" style="display:flex;"><div style="text-align:center;padding:20px;"><div style="font-size:3rem;">${okCount===total?'🎉':'📚'}</div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-top:10px;color:var(--terracotta);">Tur Bitti!</div><div style="font-size:0.85rem;color:var(--sage);margin-top:6px;">${okCount} / ${total} öğrenildi</div><button onclick="initSwipe()" style="margin-top:14px;background:var(--terracotta);color:white;border:none;padding:8px 22px;border-radius:20px;font-family:'Lato',sans-serif;font-size:0.8rem;cursor:pointer;">Tekrar Oyna</button></div></div><div class="swipe-back"></div>`;
     bg.innerHTML=''; bg2.innerHTML='';
     counter.textContent='✓ Tamamlandı';
+    updateHardPanel();
     return;
   }
+
   counter.textContent=`${swipeIdx+1} / ${swipeList.length}`;
   const w=swipeList[swipeIdx];
+  const idx=words.indexOf(w);
+  const isHard=(hardWords.get(idx)||0)>=5;
   const isColor=!!w.color;
-  const visual=isColor?`<div class="color-swatch" style="width:70px;height:70px;background:${w.color};${w.border?'border:2px solid #cbd5e0;':''}border-radius:50%;box-shadow:0 2px 10px rgba(0,0,0,0.15);"></div>`:`<div class="swipe-icon">${w.icon}</div>`;
+  const visual=isColor
+    ?`<div style="width:68px;height:68px;background:${w.color};${w.border?'border:2px solid #cbd5e0;':''}border-radius:50%;box-shadow:0 2px 10px rgba(0,0,0,0.15);"></div>`
+    :`<div class="swipe-icon">${w.icon}</div>`;
 
-  main.className='swipe-card';
-  main.style.transform=''; main.style.opacity='';
+  main.className='swipe-card'+(isHard?' is-hard':'');
+  main.style.transform=''; main.style.opacity=''; main.style.transition='';
   main.innerHTML=`
     <div class="swipe-front">
       <button class="swipe-speak" title="Seslendir">🔊</button>
+      <div class="hard-badge">TEKRAR</div>
       <span class="like-label">ÖĞRENDIM ✓</span>
       <span class="nope-label">✗ BİLMİYORUM</span>
       ${visual}
@@ -465,79 +881,82 @@ function renderSwipeCard(){
       <div class="swipe-tap">kartı çevir veya kaydır</div>
     </div>
     <div class="swipe-back">
-      ${isColor?`<div style="width:60px;height:60px;background:${w.color};border-radius:50%;border:3px solid rgba(255,255,255,0.4);margin-bottom:8px;"></div>`:`<div style="font-size:3rem;opacity:0.9;margin-bottom:6px;">${w.icon}</div>`}
+      ${isColor?`<div style="width:58px;height:58px;background:${w.color};border-radius:50%;border:3px solid rgba(255,255,255,0.4);margin-bottom:6px;"></div>`:
+      `<div style="font-size:3rem;opacity:0.9;margin-bottom:4px;">${w.icon}</div>`}
       <div class="swipe-tr">${w.tr}</div>
       <div class="swipe-pr">[ ${w.pr} ]</div>
       <div class="swipe-ar-back">${w.ar}</div>
     </div>`;
-
   main.querySelector('.swipe-speak').addEventListener('click',e=>{e.stopPropagation();speakArabic(w.ar,e.currentTarget);});
 
-  // Background preview cards
   const next=swipeList[swipeIdx+1];
-  bg.innerHTML=next?`<div class="swipe-front" style="display:flex;justify-content:center;align-items:center;font-size:2rem;">${next.icon||'◆'}</div><div class="swipe-back"></div>`:'';
-  const next2=swipeList[swipeIdx+2];
-  bg2.innerHTML=next2?'':``;
-
+  bg.innerHTML=next?`<div class="swipe-front" style="display:flex;justify-content:center;align-items:center;font-size:2.2rem;">${next.icon||'◆'}</div><div class="swipe-back"></div>`:'';
+  bg2.innerHTML='';
   swipeRevealed=false;
-  setupDrag(main, swipeList[swipeIdx]);
+  setupDrag(main);
 }
 
 function flipSwipeCard(){
   const main=document.getElementById('swipe-main');
-  if(!swipeRevealed){
-    main.classList.add('revealed');
-    swipeRevealed=true;
-  } else {
-    main.classList.remove('revealed');
-    swipeRevealed=false;
-  }
+  swipeRevealed=!swipeRevealed;
+  main.classList.toggle('revealed',swipeRevealed);
+  if(swipeRevealed&&swipeList[swipeIdx])
+    speakArabic(swipeList[swipeIdx].ar,null);
 }
 
 function swipeCard(dir){
   const main=document.getElementById('swipe-main');
+  if(swipeIdx>=swipeList.length) return;
   const w=swipeList[swipeIdx];
   const idx=words.indexOf(w);
+  if(dir==='right'){
+    learned.add(idx);
+    // reset hard count if learned
+    if(hardWords.has(idx)) hardWords.delete(idx);
+  } else {
+    learned.delete(idx);
+    hardWords.set(idx,(hardWords.get(idx)||0)+1);
+    // if missed 5+ times, re-queue
+    if((hardWords.get(idx))>=5){
+      const pos=swipeIdx+Math.floor(Math.random()*4)+2;
+      if(pos<swipeList.length) swipeList.splice(pos,0,w);
+      else swipeList.push(w);
+    }
+  }
+  updateProgress();
   const tx=dir==='right'?500:-500;
   main.style.transition='transform 0.4s ease, opacity 0.4s ease';
   main.style.transform=`translateX(${tx}px) rotate(${dir==='right'?20:-20}deg)`;
   main.style.opacity='0';
-  if(dir==='right'){ learned.add(idx); } else { learned.delete(idx); }
-  updateProgress();
-  setTimeout(()=>{ swipeIdx++; renderSwipeCard(); },380);
+  setTimeout(()=>{swipeIdx++;renderSwipeCard();},370);
 }
 
-function setupDrag(el, w){
-  let startX,startY,startTime;
-
+function setupDrag(el){
+  let startX,startY,startTime,moved=false;
   function onStart(e){
-    if(e.target.classList.contains('swipe-speak')) return;
-    dragging=true;
+    if(e.target.closest('.swipe-speak')) return;
+    swipeDragging=true; moved=false;
     const pt=e.touches?e.touches[0]:e;
     startX=pt.clientX; startY=pt.clientY; startTime=Date.now();
     el.style.transition='none';
   }
   function onMove(e){
-    if(!dragging) return;
+    if(!swipeDragging) return;
     const pt=e.touches?e.touches[0]:e;
     const dx=pt.clientX-startX;
-    const dy=pt.clientY-startY;
-    el.style.transform=`translateX(${dx}px) rotate(${dx*0.08}deg)`;
-    // labels
+    moved=true;
+    el.style.transform=`translateX(${dx}px) rotate(${dx*0.07}deg)`;
     const like=el.querySelector('.like-label');
     const nope=el.querySelector('.nope-label');
-    if(like&&nope){
-      like.style.opacity=dx>10?Math.min(dx/80,1):0;
-      nope.style.opacity=dx<-10?Math.min(-dx/80,1):0;
-    }
+    if(like&&nope){like.style.opacity=dx>10?Math.min(dx/80,1):0;nope.style.opacity=dx<-10?Math.min(-dx/80,1):0;}
   }
   function onEnd(e){
-    if(!dragging) return;
-    dragging=false;
+    if(!swipeDragging) return;
+    swipeDragging=false;
     const pt=e.changedTouches?e.changedTouches[0]:e;
     const dx=pt.clientX-startX;
     el.style.transition='transform 0.3s ease, opacity 0.3s ease';
-    if(Math.abs(dx)>80){
+    if(Math.abs(dx)>85){
       swipeCard(dx>0?'right':'left');
     } else {
       el.style.transform='';
@@ -545,8 +964,7 @@ function setupDrag(el, w){
       const nope=el.querySelector('.nope-label');
       if(like) like.style.opacity=0;
       if(nope) nope.style.opacity=0;
-      // tap to flip
-      if(Math.abs(dx)<10 && (Date.now()-startTime)<300) flipSwipeCard();
+      if(!moved||(Math.abs(dx)<10&&(Date.now()-startTime)<350)) flipSwipeCard();
     }
   }
   el.addEventListener('mousedown',onStart);
@@ -557,32 +975,258 @@ function setupDrag(el, w){
   document.addEventListener('touchend',onEnd);
 }
 
-// ── SPEECH ──
-function speakArabic(text,btn){
-  if(!window.speechSynthesis){alert('Tarayıcınız sesi desteklemiyor.');return;}
-  window.speechSynthesis.cancel();
-  if(btn.classList.contains('speaking')){btn.classList.remove('speaking');btn.textContent='🔊';return;}
-  const utter=new SpeechSynthesisUtterance(text);
-  utter.lang='ar-SA'; utter.rate=0.85; utter.pitch=1;
-  const voices=window.speechSynthesis.getVoices();
-  const arVoice=voices.find(v=>v.lang.startsWith('ar'));
-  if(arVoice) utter.voice=arVoice;
-  btn.classList.add('speaking'); btn.textContent='🔉';
-  utter.onend=()=>{btn.classList.remove('speaking');btn.textContent='🔊';};
-  utter.onerror=()=>{btn.classList.remove('speaking');btn.textContent='🔊';};
-  window.speechSynthesis.speak(utter);
+function updateHardPanel(){
+  const panel=document.getElementById('hard-panel');
+  const list=document.getElementById('hard-list');
+  const entries=[...hardWords.entries()].filter(([,v])=>v>=5).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  if(entries.length===0){panel.style.display='none';return;}
+  panel.style.display='block';
+  list.innerHTML=entries.map(([idx,cnt])=>
+    `<span style="display:inline-flex;align-items:center;gap:3px;margin:2px 4px;background:#fff5f5;border:1px solid #feb2b2;border-radius:6px;padding:2px 6px;font-family:'Amiri',serif;font-size:1rem;direction:rtl;">${words[idx].ar} <small style="font-family:'Lato',sans-serif;font-size:0.62rem;color:#e53e3e;direction:ltr;">${cnt}✗</small></span>`
+  ).join('');
 }
-if(window.speechSynthesis){
-  window.speechSynthesis.getVoices();
-  window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
+
+// ═══════════════════════════════════════════
+// QUIZ MODE
+// ═══════════════════════════════════════════
+let quizList=[],quizIdx=0,quizOk=0,quizErr=0;
+
+function initQuiz(){
+  const count=parseInt(document.getElementById('quiz-count-sel').value);
+  const base=currentCat==='all'?[...words]:[...words.filter(w=>w.cat===currentCat)];
+  quizList=shuffle(base).slice(0,Math.min(count,base.length));
+  quizIdx=0; quizOk=0; quizErr=0;
+  document.getElementById('q-ok').textContent=0;
+  document.getElementById('q-err').textContent=0;
+  renderQuiz();
 }
+
+function renderQuiz(){
+  const area=document.getElementById('quiz-area');
+  if(quizIdx>=quizList.length){
+    const pct=Math.round(quizOk/quizList.length*100);
+    const emoji=pct>=80?'🏆':pct>=60?'📚':'💪';
+    area.innerHTML=`<div class="quiz-result">
+      <div class="emoji">${emoji}</div>
+      <h2>${pct}% Başarı</h2>
+      <p>${quizOk} doğru / ${quizErr} yanlış</p>
+      <button onclick="initQuiz()">Tekrar Dene</button>
+    </div>`;
+    document.getElementById('quiz-prog').textContent='✓ Tamamlandı';
+    return;
+  }
+
+  document.getElementById('quiz-prog').textContent=`Soru ${quizIdx+1} / ${quizList.length}`;
+  const dir=document.getElementById('quiz-dir-sel').value;
+  const w=quizList[quizIdx];
+  const isColor=!!w.color;
+
+  // 4 options
+  const pool=words.filter(x=>x!==w);
+  const wrongs=shuffle(pool).slice(0,3);
+  const opts=shuffle([w,...wrongs]);
+  const correctIdx=opts.indexOf(w);
+
+  const visual=isColor
+    ?`<div class="color-swatch" style="width:70px;height:70px;background:${w.color};${w.border?'border:2px solid #e2e8f0;':''}border-radius:50%;margin:0 auto 8px;box-shadow:0 2px 10px rgba(0,0,0,0.15);"></div>`
+    :`<div class="quiz-q-icon">${w.icon}</div>`;
+
+  const question=dir==='ar2tr'
+    ?`${visual}<div class="quiz-q-ar">${w.ar}</div><div class="quiz-q-pr">[ ${w.pr} ]</div>`
+    :`<div class="quiz-q-icon">🤔</div><div class="turkish" style="font-size:1.6rem;font-family:'Playfair Display',serif;color:var(--deep);margin-bottom:4px;">${w.tr}</div>`;
+
+  const optLabel=dir==='ar2tr'?opts.map(o=>o.tr):opts.map(o=>`<span style="font-family:'Amiri',serif;font-size:1.3rem;direction:rtl;">${o.ar}</span>`);
+
+  area.innerHTML=`<div class="quiz-card">
+    <button class="quiz-speak" onclick="speakArabic('${w.ar.replace(/'/g,"\\'")}',this)">🔊 Seslendir</button>
+    ${question}
+    <div class="quiz-options">
+      ${opts.map((o,i)=>`<button class="quiz-opt" data-i="${i}" onclick="answerQuiz(${i},${correctIdx},this)">${optLabel[i]}</button>`).join('')}
+    </div>
+    <div class="quiz-feedback" id="qfeed"></div>
+    <button class="quiz-next" id="qnext" onclick="nextQuiz()">Devam →</button>
+  </div>`;
+}
+
+function answerQuiz(chosen,correct,btn){
+  document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
+  const feed=document.getElementById('qfeed');
+  const nxt=document.getElementById('qnext');
+  const w=quizList[quizIdx];
+  if(chosen===correct){
+    btn.classList.add('correct');
+    feed.textContent='✓ Doğru! Harika!';
+    feed.className='quiz-feedback ok';
+    quizOk++;
+    document.getElementById('q-ok').textContent=quizOk;
+    learned.add(words.indexOf(w));
+    updateProgress();
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.quiz-opt')[correct].classList.add('reveal');
+    feed.textContent=`✗ Yanlış! Doğrusu: ${w.tr} [${w.pr}]`;
+    feed.className='quiz-feedback no';
+    quizErr++;
+    document.getElementById('q-err').textContent=quizErr;
+    const idx=words.indexOf(w);
+    hardWords.set(idx,(hardWords.get(idx)||0)+1);
+  }
+  nxt.style.display='inline-block';
+}
+
+function nextQuiz(){quizIdx++;renderQuiz();}
+
+// ═══════════════════════════════════════════
+// WRITE MODE
+// ═══════════════════════════════════════════
+let writeList=[],writeIdx=0,writeOk=0,writeErr=0,writeAnswered=false;
+
+function initWrite(){
+  const count=parseInt(document.getElementById('write-count-sel').value);
+  const base=currentCat==='all'?[...words]:[...words.filter(w=>w.cat===currentCat)];
+  // exclude colors (no arabic input makes sense for color names)
+  const eligible=base.filter(w=>!w.color);
+  writeList=shuffle(eligible).slice(0,Math.min(count,eligible.length));
+  writeIdx=0; writeOk=0; writeErr=0;
+  document.getElementById('w-ok').textContent=0;
+  document.getElementById('w-err').textContent=0;
+  renderWrite();
+}
+
+function renderWrite(){
+  const area=document.getElementById('write-area');
+  if(writeIdx>=writeList.length){
+    const pct=Math.round(writeOk/writeList.length*100);
+    area.innerHTML=`<div class="quiz-result">
+      <div class="emoji">${pct>=80?'🏆':pct>=60?'📚':'💪'}</div>
+      <h2>${pct}% Başarı</h2>
+      <p>${writeOk} doğru / ${writeErr} yanlış</p>
+      <button onclick="initWrite()">Tekrar Dene</button>
+    </div>`;
+    document.getElementById('write-prog').textContent='✓ Tamamlandı';
+    return;
+  }
+
+  document.getElementById('write-prog').textContent=`${writeIdx+1} / ${writeList.length}`;
+  const w=writeList[writeIdx];
+  writeAnswered=false;
+
+  area.innerHTML=`<div class="write-card">
+    <div class="write-q-label">Bu kelimeyi Arapça yazınız:</div>
+    <div class="write-turkish">${w.tr}</div>
+    <div class="write-pr">[ ${w.pr} ]</div>
+    <button class="write-hint-btn" onclick="showWriteHint('${w.ar.replace(/'/g,"\\'")}')">💡 İpucu</button>
+    <div class="write-hint-ar" id="whint"></div>
+    <div class="write-input-wrap">
+      <input class="write-input" id="winput" type="text" placeholder="اكتب هنا..." dir="rtl" autocomplete="off" autocorrect="off" spellcheck="false" />
+    </div>
+    <div>
+      <button class="write-submit" onclick="checkWrite('${w.ar.replace(/'/g,"\\'")}')">Kontrol Et</button>
+      <button class="write-skip" onclick="skipWrite()">Geç</button>
+    </div>
+    <div class="write-feedback" id="wfeed"></div>
+    <div class="write-correct-ans" id="wcorrect" style="display:none">${w.ar}</div>
+    <button class="write-next" id="wnext" onclick="nextWrite()">Devam →</button>
+  </div>
+  <div class="ar-keyboard" id="ar-kb"></div>`;
+
+  buildArKeyboard(w.ar);
+  const inp=document.getElementById('winput');
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkWrite(w.ar);});
+  inp.focus();
+}
+
+function buildArKeyboard(targetWord){
+  const kb=document.getElementById('ar-kb');
+  if(!kb) return;
+  // Get unique chars from target + random chars
+  const targetChars=[...new Set(targetWord.replace(/[\s\u064B-\u065F]/g,'').split(''))];
+  const allAr='ابتثجحخدذرزسشصضطظعغفقكلمنهويءأإآةى';
+  const extras=shuffle([...allAr].filter(c=>!targetChars.includes(c))).slice(0,10);
+  const keyChars=shuffle([...targetChars,...extras]);
+  kb.innerHTML=keyChars.map(c=>`<button class="ar-key" onclick="insertArChar('${c}')">${c}</button>`).join('')
+    +`<button class="ar-key wide" onclick="deleteArChar()">⌫</button>`
+    +`<button class="ar-key wide" onclick="clearArInput()">Temizle</button>`;
+}
+
+function insertArChar(c){
+  const inp=document.getElementById('winput');
+  if(!inp||writeAnswered) return;
+  inp.value=inp.value+c;
+  inp.focus();
+}
+function deleteArChar(){
+  const inp=document.getElementById('winput');
+  if(!inp||writeAnswered) return;
+  inp.value=inp.value.slice(0,-1);
+  inp.focus();
+}
+function clearArInput(){
+  const inp=document.getElementById('winput');
+  if(inp&&!writeAnswered){inp.value='';inp.focus();}
+}
+
+function showWriteHint(ar){
+  const hint=document.getElementById('whint');
+  if(!hint) return;
+  // show word with blanks randomly
+  const chars=[...ar.replace(/[\u064B-\u065F]/g,'')];
+  const hinted=chars.map((c,i)=>i%2===0?c:'_').join('\u200B');
+  hint.textContent=hinted;
+}
+
+function normalizeAr(s){return s.replace(/[\u064B-\u065F\u0640]/g,'').replace(/أ|إ|آ/g,'ا').trim();}
+
+function checkWrite(correct){
+  if(writeAnswered) return;
+  writeAnswered=true;
+  const inp=document.getElementById('winput');
+  const feed=document.getElementById('wfeed');
+  const correctEl=document.getElementById('wcorrect');
+  const nxt=document.getElementById('wnext');
+  const val=inp?inp.value.trim():'';
+  const ok=normalizeAr(val)===normalizeAr(correct);
+  if(ok){
+    if(inp) inp.classList.add('correct');
+    feed.textContent='✓ Mükemmel! Doğru yazdın!';
+    feed.className='write-feedback ok';
+    writeOk++;
+    document.getElementById('w-ok').textContent=writeOk;
+    learned.add(words.indexOf(writeList[writeIdx]));
+    updateProgress();
+  } else {
+    if(inp) inp.classList.add('wrong');
+    feed.textContent='✗ Yanlış. Doğru yazım:';
+    feed.className='write-feedback no';
+    if(correctEl) correctEl.style.display='block';
+    writeErr++;
+    document.getElementById('w-err').textContent=writeErr;
+    const idx=words.indexOf(writeList[writeIdx]);
+    hardWords.set(idx,(hardWords.get(idx)||0)+1);
+  }
+  if(nxt) nxt.style.display='inline-block';
+  speakArabic(correct,null);
+}
+
+function skipWrite(){
+  if(writeAnswered) return;
+  writeAnswered=true;
+  const w=writeList[writeIdx];
+  const correctEl=document.getElementById('wcorrect');
+  const feed=document.getElementById('wfeed');
+  const nxt=document.getElementById('wnext');
+  if(feed){feed.textContent='Atlandı.';feed.className='write-feedback';}
+  if(correctEl) correctEl.style.display='block';
+  if(nxt) nxt.style.display='inline-block';
+}
+
+function nextWrite(){writeIdx++;renderWrite();}
 
 // ── PRINT ──
 function printCat(cat){
   const list=cat==='all'?words:words.filter(w=>w.cat===cat);
   const grid=document.getElementById('grid');
-  const prevHTML=grid.innerHTML;
-  const prevDisplay=document.getElementById('grid-mode').style.display;
+  const prev=grid.innerHTML;
   document.getElementById('grid-mode').style.display='block';
   grid.innerHTML='';
   list.forEach(w=>{
@@ -593,18 +1237,15 @@ function printCat(cat){
     div.innerHTML=`<div class="card-inner"><div class="card-front">${fv}<div class="arabic-word">${w.ar}</div><div class="print-answer">${w.tr}</div><div class="print-pron">[ ${w.pr} ]</div></div><div class="card-back"></div></div>`;
     grid.appendChild(div);
   });
-  document.getElementById('print-title').textContent='Arapça Kelime Kartları — '+catNames[cat];
   setTimeout(()=>{
     window.print();
-    setTimeout(()=>{
-      grid.innerHTML=prevHTML;
-      document.getElementById('grid-mode').style.display=prevDisplay;
-      if(currentMode==='grid') render();
-    },600);
+    setTimeout(()=>{grid.innerHTML=prev;if(currentMode==='grid')render();},600);
   },100);
 }
 
+// init
 render();
+setMode('grid');
 </script>
 </body>
 </html>
