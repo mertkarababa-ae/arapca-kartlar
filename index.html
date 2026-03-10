@@ -546,7 +546,169 @@ header::after {
   .ar-key { width:38px; height:38px; }
 }
 .print-answer,.print-pron { display:none; }
-</style>
+
+/* ═══════════ THEMES ═══════════ */
+/* Obsidian — cool dark slate */
+[data-palette="obsidian"] {
+  --gold:#94a3b8; --gold2:#cbd5e1; --gold-light:#e2e8f0; --gold-pale:#1e293b;
+  --terra:#6366f1; --terra2:#4f46e5; --terra-pale:rgba(99,102,241,0.10);
+  --teal:#06b6d4; --teal-pale:rgba(6,182,212,0.10);
+  --xp-bar:linear-gradient(90deg,#6366f1,#06b6d4);
+  --card-back-bg:linear-gradient(148deg,#0f172a,#1e293b);
+  --card-back-border:rgba(99,102,241,0.30);
+  --swipe-back-bg:linear-gradient(148deg,#0f172a,#1e1b4b);
+  --header-bg:#0f172a;
+}
+[data-palette="obsidian"][data-theme="light"] {
+  --bg:#f8fafc; --bg2:#f1f5f9; --surface:#ffffff; --surface2:#ffffff; --surface3:#f1f5f9;
+  --ink:#0f172a; --ink2:#1e293b; --border:rgba(15,23,42,0.08); --border2:rgba(15,23,42,0.14);
+  --text:#0f172a; --text2:rgba(15,23,42,0.60); --text3:rgba(15,23,42,0.35);
+}
+
+/* Sapphire — deep blue professional */
+[data-palette="sapphire"] {
+  --gold:#f59e0b; --gold2:#d97706; --gold-light:#fbbf24; --gold-pale:#fffbeb;
+  --terra:#2563eb; --terra2:#1d4ed8; --terra-pale:rgba(37,99,235,0.08);
+  --teal:#0891b2; --teal-pale:rgba(8,145,178,0.10);
+  --xp-bar:linear-gradient(90deg,#2563eb,#0891b2);
+  --card-back-bg:linear-gradient(148deg,#1e3a5f,#0c2340);
+  --card-back-border:rgba(37,99,235,0.30);
+  --swipe-back-bg:linear-gradient(148deg,#1e3a5f,#0c1a30);
+  --header-bg:#0c1f3f;
+}
+[data-palette="sapphire"][data-theme="light"] {
+  --bg:#eff6ff; --bg2:#dbeafe; --surface:#ffffff; --surface2:#ffffff; --surface3:#eff6ff;
+  --ink:#1e3a5f; --ink2:#1e40af; --border:rgba(30,58,95,0.08); --border2:rgba(30,58,95,0.15);
+  --text:#1e3a5f; --text2:rgba(30,58,95,0.60); --text3:rgba(30,58,95,0.35);
+}
+
+/* Emerald — nature, calm */
+[data-palette="emerald"] {
+  --gold:#a16207; --gold2:#854d0e; --gold-light:#ca8a04; --gold-pale:#fefce8;
+  --terra:#059669; --terra2:#047857; --terra-pale:rgba(5,150,105,0.08);
+  --teal:#0d9488; --teal-pale:rgba(13,148,136,0.10);
+  --xp-bar:linear-gradient(90deg,#059669,#0d9488);
+  --card-back-bg:linear-gradient(148deg,#064e3b,#022c22);
+  --card-back-border:rgba(5,150,105,0.30);
+  --swipe-back-bg:linear-gradient(148deg,#064e3b,#022c22);
+  --header-bg:#022c22;
+}
+[data-palette="emerald"][data-theme="light"] {
+  --bg:#f0fdf4; --bg2:#dcfce7; --surface:#ffffff; --surface2:#ffffff; --surface3:#f0fdf4;
+  --ink:#14532d; --ink2:#166534; --border:rgba(20,83,45,0.08); --border2:rgba(20,83,45,0.15);
+  --text:#14532d; --text2:rgba(20,83,45,0.60); --text3:rgba(20,83,45,0.35);
+}
+
+/* Rose — warm elegant */
+[data-palette="rose"] {
+  --gold:#b45309; --gold2:#92400e; --gold-light:#d97706; --gold-pale:#fff7ed;
+  --terra:#e11d48; --terra2:#be123c; --terra-pale:rgba(225,29,72,0.08);
+  --teal:#db2777; --teal-pale:rgba(219,39,119,0.10);
+  --xp-bar:linear-gradient(90deg,#e11d48,#db2777);
+  --card-back-bg:linear-gradient(148deg,#4c0519,#2d0112);
+  --card-back-border:rgba(225,29,72,0.30);
+  --swipe-back-bg:linear-gradient(148deg,#4c0519,#2d0112);
+  --header-bg:#1f0612;
+}
+[data-palette="rose"][data-theme="light"] {
+  --bg:#fff1f2; --bg2:#ffe4e6; --surface:#ffffff; --surface2:#ffffff; --surface3:#fff1f2;
+  --ink:#4c0519; --ink2:#9f1239; --border:rgba(76,5,25,0.08); --border2:rgba(76,5,25,0.15);
+  --text:#4c0519; --text2:rgba(76,5,25,0.60); --text3:rgba(76,5,25,0.35);
+}
+
+/* ═══════════ THEME PICKER ═══════════ */
+.theme-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:700; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.22s; backdrop-filter:blur(6px); }
+.theme-modal-overlay.open { opacity:1; pointer-events:all; }
+.theme-panel { background:var(--surface2); border-radius:22px 22px 0 0; max-width:500px; width:100%; padding:20px 20px 32px; border:1px solid var(--border2); border-bottom:none; box-shadow:0 -8px 40px rgba(0,0,0,0.2); transform:translateY(20px); transition:transform 0.28s cubic-bezier(0.34,1.15,0.64,1); }
+.theme-modal-overlay.open .theme-panel { transform:translateY(0); }
+.theme-handle { width:36px; height:4px; background:var(--border2); border-radius:2px; margin:0 auto 16px; }
+.theme-title { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:700; color:var(--text); margin-bottom:4px; text-align:center; }
+.theme-subtitle { font-size:0.72rem; color:var(--text3); text-align:center; margin-bottom:16px; letter-spacing:0.5px; }
+.theme-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:18px; }
+.theme-swatch { border-radius:12px; padding:10px 6px 8px; cursor:pointer; border:2px solid transparent; transition:all 0.2s; text-align:center; }
+.theme-swatch:hover { transform:translateY(-3px); }
+.theme-swatch.active { border-color:var(--terra); }
+.theme-swatch-circle { width:38px; height:38px; border-radius:50%; margin:0 auto 6px; box-shadow:0 3px 10px rgba(0,0,0,0.2); }
+.theme-swatch-name { font-size:0.6rem; font-weight:600; color:var(--text2); letter-spacing:0.5px; text-transform:uppercase; }
+.theme-dark-row { display:flex; align-items:center; justify-content:space-between; background:var(--surface3); border-radius:12px; padding:10px 14px; }
+.theme-dark-label { font-size:0.8rem; font-weight:600; color:var(--text); }
+.theme-toggle-switch { width:44px; height:24px; background:var(--border2); border-radius:12px; position:relative; cursor:pointer; transition:background 0.2s; border:none; }
+.theme-toggle-switch.on { background:var(--terra); }
+.theme-toggle-knob { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:white; transition:left 0.2s; box-shadow:0 1px 4px rgba(0,0,0,0.2); }
+.theme-toggle-switch.on .theme-toggle-knob { left:22px; }
+
+/* ═══════════ DAILY GOAL ═══════════ */
+.goal-bar-wrap { position:relative; z-index:1; background:var(--surface3); border-bottom:1px solid var(--border); padding:8px 16px; transition:background 0.3s; }
+.goal-bar-inner { max-width:960px; margin:0 auto; display:flex; align-items:center; gap:12px; }
+.goal-ring-wrap { position:relative; width:40px; height:40px; flex-shrink:0; cursor:pointer; }
+.goal-ring-svg { width:40px; height:40px; transform:rotate(-90deg); }
+.goal-ring-bg { fill:none; stroke:var(--border2); stroke-width:4; }
+.goal-ring-fill { fill:none; stroke:var(--terra); stroke-width:4; stroke-linecap:round; stroke-dasharray:100.5; stroke-dashoffset:100.5; transition:stroke-dashoffset 0.6s ease; }
+.goal-ring-text { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:0.55rem; font-weight:700; color:var(--terra); }
+.goal-info { flex:1; min-width:0; }
+.goal-label { font-size:0.65rem; font-weight:600; color:var(--text2); letter-spacing:0.5px; }
+.goal-track { height:4px; background:var(--border2); border-radius:4px; overflow:hidden; margin-top:3px; }
+.goal-fill { height:100%; background:linear-gradient(90deg,var(--terra),var(--gold)); border-radius:4px; transition:width 0.5s ease; }
+.goal-set-btn { background:var(--surface2); border:1px solid var(--border2); color:var(--text3); padding:4px 10px; border-radius:12px; font-size:0.62rem; cursor:pointer; white-space:nowrap; font-family:'DM Sans',sans-serif; transition:all 0.18s; }
+.goal-set-btn:hover { border-color:var(--terra); color:var(--terra); }
+
+/* Goal setter modal */
+.goal-modal { position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:800; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.22s; backdrop-filter:blur(4px); }
+.goal-modal.open { opacity:1; pointer-events:all; }
+.goal-modal-card { background:var(--surface2); border-radius:20px; padding:24px; max-width:340px; width:90%; border:1px solid var(--border2); box-shadow:0 20px 60px rgba(0,0,0,0.3); transform:scale(0.9); transition:transform 0.25s cubic-bezier(0.34,1.15,0.64,1); }
+.goal-modal.open .goal-modal-card { transform:scale(1); }
+.goal-modal-title { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:700; color:var(--terra); margin-bottom:4px; }
+.goal-modal-sub { font-size:0.76rem; color:var(--text3); margin-bottom:16px; }
+.goal-options { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
+.goal-opt { background:var(--surface3); border:1.5px solid var(--border2); border-radius:10px; padding:10px 6px; cursor:pointer; text-align:center; transition:all 0.15s; }
+.goal-opt:hover { border-color:var(--terra); }
+.goal-opt.selected { background:var(--terra-pale); border-color:var(--terra); }
+.goal-opt-num { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:700; color:var(--terra); }
+.goal-opt-label { font-size:0.6rem; color:var(--text3); letter-spacing:0.5px; }
+.goal-save-btn { width:100%; background:var(--terra); color:white; border:none; padding:10px; border-radius:12px; font-family:'DM Sans',sans-serif; font-size:0.82rem; font-weight:700; cursor:pointer; }
+
+/* ═══════════ DIALOG MODE ═══════════ */
+.dialog-categories { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; justify-content:center; }
+.dialog-cat-btn { background:var(--surface2); border:1.5px solid var(--border2); border-radius:12px; padding:8px 16px; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:0.74rem; font-weight:600; color:var(--text2); transition:all 0.18s; display:flex; align-items:center; gap:6px; }
+.dialog-cat-btn:hover { border-color:var(--terra); color:var(--terra); }
+.dialog-cat-btn.active { background:var(--terra); border-color:var(--terra); color:white; }
+
+.dialog-card { max-width:600px; margin:0 auto; background:var(--surface2); border-radius:20px; border:1px solid var(--border2); box-shadow:var(--shadow-lg); overflow:hidden; }
+.dialog-header { background:linear-gradient(135deg,var(--header-bg),rgba(0,0,0,0.8)); padding:16px 18px 14px; }
+.dialog-scenario { font-size:0.62rem; color:rgba(255,255,255,0.5); letter-spacing:1.5px; text-transform:uppercase; font-weight:600; margin-bottom:3px; }
+.dialog-title { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:700; color:rgba(255,255,255,0.9); }
+
+.dialog-body { padding:14px 16px; }
+.dialog-line { display:flex; gap:10px; margin-bottom:12px; align-items:flex-start; }
+.dialog-line.right { flex-direction:row-reverse; }
+.dialog-avatar { width:34px; height:34px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:1.1rem; border:2px solid var(--border2); background:var(--surface3); }
+.dialog-bubble { flex:1; max-width:85%; }
+.dialog-bubble-ar { font-family:'Amiri',serif; font-size:1.15rem; direction:rtl; text-align:right; color:var(--text); line-height:1.6; background:var(--surface3); border-radius:14px 14px 4px 14px; padding:8px 12px; margin-bottom:3px; border:1px solid var(--border); }
+.dialog-line.right .dialog-bubble-ar { border-radius:14px 14px 14px 4px; background:var(--terra-pale); border-color:rgba(184,78,42,0.15); }
+.dialog-bubble-tr { font-size:0.72rem; color:var(--text3); padding:0 4px; }
+.dialog-bubble-speak { background:none; border:none; color:var(--gold2); cursor:pointer; font-size:0.8rem; opacity:0.5; padding:0 2px; transition:opacity 0.15s; }
+.dialog-bubble-speak:hover { opacity:1; }
+
+.dialog-vocab { background:var(--gold-pale); border:1px solid rgba(184,135,42,0.2); border-radius:var(--radius-sm); padding:10px 14px; margin:12px 0 0; }
+.dialog-vocab-title { font-size:0.6rem; color:var(--gold2); letter-spacing:1.2px; text-transform:uppercase; font-weight:700; margin-bottom:8px; }
+.dialog-vocab-grid { display:flex; flex-wrap:wrap; gap:6px; }
+.dialog-vocab-item { background:var(--surface2); border:1px solid var(--border2); border-radius:8px; padding:4px 10px; cursor:pointer; transition:all 0.15s; }
+.dialog-vocab-item:hover { border-color:var(--terra); }
+.dialog-vocab-ar { font-family:'Amiri',serif; font-size:1rem; direction:rtl; color:var(--terra); display:block; }
+.dialog-vocab-tr { font-size:0.62rem; color:var(--text3); }
+
+.dialog-nav { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-top:1px solid var(--border); }
+.dialog-nav-btn { background:var(--surface3); border:1px solid var(--border2); color:var(--text2); padding:7px 18px; border-radius:20px; font-family:'DM Sans',sans-serif; font-size:0.74rem; font-weight:600; cursor:pointer; transition:all 0.18s; }
+.dialog-nav-btn:hover { border-color:var(--terra); color:var(--terra); }
+.dialog-nav-btn.primary { background:var(--terra); border-color:var(--terra); color:white; }
+.dialog-counter { font-size:0.68rem; color:var(--text3); }
+
+/* Sound toggle */
+.sound-toggle { display:flex; align-items:center; gap:6px; font-size:0.65rem; color:rgba(255,255,255,0.6); cursor:pointer; }
+.sound-toggle input { display:none; }
+.sound-dot { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.2); transition:background 0.2s; }
+.sound-toggle input:checked + .sound-dot { background:var(--gold-light); }
+
 </head>
 <body>
 
@@ -562,6 +724,8 @@ header::after {
       </div>
     </div>
     <div class="header-actions">
+      <label class="sound-toggle" title="Ses efektleri"><input type="checkbox" id="sound-chk" checked onchange="toggleSound(this.checked)"><span class="sound-dot" id="sound-dot"></span></label>
+      <button class="dark-toggle" id="theme-btn" title="Tema seç" onclick="openThemeModal()" style="font-size:0.85rem;">🎨</button>
       <button class="dark-toggle" id="dark-toggle" title="Karanlık mod" onclick="toggleDark()">🌙</button>
     </div>
   </div>
@@ -601,6 +765,24 @@ header::after {
   </div>
 </div>
 
+<!-- Daily Goal Bar -->
+<div class="goal-bar-wrap" id="goal-bar-wrap">
+  <div class="goal-bar-inner">
+    <div class="goal-ring-wrap" onclick="openGoalModal()">
+      <svg class="goal-ring-svg" viewBox="0 0 36 36">
+        <circle class="goal-ring-bg" cx="18" cy="18" r="16"/>
+        <circle class="goal-ring-fill" id="goal-ring" cx="18" cy="18" r="16"/>
+      </svg>
+      <div class="goal-ring-text" id="goal-ring-text">0%</div>
+    </div>
+    <div class="goal-info">
+      <div class="goal-label" id="goal-label">Günlük hedef: <strong id="goal-current">0</strong> / <strong id="goal-target">10</strong> kelime</div>
+      <div class="goal-track"><div class="goal-fill" id="goal-fill" style="width:0%"></div></div>
+    </div>
+    <button class="goal-set-btn" onclick="openGoalModal()">⚙ Hedef</button>
+  </div>
+</div>
+
 <div class="nav-wrap">
   <div class="mode-tabs">
     <button class="mode-tab active" id="tab-grid" onclick="setMode('grid')"><span class="tab-icon">⊞</span>Kartlar</button>
@@ -608,6 +790,7 @@ header::after {
     <button class="mode-tab" id="tab-quiz" onclick="setMode('quiz')"><span class="tab-icon">🧩</span>Quiz</button>
     <button class="mode-tab" id="tab-write" onclick="setMode('write')"><span class="tab-icon">✍️</span>Yaz</button>
     <button class="mode-tab" id="tab-conjpractice" onclick="setMode('conjpractice')"><span class="tab-icon">🔤</span>Çekim</button>
+    <button class="mode-tab" id="tab-dialog" onclick="setMode('dialog')"><span class="tab-icon">🗣️</span>Diyalog</button>
   </div>
 </div>
 
@@ -731,6 +914,14 @@ header::after {
   </div>
 </div>
 
+<!-- DIALOG MODE -->
+<div id="dialog-mode" style="display:none">
+  <div class="section-wrap">
+    <div class="dialog-categories" id="dialog-cats"></div>
+    <div id="dialog-area"></div>
+  </div>
+</div>
+
 <!-- VERB MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" id="modal">
@@ -770,6 +961,32 @@ header::after {
     <h2 id="badge-modal-title">Rozet Kazandın!</h2>
     <p id="badge-modal-desc">Harika bir başarı!</p>
     <button class="badge-modal-close" onclick="document.getElementById('badge-overlay').classList.remove('open')">Harika! 🎉</button>
+  </div>
+</div>
+
+<!-- THEME MODAL -->
+<div class="theme-modal-overlay" id="theme-overlay" onclick="closeThemeModal(event)">
+  <div class="theme-panel">
+    <div class="theme-handle"></div>
+    <div class="theme-title">🎨 Tema Seç</div>
+    <div class="theme-subtitle">Uygulamanın renk paletini kişiselleştir</div>
+    <div class="theme-grid" id="theme-grid"></div>
+    <div class="theme-dark-row">
+      <span class="theme-dark-label">🌙 Karanlık Mod</span>
+      <button class="theme-toggle-switch" id="theme-dark-sw" onclick="toggleDark()">
+        <div class="theme-toggle-knob"></div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- GOAL MODAL -->
+<div class="goal-modal" id="goal-modal" onclick="closeGoalModal(event)">
+  <div class="goal-modal-card">
+    <div class="goal-modal-title">🎯 Günlük Hedef</div>
+    <div class="goal-modal-sub">Her gün kaç kelime öğrenmek istiyorsun?</div>
+    <div class="goal-options" id="goal-options"></div>
+    <button class="goal-save-btn" onclick="saveGoal()">Kaydet</button>
   </div>
 </div>
 
@@ -1248,7 +1465,10 @@ function saveState() {
     quizCorrect, writeCorrect, conjCorrect,
     unlockedBadges: [...unlockedBadges],
     lastPlayDate,
-    darkMode: document.documentElement.getAttribute('data-theme') === 'dark'
+    darkMode: document.documentElement.getAttribute('data-theme') === 'dark',
+    palette: currentPalette,
+    soundEnabled,
+    dailyGoal, todayLearned, goalDate, goalCompleted
   };
   try { localStorage.setItem(LS_KEY, JSON.stringify(data)); } catch(e) {}
 }
@@ -1269,6 +1489,21 @@ function loadState() {
     unlockedBadges = new Set(d.unlockedBadges || []);
     lastPlayDate = d.lastPlayDate || null;
     if (d.darkMode) document.documentElement.setAttribute('data-theme','dark');
+    if (d.palette) applyPalette(d.palette);
+    if (d.soundEnabled !== undefined) {
+      soundEnabled = d.soundEnabled;
+      const sc = document.getElementById('sound-chk');
+      if (sc) sc.checked = soundEnabled;
+      const sd = document.getElementById('sound-dot');
+      if (sd) sd.style.background = soundEnabled ? 'var(--gold-light)' : 'rgba(255,255,255,0.2)';
+    }
+    if (d.dailyGoal) dailyGoal = d.dailyGoal;
+    if (d.todayLearned) todayLearned = d.todayLearned;
+    if (d.goalDate) goalDate = d.goalDate;
+    if (d.goalCompleted) goalCompleted = d.goalCompleted;
+    // Reset daily goal if new day
+    const today = new Date().toDateString();
+    if (goalDate !== today) { todayLearned = 0; goalCompleted = false; goalDate = today; }
   } catch(e) { console.warn('State load failed', e); }
 }
 
@@ -1302,14 +1537,12 @@ function checkStreak() {
 function earnXP(amount, el) {
   const oldLevel = level;
   totalXP += amount;
-  // Recalculate level
   for (let i = XP_PER_LEVEL.length-1; i >= 0; i--) {
     if (totalXP >= XP_PER_LEVEL[i]) { level = i+1; break; }
   }
-  if (level !== oldLevel) showToast(`🎉 Seviye ${level} oldun!`, 3000);
+  if (level !== oldLevel) { SFX.levelUp(); showToast(`🎉 Seviye ${level} oldun!`, 3000); }
   updateXPBar();
   updateStatsBar();
-  // Float XP pop
   if (el) {
     const pop = document.createElement('div');
     pop.className = 'xp-pop';
@@ -1350,6 +1583,7 @@ function checkBadges() {
   BADGES.forEach(b => {
     if (!unlockedBadges.has(b.id) && b.cond(stats)) {
       unlockedBadges.add(b.id);
+      SFX.badge();
       setTimeout(() => showBadgeModal(b), 400);
       saveState();
     }
@@ -1385,7 +1619,7 @@ function toggleBadgePanel() {
 }
 
 function updateAllUI() {
-  updateXPBar(); updateStatsBar(); renderBadgePanel(); updateProgress();
+  updateXPBar(); updateStatsBar(); renderBadgePanel(); updateProgress(); updateGoalUI();
 }
 
 // ── DARK MODE ──
@@ -1421,18 +1655,20 @@ function showToast(msg, dur=2200) { const t=document.getElementById('toast'); t.
 // ── MODE ──
 function setMode(m) {
   currentMode = m;
-  ['grid','swipe','quiz','write','conjpractice'].forEach(x => {
+  SFX.click();
+  ['grid','swipe','quiz','write','conjpractice','dialog'].forEach(x => {
     const tab = document.getElementById('tab-'+x);
     if (tab) tab.classList.toggle('active', x===m);
     const el = document.getElementById(x+'-mode');
     if (el) el.style.display = x===m ? 'block' : 'none';
   });
   const fw = document.getElementById('filters-wrap');
-  if (fw) fw.style.display = (m==='conjpractice' ? 'none' : 'block');
+  if (fw) fw.style.display = (m==='conjpractice'||m==='dialog' ? 'none' : 'block');
   if (m==='swipe') initSwipe();
   if (m==='quiz') initQuiz();
   if (m==='write') initWrite();
   if (m==='conjpractice') renderConjLesson();
+  if (m==='dialog') { renderDialogCats(); renderDialog(); }
   checkStreak();
 }
 
@@ -1490,13 +1726,12 @@ function render() {
     div.addEventListener('click', () => {
       const wasFlipped = div.classList.contains('flipped');
       div.classList.toggle('flipped');
+      SFX.flip();
       if (!wasFlipped) {
-        // Just flipped open — award XP
-        if (!learned.has(idx)) earnXP(XP_REWARDS.flip, div);
+        if (!learned.has(idx)) { earnXP(XP_REWARDS.flip, div); addGoalProgress(1); }
         learned.add(idx);
         checkBadges();
         updateProgress();
-        // If has sentence and already flipped, show sentence panel after delay
         if (hasSentence) {
           setTimeout(() => { openSentenceModal(idx); }, 600);
         }
@@ -1713,11 +1948,14 @@ function swipeCard(dir) {
   if (swipeIdx>=swipeList.length) return;
   const w=swipeList[swipeIdx]; const idx=words.indexOf(w);
   if (dir==='right') {
+    SFX.swipeYes();
     learned.add(idx);
     if (hardWords.has(idx)) hardWords.delete(idx);
     earnXP(XP_REWARDS.swipeRight, main);
+    addGoalProgress(1);
     checkBadges();
   } else {
+    SFX.swipeNo();
     learned.delete(idx);
     hardWords.set(idx,(hardWords.get(idx)||0)+1);
     if ((hardWords.get(idx))>=5) { const pos=swipeIdx+Math.floor(Math.random()*4)+2; if(pos<swipeList.length) swipeList.splice(pos,0,w); else swipeList.push(w); }
@@ -1783,11 +2021,14 @@ function answerQuiz(chosen, correct, btn) {
   document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
   const feed=document.getElementById('qfeed'); const nxt=document.getElementById('qnext'); const w=quizList[quizIdx];
   if (chosen===correct) {
+    SFX.correct();
     btn.classList.add('correct'); feed.textContent='✓ Doğru! Harika!'; feed.className='quiz-feedback ok';
     quizOk++; quizCorrect++; document.getElementById('q-ok').textContent=quizOk;
     learned.add(words.indexOf(w)); updateProgress();
+    addGoalProgress(1);
     earnXP(XP_REWARDS.quizCorrect, btn);
   } else {
+    SFX.wrong();
     btn.classList.add('wrong'); document.querySelectorAll('.quiz-opt')[correct].classList.add('reveal');
     feed.textContent=`✗ Yanlış! Doğrusu: ${w.tr} [${w.pr}]`; feed.className='quiz-feedback no';
     quizErr++; earnXP(XP_REWARDS.quizWrong, null);
@@ -1850,11 +2091,14 @@ function checkWrite(correct) {
   const inp=document.getElementById('winput'); const feed=document.getElementById('wfeed'); const correctEl=document.getElementById('wcorrect'); const nxt=document.getElementById('wnext');
   const val=inp?inp.value.trim():''; const ok=normalizeAr(val)===normalizeAr(correct);
   if (ok) {
+    SFX.correct();
     if(inp) inp.classList.add('correct'); feed.textContent='✓ Mükemmel! Doğru yazdın!'; feed.className='write-feedback ok';
     writeOk++; writeCorrect++; document.getElementById('w-ok').textContent=writeOk;
     learned.add(words.indexOf(writeList[writeIdx])); updateProgress();
+    addGoalProgress(1);
     earnXP(XP_REWARDS.writeCorrect, inp);
   } else {
+    SFX.wrong();
     if(inp) inp.classList.add('wrong'); feed.textContent='✗ Yanlış. Doğru yazım:'; feed.className='write-feedback no';
     if(correctEl) correctEl.style.display='block';
     writeErr++; earnXP(XP_REWARDS.writeWrong, null); document.getElementById('w-err').textContent=writeErr;
@@ -1867,8 +2111,338 @@ function skipWrite(){if(writeAnswered)return;writeAnswered=true;const correctEl=
 function nextWrite(){writeIdx++;renderWrite();}
 
 // ═══════════════════════════════════════════
-// INIT
+// WEB AUDIO — SOUND EFFECTS
 // ═══════════════════════════════════════════
+let audioCtx = null, soundEnabled = true;
+
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+
+function playTone(freq, type, dur, vol=0.18, delay=0) {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.type = type; osc.frequency.value = freq;
+    const t = ctx.currentTime + delay;
+    gain.gain.setValueAtTime(vol, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    osc.start(t); osc.stop(t + dur);
+  } catch(e) {}
+}
+
+const SFX = {
+  correct:   () => { playTone(523, 'sine', 0.12, 0.15); playTone(659, 'sine', 0.15, 0.15, 0.1); playTone(784, 'sine', 0.18, 0.15, 0.2); },
+  wrong:     () => { playTone(220, 'sawtooth', 0.18, 0.12); playTone(180, 'sawtooth', 0.2, 0.12, 0.12); },
+  flip:      () => { playTone(440, 'sine', 0.08, 0.08); },
+  levelUp:   () => { [523,659,784,1047].forEach((f,i) => playTone(f, 'sine', 0.2, 0.18, i*0.12)); },
+  badge:     () => { [659,784,1047,1319].forEach((f,i) => playTone(f, 'triangle', 0.22, 0.16, i*0.1)); },
+  swipeYes:  () => { playTone(600, 'sine', 0.1, 0.1); },
+  swipeNo:   () => { playTone(250, 'sine', 0.1, 0.08); },
+  click:     () => { playTone(700, 'sine', 0.05, 0.06); },
+  goalDone:  () => { [784,988,1175,1568].forEach((f,i) => playTone(f,'triangle',0.25,0.18,i*0.15)); },
+};
+
+function toggleSound(on) {
+  soundEnabled = on;
+  document.getElementById('sound-dot').style.background = on ? 'var(--gold-light)' : 'rgba(255,255,255,0.2)';
+  saveState();
+}
+
+// ═══════════════════════════════════════════
+// THEME SYSTEM
+// ═══════════════════════════════════════════
+const THEMES = [
+  { id:'manuscript', name:'Manuscript', colors:['#b8872a','#b84e2a','#f7f3ec'] },
+  { id:'obsidian',   name:'Obsidian',   colors:['#6366f1','#06b6d4','#0f172a'] },
+  { id:'sapphire',   name:'Sapphire',   colors:['#2563eb','#0891b2','#0c1f3f'] },
+  { id:'emerald',    name:'Emerald',    colors:['#059669','#0d9488','#022c22'] },
+  { id:'rose',       name:'Rose',       colors:['#e11d48','#db2777','#1f0612'] },
+];
+let currentPalette = 'manuscript';
+
+function applyPalette(id) {
+  currentPalette = id;
+  document.documentElement.setAttribute('data-palette', id === 'manuscript' ? '' : id);
+  renderThemeGrid();
+  saveState();
+}
+
+function renderThemeGrid() {
+  const grid = document.getElementById('theme-grid');
+  if (!grid) return;
+  grid.innerHTML = THEMES.map(t => `
+    <div class="theme-swatch${currentPalette===t.id?' active':''}" onclick="applyPalette('${t.id}');SFX.click()">
+      <div class="theme-swatch-circle" style="background:linear-gradient(135deg,${t.colors[0]},${t.colors[1]})"></div>
+      <div class="theme-swatch-name">${t.name}</div>
+    </div>`).join('');
+}
+
+function openThemeModal() {
+  SFX.click();
+  renderThemeGrid();
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const sw = document.getElementById('theme-dark-sw');
+  if (sw) { sw.classList.toggle('on', isDark); }
+  document.getElementById('theme-overlay').classList.add('open');
+}
+function closeThemeModal(e) {
+  if (e.target === document.getElementById('theme-overlay')) document.getElementById('theme-overlay').classList.remove('open');
+}
+
+// ═══════════════════════════════════════════
+// DAILY GOAL
+// ═══════════════════════════════════════════
+const GOAL_OPTIONS = [5, 10, 15, 20, 30, 50];
+let dailyGoal = 10, todayLearned = 0, goalDate = '', goalCompleted = false;
+
+function openGoalModal() {
+  SFX.click();
+  const opts = document.getElementById('goal-options');
+  opts.innerHTML = GOAL_OPTIONS.map(n => `
+    <div class="goal-opt${dailyGoal===n?' selected':''}" onclick="selectGoalOpt(${n},this)">
+      <div class="goal-opt-num">${n}</div>
+      <div class="goal-opt-label">kelime</div>
+    </div>`).join('');
+  document.getElementById('goal-modal').classList.add('open');
+}
+function selectGoalOpt(n, el) {
+  dailyGoal = n;
+  document.querySelectorAll('.goal-opt').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function closeGoalModal(e) {
+  if (e.target === document.getElementById('goal-modal')) document.getElementById('goal-modal').classList.remove('open');
+}
+function saveGoal() {
+  document.getElementById('goal-modal').classList.remove('open');
+  updateGoalUI();
+  saveState();
+  showToast(`🎯 Günlük hedef: ${dailyGoal} kelime`);
+}
+
+function trackGoalLearned() {
+  const today = new Date().toDateString();
+  if (goalDate !== today) { goalDate = today; todayLearned = 0; goalCompleted = false; }
+  todayLearned = learned.size > todayLearned ? Math.min(learned.size, dailyGoal + todayLearned) : todayLearned;
+  // simpler: count today's unique learns — approximate with learned.size delta
+  updateGoalUI();
+}
+
+function addGoalProgress(n=1) {
+  const today = new Date().toDateString();
+  if (goalDate !== today) { goalDate = today; todayLearned = 0; goalCompleted = false; }
+  todayLearned = Math.min(todayLearned + n, dailyGoal);
+  if (todayLearned >= dailyGoal && !goalCompleted) {
+    goalCompleted = true;
+    SFX.goalDone();
+    setTimeout(() => showToast('🎯 Günlük hedefine ulaştın! Harika! 🎉', 3000), 300);
+  }
+  updateGoalUI();
+  saveState();
+}
+
+function updateGoalUI() {
+  const pct = Math.min((todayLearned / dailyGoal) * 100, 100);
+  const circ = 100.5;
+  const offset = circ - (circ * pct / 100);
+  const ring = document.getElementById('goal-ring');
+  if (ring) ring.style.strokeDashoffset = offset;
+  const rt = document.getElementById('goal-ring-text');
+  if (rt) rt.textContent = Math.round(pct) + '%';
+  const gf = document.getElementById('goal-fill');
+  if (gf) gf.style.width = pct + '%';
+  const gc = document.getElementById('goal-current');
+  if (gc) gc.textContent = todayLearned;
+  const gt = document.getElementById('goal-target');
+  if (gt) gt.textContent = dailyGoal;
+  // ring color when complete
+  if (ring) ring.style.stroke = pct >= 100 ? 'var(--green)' : 'var(--terra)';
+}
+
+// ═══════════════════════════════════════════
+// DIALOG MODE — PROFESSIONAL SCENARIOS
+// ═══════════════════════════════════════════
+const DIALOGS = {
+  toplanti: {
+    cat: 'toplanti', label: '🏢 İş Toplantısı', icon: '🤝',
+    scenario: 'Profesyonel Senaryo — Kurumsal Toplantı',
+    title: 'İş Toplantısında Arapça',
+    lines: [
+      { speaker: 'A', avatar: '👨‍💼', ar: 'صَبَاحُ الخَيْرِ، أَهْلًا وَسَهْلًا بِكُمْ.', tr: 'Günaydın, hoş geldiniz.' },
+      { speaker: 'B', avatar: '👩‍💼', ar: 'صَبَاحُ النُّورِ، شُكْرًا لِلدَّعْوَةِ.', tr: 'Günaydın, davet için teşekkürler.' },
+      { speaker: 'A', avatar: '👨‍💼', ar: 'هَلْ يُمْكِنُنَا بَدْءُ الاِجْتِمَاعِ؟', tr: 'Toplantıya başlayabilir miyiz?' },
+      { speaker: 'B', avatar: '👩‍💼', ar: 'نَعَمْ، أَنَا جَاهِزٌ. مَا هُوَ جَدْوَلُ الأَعْمَالِ؟', tr: 'Evet, hazırım. Gündem nedir?' },
+      { speaker: 'A', avatar: '👨‍💼', ar: 'سَنَتَحَدَّثُ عَنِ العَقْدِ الجَدِيدِ وَشُرُوطِهِ.', tr: 'Yeni sözleşme ve şartları hakkında konuşacağız.' },
+      { speaker: 'B', avatar: '👩‍💼', ar: 'مُمْتَازٌ، عِنْدِي بَعْضُ الأَسْئِلَةِ حَوْلَ السِّعْرِ.', tr: 'Mükemmel, fiyat konusunda birkaç sorum var.' },
+    ],
+    vocab: [
+      {ar:'اِجْتِمَاع', tr:'Toplantı'}, {ar:'عَقْد', tr:'Sözleşme'}, {ar:'جَدْوَلُ الأَعْمَالِ', tr:'Gündem'},
+      {ar:'سِعْر', tr:'Fiyat'}, {ar:'شُرُوط', tr:'Şartlar'}, {ar:'مُفَاوَضَة', tr:'Müzakere'},
+    ]
+  },
+  muzakere: {
+    cat: 'muzakere', label: '💼 Müzakere', icon: '🤜',
+    scenario: 'Profesyonel Senaryo — Ticari Müzakere',
+    title: 'Fiyat Müzakeresi',
+    lines: [
+      { speaker: 'A', avatar: '👨‍💼', ar: 'نُرِيدُ تَخْفِيضَ السِّعْرِ بِنِسْبَةِ عَشَرَةٍ بِالمِئَةِ.', tr: 'Fiyatı yüzde on indirmek istiyoruz.' },
+      { speaker: 'B', avatar: '👩‍💼', ar: 'هَذَا صَعْبٌ، لَكِنْ يُمْكِنُنَا الوُصُولُ إِلَى اتِّفَاقٍ.', tr: 'Bu zor, ama bir anlaşmaya varabiliriz.' },
+      { speaker: 'A', avatar: '👨‍💼', ar: 'مَا هُوَ أَفْضَلُ سِعْرٍ يُمْكِنُكَ تَقْدِيمُهُ؟', tr: 'Sunabileceğiniz en iyi fiyat nedir?' },
+      { speaker: 'B', avatar: '👩‍💼', ar: 'يُمْكِنُنَا تَخْفِيضُ خَمْسَةٍ بِالمِئَةِ مَعَ الدَّفْعِ المُبَكِّرِ.', tr: 'Erken ödemeyle yüzde beş indirebiliriz.' },
+      { speaker: 'A', avatar: '👨‍💼', ar: 'هَلْ يُمْكِنُنَا إِضَافَةُ خَدْمَةِ الضَّمَانِ أَيْضًا؟', tr: 'Garanti hizmetini de ekleyebilir miyiz?' },
+      { speaker: 'B', avatar: '👩‍💼', ar: 'بِالتَّأْكِيدِ، سَنُدْرِجُ ذَلِكَ فِي العَقْدِ.', tr: 'Kesinlikle, bunu sözleşmeye dahil edeceğiz.' },
+    ],
+    vocab: [
+      {ar:'تَخْفِيض', tr:'İndirim'}, {ar:'اتِّفَاق', tr:'Anlaşma'}, {ar:'دَفْع مُبَكِّر', tr:'Erken ödeme'},
+      {ar:'ضَمَان', tr:'Garanti'}, {ar:'نِسْبَة', tr:'Oran/Yüzde'}, {ar:'خِدْمَة', tr:'Hizmet'},
+    ]
+  },
+  tanitim: {
+    cat: 'tanitim', label: '👤 Tanışma', icon: '🤲',
+    scenario: 'Profesyonel Senaryo — İş Tanışması',
+    title: 'İş Dünyasında Tanışma',
+    lines: [
+      { speaker: 'A', avatar: '👨‍💼', ar: 'مَرْحَبًا، أَنَا أَحْمَدُ مِنْ شَرِكَةِ الأَمَل.', tr: 'Merhaba, Emel şirketinden Ahmed.' },
+      { speaker: 'B', avatar: '👩‍💼', ar: 'أَهْلًا، أَنَا سَارَةُ، مُدِيرَةُ المَبِيعَاتِ.', tr: 'Merhaba, ben Sara, satış müdürü.' },
+      { speaker: 'A', avatar: '👨‍💼', ar: 'سَعِيدٌ بِلِقَائِكِ. كَمْ سَنَةً شَرِكَتُكُمْ فِي السُّوقِ؟', tr: 'Tanıştığımıza sevindim. Şirketiniz kaç yıldır piyasada?' },
+      { speaker: 'B', avatar: '👩‍💼', ar: 'نَحْنُ فِي السُّوقِ مُنْذُ عِشْرِينَ عَامًا.', tr: 'Yirmi yıldır piyasadayız.' },
+      { speaker: 'A', avatar: '👨‍💼', ar: 'رَائِعٌ! هَلْ لَدَيْكُمْ فُرُوعٌ فِي تُرْكِيَا؟', tr: 'Harika! Türkiye\'de şubeleriniz var mı?' },
+      { speaker: 'B', avatar: '👩‍💼', ar: 'نَعَمْ، لَدَيْنَا مَكْتَبٌ فِي إِسْطَنْبُولَ وَأَنْقَرَةَ.', tr: 'Evet, İstanbul ve Ankara\'da ofisimiz var.' },
+    ],
+    vocab: [
+      {ar:'شَرِكَة', tr:'Şirket'}, {ar:'مَبِيعَات', tr:'Satış'}, {ar:'مُدِير', tr:'Müdür'},
+      {ar:'سُوق', tr:'Pazar/Piyasa'}, {ar:'فَرْع', tr:'Şube'}, {ar:'مَكْتَب', tr:'Ofis'},
+    ]
+  },
+  seyahat: {
+    cat: 'seyahat', label: '✈️ İş Seyahati', icon: '🌍',
+    scenario: 'Günlük Senaryo — İş Seyahati',
+    title: 'Otelde Check-in',
+    lines: [
+      { speaker: 'A', avatar: '✈️', ar: 'مَسَاءُ الخَيْرِ، عِنْدِي حَجْزٌ بِاسْمِ يِلْمَازَ.', tr: 'İyi akşamlar, Yılmaz adına rezervasyonum var.' },
+      { speaker: 'B', avatar: '🛎️', ar: 'مَرْحَبًا، لَحْظَةً مِنْ فَضْلِكَ... نَعَمْ، غُرْفَةٌ لِيَوْمَيْنِ.', tr: 'Hoş geldiniz, bir saniye lütfen... Evet, iki gecelik oda.' },
+      { speaker: 'A', avatar: '✈️', ar: 'هَلِ الإِفْطَارُ مَشْمُولٌ فِي السِّعْرِ؟', tr: 'Kahvaltı fiyata dahil mi?' },
+      { speaker: 'B', avatar: '🛎️', ar: 'نَعَمْ، الإِفْطَارُ مِنَ السَّاعَةِ السَّابِعَةِ حَتَّى العَاشِرَةِ.', tr: 'Evet, kahvaltı 7\'den 10\'a kadar.' },
+      { speaker: 'A', avatar: '✈️', ar: 'شُكْرًا. هَلْ يُوجَدُ وَاي فَاي فِي الغُرْفَةِ؟', tr: 'Teşekkürler. Odada WiFi var mı?' },
+      { speaker: 'B', avatar: '🛎️', ar: 'بِالتَّأْكِيدِ، الرَّمْزُ مَكْتُوبٌ عَلَى هَذِهِ البِطَاقَةِ.', tr: 'Elbette, şifre bu kartta yazıyor.' },
+    ],
+    vocab: [
+      {ar:'حَجْز', tr:'Rezervasyon'}, {ar:'غُرْفَة', tr:'Oda'}, {ar:'إِفْطَار', tr:'Kahvaltı'},
+      {ar:'سِعْر', tr:'Fiyat'}, {ar:'وَاي فَاي', tr:'WiFi'}, {ar:'بِطَاقَة', tr:'Kart'},
+    ]
+  },
+  email: {
+    cat: 'email', label: '📧 E-Posta', icon: '📨',
+    scenario: 'Yazılı İletişim — İş E-Postası',
+    title: 'Profesyonel E-Posta Yazımı',
+    lines: [
+      { speaker: 'A', avatar: '📧', ar: 'السَّيِّدُ المُحْتَرَمُ،', tr: 'Sayın Bay/Bayan,' },
+      { speaker: 'A', avatar: '📧', ar: 'أَكْتُبُ إِلَيْكَ بِخُصُوصِ طَلَبِنَا الأَخِيرِ.', tr: 'Son siparişimiz hakkında size yazıyorum.' },
+      { speaker: 'A', avatar: '📧', ar: 'أَرْجُو التَّكَرُّمَ بِمُرَاجَعَةِ المُرْفَقَاتِ.', tr: 'Ekleri incelemenizi rica ederim.' },
+      { speaker: 'B', avatar: '📩', ar: 'شُكْرًا لِرِسَالَتِكَ، سَنَرُدُّ خِلَالَ يَوْمَيْنِ.', tr: 'Mesajınız için teşekkürler, iki gün içinde yanıtlayacağız.' },
+      { speaker: 'B', avatar: '📩', ar: 'يُرْجَى التَّوَاصُلِ مَعَنَا إِذَا كَانَتْ لَدَيْكَ أَسْئِلَةٌ.', tr: 'Sorularınız olursa bizimle iletişime geçin.' },
+      { speaker: 'B', avatar: '📩', ar: 'مَعَ خَالِصِ التَّحِيَّاتِ وَالتَّقْدِيرِ.', tr: 'Saygılarımla.' },
+    ],
+    vocab: [
+      {ar:'طَلَب', tr:'Sipariş/Talep'}, {ar:'مُرْفَق', tr:'Ek dosya'}, {ar:'رِسَالَة', tr:'Mesaj/Mektup'},
+      {ar:'تَوَاصُل', tr:'İletişim'}, {ar:'رَدّ', tr:'Yanıt'}, {ar:'تَحِيَّات', tr:'Selamlar'},
+    ]
+  },
+};
+
+let currentDialogCat = 'toplanti', currentDialogLine = 0;
+
+function renderDialogCats() {
+  const area = document.getElementById('dialog-cats');
+  area.innerHTML = Object.values(DIALOGS).map(d =>
+    `<button class="dialog-cat-btn${currentDialogCat===d.cat?' active':''}" onclick="selectDialogCat('${d.cat}')">
+      <span>${d.icon}</span><span>${d.label}</span>
+    </button>`).join('');
+}
+
+function selectDialogCat(cat) {
+  currentDialogCat = cat;
+  currentDialogLine = 0;
+  SFX.click();
+  renderDialogCats();
+  renderDialog();
+}
+
+function renderDialog() {
+  const dlg = DIALOGS[currentDialogCat];
+  const area = document.getElementById('dialog-area');
+  const visibleLines = dlg.lines.slice(0, currentDialogLine + 1);
+  const isLast = currentDialogLine >= dlg.lines.length - 1;
+
+  area.innerHTML = `
+    <div class="dialog-card">
+      <div class="dialog-header">
+        <div class="dialog-scenario">${dlg.scenario}</div>
+        <div class="dialog-title">${dlg.title}</div>
+      </div>
+      <div class="dialog-body" id="dialog-body">
+        ${visibleLines.map((line, i) => `
+          <div class="dialog-line${line.speaker==='B'?' right':''}">
+            <div class="dialog-avatar">${line.avatar}</div>
+            <div class="dialog-bubble">
+              <div class="dialog-bubble-ar">${line.ar}
+                <button class="dialog-bubble-speak" onclick="speakArabic('${line.ar.replace(/'/g,"\\'")}',null)">🔊</button>
+              </div>
+              <div class="dialog-bubble-tr">${line.tr}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="dialog-vocab">
+        <div class="dialog-vocab-title">📚 Bu Diyalogdaki Anahtar Kelimeler</div>
+        <div class="dialog-vocab-grid">
+          ${dlg.vocab.map(v => `
+            <div class="dialog-vocab-item" onclick="speakArabic('${v.ar}',null)">
+              <span class="dialog-vocab-ar">${v.ar}</span>
+              <span class="dialog-vocab-tr">${v.tr}</span>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="dialog-nav">
+        <button class="dialog-nav-btn" onclick="prevDialogLine()" ${currentDialogLine===0?'disabled style="opacity:0.4"':''}>← Geri</button>
+        <span class="dialog-counter">${currentDialogLine+1} / ${dlg.lines.length} satır</span>
+        <button class="dialog-nav-btn primary" onclick="${isLast?'resetDialog()':'nextDialogLine()'}">
+          ${isLast ? '🔄 Tekrar' : 'İleri →'}
+        </button>
+      </div>
+    </div>`;
+
+  // Auto-speak current line
+  if (currentDialogLine < dlg.lines.length) {
+    setTimeout(() => speakArabic(dlg.lines[currentDialogLine].ar, null), 300);
+  }
+}
+
+function nextDialogLine() {
+  SFX.click();
+  if (currentDialogLine < DIALOGS[currentDialogCat].lines.length - 1) {
+    currentDialogLine++;
+    renderDialog();
+  }
+}
+function prevDialogLine() {
+  SFX.click();
+  if (currentDialogLine > 0) { currentDialogLine--; renderDialog(); }
+}
+function resetDialog() {
+  currentDialogLine = 0;
+  SFX.click();
+  renderDialog();
+}
+
+// ═══════════════════════════════════════════
+// PATCHED EARN XP — add sound
+// ═══════════════════════════════════════════
+
 document.getElementById('total-badge').textContent = words.length + ' Kelime';
 document.getElementById('prog').textContent = '0 / ' + words.length + ' öğrenildi';
 
@@ -1876,11 +2450,18 @@ loadState();
 checkStreak();
 updateAllUI();
 renderBadgePanel();
+updateGoalUI();
 
 // Apply dark mode toggle icon
 if (document.documentElement.getAttribute('data-theme') === 'dark') {
   document.getElementById('dark-toggle').textContent = '☀️';
 }
+
+// Init sound dot
+const _sd = document.getElementById('sound-dot');
+const _sc = document.getElementById('sound-chk');
+if (_sd) _sd.style.background = soundEnabled ? 'var(--gold-light)' : 'rgba(255,255,255,0.2)';
+if (_sc) _sc.checked = soundEnabled;
 
 render();
 setMode('grid');
