@@ -4,500 +4,1451 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Arapça Kelime Kartları</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#1a1008;
-  --parchment:#f5ede0;
-  --warm:#faf4ec;
-  --terracotta:#c25b35;
-  --terra-light:#e8896a;
-  --terra-dark:#8f3a1e;
-  --gold:#c08a2e;
-  --gold-light:#e6c068;
-  --gold-pale:#f7e9c0;
-  --sage:#5a7a5c;
-  --sage-light:#8aaa8c;
-  --cream:#fffcf5;
-  --card-bg:#fff9f0;
-  --border:rgba(192,138,46,0.22);
-  --shadow:rgba(26,16,8,0.10);
-  --deep-shadow:rgba(26,16,8,0.22);
-  --green:#2e7d52;
-  --red:#c0392b;
-  --blue:#2960a8;
-  --purple:#6b3fa0;
-  --radius:16px;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--parchment);font-family:'DM Sans',sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden;}
-
-/* Subtle grain texture */
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:0.5;pointer-events:none;z-index:0;}
-
-/* Geometric background ornament */
-body::after{content:'';position:fixed;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(192,138,46,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;}
-
-/* ── HEADER ── */
-header{position:relative;z-index:2;background:var(--ink);color:var(--gold-pale);padding:20px 24px 18px;overflow:hidden;}
-header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(192,138,46,0.06) 40px,rgba(192,138,46,0.06) 41px),repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(192,138,46,0.06) 40px,rgba(192,138,46,0.06) 41px);}
-header::after{content:'بسم الله';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-family:'Amiri',serif;font-size:1.1rem;color:rgba(230,192,104,0.2);letter-spacing:2px;}
-.header-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.header-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--gold),var(--terra-light));border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-size:1.5rem;color:var(--ink);flex-shrink:0;box-shadow:0 4px 14px rgba(192,138,46,0.3);}
-.header-text{}
-.ar-subtitle{font-family:'Amiri',serif;font-size:1rem;color:var(--gold-light);direction:rtl;opacity:0.8;line-height:1;}
-.header-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;line-height:1.1;color:var(--gold-pale);}
-.header-meta{display:flex;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap;}
-.header-pill{background:rgba(192,138,46,0.18);border:1px solid rgba(192,138,46,0.3);color:var(--gold-light);font-size:0.68rem;padding:2px 10px;border-radius:20px;letter-spacing:1.5px;text-transform:uppercase;}
-.header-pill.count{background:var(--terracotta);border-color:var(--terra-light);color:white;}
-
-/* ── NAV TABS ── */
-.nav-wrap{position:sticky;top:0;z-index:100;background:var(--ink);border-bottom:2px solid rgba(192,138,46,0.3);}
-.mode-tabs{display:flex;justify-content:center;gap:2px;padding:0 12px;max-width:900px;margin:0 auto;overflow-x:auto;}
-.mode-tab{background:transparent;border:none;color:rgba(230,220,200,0.55);padding:13px 18px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;transition:all 0.25s;white-space:nowrap;position:relative;border-bottom:2px solid transparent;margin-bottom:-2px;display:inline-flex;align-items:center;gap:5px;}
-.mode-tab:hover{color:var(--gold-light);}
-.mode-tab.active{color:var(--gold-light);border-bottom-color:var(--gold);}
-.mode-tab .tab-icon{font-size:0.85rem;}
-.mode-tab-text{font-size:inherit;}
-
-/* ── FILTERS ── */
-.filters-wrap{position:relative;z-index:1;background:var(--warm);border-bottom:1px solid var(--border);padding:10px 16px;}
-.filters{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;max-width:900px;margin:0 auto;}
-.filter-btn{background:white;border:1.5px solid var(--border);color:var(--ink);padding:5px 13px;border-radius:30px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.71rem;letter-spacing:0.8px;text-transform:uppercase;font-weight:500;transition:all 0.18s;white-space:nowrap;}
-.filter-btn:hover{border-color:var(--gold);color:var(--gold);}
-.filter-btn.active{background:var(--terracotta);border-color:var(--terracotta);color:white;}
-
-/* ── PROGRESS ── */
-.progress-wrap{position:relative;z-index:1;padding:10px 24px 8px;background:var(--warm);border-bottom:1px solid var(--border);}
-.progress-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:12px;}
-.progress-track{flex:1;height:5px;background:rgba(192,138,46,0.15);border-radius:3px;overflow:hidden;}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:3px;transition:width 0.5s ease;width:0%;}
-.progress-text{font-size:0.72rem;color:var(--sage);letter-spacing:1px;white-space:nowrap;font-weight:500;}
-
-/* ── SECTION WRAPPER ── */
-.section-wrap{max-width:960px;margin:0 auto;padding:16px 16px 60px;position:relative;z-index:1;}
-
-/* ══════════════════════════════
-   GRID MODE
-══════════════════════════════ */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:12px;}
-.card{perspective:1000px;height:200px;cursor:pointer;}
-.card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);}
-.card.flipped .card-inner{transform:rotateY(180deg);}
-.card-front,.card-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10px 10px 22px;}
-.card-front{background:var(--card-bg);border:1.5px solid var(--border);box-shadow:0 2px 12px var(--shadow);}
-.card-front::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:var(--radius) var(--radius) 0 0;}
-.cat-chip{position:absolute;top:8px;left:8px;font-size:0.5rem;padding:2px 7px;border-radius:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;background:var(--gold-pale);color:var(--gold);}
-.card-icon{font-size:2.4rem;line-height:1;margin-bottom:4px;}
-.arabic-word{font-family:'Amiri',serif;font-size:1.85rem;color:var(--terracotta);direction:rtl;line-height:1.2;text-align:center;}
-.color-swatch{width:54px;height:54px;border-radius:50%;margin-bottom:7px;box-shadow:0 3px 12px rgba(0,0,0,0.18);border:3px solid white;}
-.tap-hint{position:absolute;bottom:7px;font-size:0.55rem;color:rgba(90,122,92,0.5);letter-spacing:1px;text-transform:uppercase;}
-.speak-btn{position:absolute;top:7px;right:7px;background:rgba(192,138,46,0.10);border:1.5px solid rgba(192,138,46,0.28);border-radius:50%;width:27px;height:27px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;z-index:10;color:var(--gold);font-size:0.8rem;}
-.speak-btn:hover,.speak-btn.speaking{background:var(--terracotta);color:white;border-color:var(--terracotta);}
-.speak-btn.speaking{animation:pulse 0.6s infinite alternate;}
-@keyframes pulse{from{transform:scale(1);}to{transform:scale(1.18);}}
-.learned-star{position:absolute;top:7px;left:7px;font-size:0.8rem;opacity:0;transition:opacity 0.3s;}
-.card.flipped .learned-star{opacity:1;}
-.card-back{background:linear-gradient(145deg,var(--terracotta),var(--terra-dark));transform:rotateY(180deg);color:white;text-align:center;box-shadow:0 4px 18px rgba(143,58,30,0.3);}
-.back-icon{font-size:2rem;opacity:0.9;margin-bottom:2px;}
-.back-swatch{width:42px;height:42px;border-radius:50%;margin-bottom:5px;box-shadow:0 2px 8px rgba(0,0,0,0.25);border:3px solid rgba(255,255,255,0.4);}
-.turkish{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;line-height:1.2;}
-.pronunciation{font-size:0.72rem;opacity:0.82;font-style:italic;margin-top:2px;}
-.arabic-back{font-family:'Amiri',serif;font-size:1.2rem;direction:rtl;opacity:0.7;margin-top:2px;}
-.card-back .tap-hint{color:rgba(255,255,255,0.35);}
-/* verb badge on card */
-.verb-badge{position:absolute;bottom:7px;right:7px;font-size:0.55rem;background:rgba(192,138,46,0.15);color:var(--gold);border:1px solid rgba(192,138,46,0.3);padding:1px 6px;border-radius:8px;letter-spacing:0.5px;cursor:pointer;z-index:10;transition:all 0.2s;}
-.verb-badge:hover{background:var(--gold);color:white;}
-
-/* ══════════════════════════════
-   VERB CONJUGATION MODAL
-══════════════════════════════ */
-.modal-overlay{position:fixed;inset:0;background:rgba(26,16,8,0.65);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity 0.25s;}
-.modal-overlay.open{opacity:1;pointer-events:all;}
-.modal{background:var(--cream);border-radius:20px;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(26,16,8,0.35);transform:translateY(20px);transition:transform 0.25s;position:relative;}
-.modal-overlay.open .modal{transform:translateY(0);}
-.modal-header{background:var(--ink);color:var(--gold-pale);padding:18px 20px;border-radius:20px 20px 0 0;position:relative;}
-.modal-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--terracotta),var(--gold));}
-.modal-ar{font-family:'Amiri',serif;font-size:2.4rem;direction:rtl;color:var(--gold-light);}
-.modal-tr{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-pale);opacity:0.75;}
-.modal-pr{font-size:0.8rem;color:var(--gold-light);opacity:0.65;font-style:italic;}
-.modal-close{position:absolute;top:14px;right:16px;background:rgba(255,255,255,0.1);border:none;color:var(--gold-pale);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
-.modal-close:hover{background:rgba(255,255,255,0.2);}
-.modal-body{padding:16px 18px 20px;}
-.conj-section{margin-bottom:16px;}
-.conj-title{font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--sage);font-weight:700;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--border);}
-.conj-table{width:100%;border-collapse:collapse;}
-.conj-table th{background:var(--gold-pale);color:var(--terra-dark);font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;padding:6px 10px;text-align:left;font-weight:700;}
-.conj-table th.ar-col{text-align:right;}
-.conj-table td{padding:7px 10px;border-bottom:1px solid rgba(192,138,46,0.1);font-size:0.9rem;vertical-align:middle;}
-.conj-table tr:last-child td{border-bottom:none;}
-.conj-table tr:hover td{background:var(--gold-pale);}
-.conj-ar{font-family:'Amiri',serif;font-size:1.35rem;direction:rtl;color:var(--terracotta);text-align:right;}
-.conj-pr{font-size:0.72rem;color:var(--sage);font-style:italic;}
-.conj-pronoun{font-size:0.82rem;color:var(--ink);font-weight:500;}
-.conj-pronoun .ar-pron{font-family:'Amiri',serif;font-size:1rem;direction:rtl;color:var(--sage);}
-.conj-meaning{font-size:0.78rem;color:var(--ink);}
-.tense-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
-.tense-tab{background:var(--warm);border:1.5px solid var(--border);color:var(--ink);padding:5px 13px;border-radius:20px;cursor:pointer;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;font-weight:500;transition:all 0.18s;}
-.tense-tab.active,.tense-tab:hover{background:var(--terracotta);border-color:var(--terracotta);color:white;}
-.conj-speak-btn{background:none;border:none;color:var(--gold);cursor:pointer;font-size:0.9rem;padding:0 4px;vertical-align:middle;}
-.conj-speak-btn:hover{color:var(--terracotta);}
-/* Pattern info */
-.verb-pattern{display:inline-flex;align-items:center;gap:6px;background:var(--gold-pale);border:1px solid rgba(192,138,46,0.3);border-radius:8px;padding:4px 10px;margin-top:4px;}
-.verb-pattern .pattern-ar{font-family:'Amiri',serif;font-size:1.1rem;color:var(--terracotta);direction:rtl;}
-.verb-pattern .pattern-name{font-size:0.68rem;letter-spacing:1px;color:var(--sage);text-transform:uppercase;}
-
-/* ══════════════════════════════
-   CONJUGATION PRACTICE MODE
-══════════════════════════════ */
-#conjpractice-mode{display:none;}
-.conjpractice-settings{display:flex;justify-content:center;gap:8px;padding:12px 0;flex-wrap:wrap;}
-.cp-select{background:white;border:1.5px solid var(--border);color:var(--ink);padding:6px 14px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;}
-.cp-btn{background:var(--terracotta);color:white;border:none;padding:7px 20px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;transition:background 0.2s;}
-.cp-btn:hover{background:var(--terra-dark);}
-.cp-card{max-width:460px;margin:0 auto;background:var(--card-bg);border-radius:20px;border:1.5px solid var(--border);box-shadow:0 6px 24px var(--shadow);padding:24px 22px 22px;text-align:center;position:relative;}
-.cp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:20px 20px 0 0;}
-.cp-verb-ar{font-family:'Amiri',serif;font-size:2.8rem;color:var(--terracotta);direction:rtl;margin-bottom:4px;}
-.cp-verb-tr{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--ink);}
-.cp-divider{height:1px;background:var(--border);margin:14px 0;}
-.cp-question{font-size:0.82rem;color:var(--sage);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
-.cp-pronoun{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--ink);margin-bottom:2px;}
-.cp-pronoun-ar{font-family:'Amiri',serif;font-size:1.3rem;direction:rtl;color:var(--sage);}
-.cp-tense-label{display:inline-block;background:var(--gold-pale);color:var(--gold);border:1px solid rgba(192,138,46,0.3);font-size:0.65rem;padding:2px 10px;border-radius:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
-.cp-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
-.cp-opt{background:white;border:1.5px solid var(--border);border-radius:12px;padding:11px 8px;cursor:pointer;font-family:'Amiri',serif;font-size:1.3rem;direction:rtl;transition:all 0.18s;color:var(--ink);}
-.cp-opt:hover{border-color:var(--gold);background:var(--gold-pale);}
-.cp-opt.correct{background:#f0fff4;border-color:var(--green);color:var(--green);}
-.cp-opt.wrong{background:#fff5f5;border-color:var(--red);color:var(--red);}
-.cp-opt.reveal{background:#f0fff4;border-color:var(--green);color:var(--green);}
-.cp-opt:disabled{cursor:default;}
-.cp-feedback{margin-top:10px;font-size:0.85rem;min-height:24px;}
-.cp-feedback.ok{color:var(--green);}
-.cp-feedback.no{color:var(--red);}
-.cp-next{margin-top:12px;background:var(--ink);color:white;border:none;padding:8px 24px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;display:none;}
-.cp-score{display:flex;justify-content:center;gap:20px;font-size:0.8rem;padding:0 0 10px;}
-.cp-progress{text-align:center;font-size:0.72rem;color:var(--sage);margin-bottom:10px;letter-spacing:1px;}
-
-/* ══════════════════════════════
-   SWIPE MODE
-══════════════════════════════ */
-#swipe-mode{display:none;}
-.swipe-settings{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 0 12px;flex-wrap:wrap;}
-.swipe-settings label{font-size:0.72rem;color:var(--sage);letter-spacing:1px;text-transform:uppercase;font-weight:500;}
-.swipe-count-select{background:white;border:1.5px solid var(--border);color:var(--ink);padding:5px 12px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;}
-.swipe-start-btn{background:var(--terracotta);color:white;border:none;padding:7px 18px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;transition:background 0.2s;}
-.swipe-start-btn:hover{background:var(--terra-dark);}
-.swipe-counter{text-align:center;font-size:0.78rem;color:var(--sage);letter-spacing:1px;padding:4px 0 12px;}
-.swipe-arena{position:relative;height:330px;display:flex;justify-content:center;align-items:center;}
-.swipe-card{position:absolute;width:min(310px,86vw);height:295px;border-radius:20px;cursor:grab;user-select:none;touch-action:none;box-shadow:0 8px 32px var(--deep-shadow);}
-.swipe-card:active{cursor:grabbing;}
-.swipe-front{position:absolute;inset:0;border-radius:20px;background:var(--card-bg);border:1.5px solid var(--border);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;backface-visibility:hidden;}
-.swipe-front::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:20px 20px 0 0;}
-.swipe-ar{font-family:'Amiri',serif;font-size:2.4rem;color:var(--terracotta);direction:rtl;line-height:1.2;}
-.swipe-icon{font-size:3.2rem;line-height:1;}
-.swipe-tap{font-size:0.58rem;color:rgba(90,122,92,0.55);letter-spacing:1.5px;text-transform:uppercase;position:absolute;bottom:12px;}
-.swipe-speak{position:absolute;top:10px;right:10px;background:rgba(192,138,46,0.1);border:1.5px solid rgba(192,138,46,0.3);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--gold);transition:all 0.2s;}
-.swipe-speak:hover,.swipe-speak.speaking{background:var(--terracotta);color:white;border-color:var(--terracotta);}
-.hard-badge{position:absolute;top:10px;left:10px;background:#c0392b;color:white;font-size:0.58rem;padding:2px 7px;border-radius:10px;letter-spacing:1px;font-weight:700;display:none;}
-.swipe-card.is-hard .hard-badge{display:block;}
-.swipe-card.revealed .swipe-front{display:none;}
-.swipe-back{display:none;position:absolute;inset:0;border-radius:20px;background:linear-gradient(145deg,var(--terracotta),var(--terra-dark));color:white;flex-direction:column;justify-content:center;align-items:center;gap:4px;}
-.swipe-card.revealed .swipe-back{display:flex;}
-.swipe-tr{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;}
-.swipe-pr{font-size:0.82rem;opacity:0.82;font-style:italic;}
-.swipe-ar-back{font-family:'Amiri',serif;font-size:1.45rem;direction:rtl;opacity:0.7;}
-.swipe-card .like-label,.swipe-card .nope-label{position:absolute;top:22px;font-size:1.1rem;font-weight:700;letter-spacing:2px;opacity:0;transition:opacity 0.1s;border:3px solid;padding:4px 10px;border-radius:8px;}
-.swipe-card .like-label{left:14px;color:#2e7d52;border-color:#2e7d52;transform:rotate(-12deg);}
-.swipe-card .nope-label{right:14px;color:#c0392b;border-color:#c0392b;transform:rotate(12deg);}
-.swipe-btns{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:14px;}
-.swipe-btn{width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;font-size:1.35rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.12);transition:transform 0.15s;}
-.swipe-btn:hover{transform:scale(1.1);}
-.btn-no{background:white;color:#c0392b;}
-.btn-flip{background:white;color:var(--gold);width:44px;height:44px;font-size:1.15rem;}
-.btn-yes{background:white;color:#2e7d52;}
-.swipe-hint{display:flex;justify-content:center;gap:24px;margin-top:8px;font-size:0.67rem;color:var(--sage);letter-spacing:1px;}
-.swipe-bg{pointer-events:none;transform:scale(0.94) translateY(9px);z-index:-1;opacity:0.45;}
-.swipe-bg2{pointer-events:none;transform:scale(0.88) translateY(18px);z-index:-2;opacity:0.25;}
-.hard-words-panel{background:white;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;margin:10px 0 0;font-size:0.75rem;color:var(--sage);}
-.hard-words-panel strong{color:var(--terracotta);font-size:0.77rem;}
-
-/* ══════════════════════════════
-   QUIZ MODE
-══════════════════════════════ */
-#quiz-mode{display:none;}
-.quiz-settings{display:flex;justify-content:center;gap:8px;padding:10px 0 14px;flex-wrap:wrap;}
-.quiz-settings select,.quiz-settings button{background:white;border:1.5px solid var(--border);color:var(--ink);padding:6px 14px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;}
-.quiz-settings button{background:var(--terracotta);color:white;border-color:var(--terracotta);}
-.quiz-score-bar{display:flex;justify-content:center;gap:20px;padding:0 0 10px;font-size:0.8rem;}
-.q-correct{color:var(--green);}
-.q-wrong{color:var(--red);}
-.quiz-card{max-width:420px;margin:0 auto;background:var(--card-bg);border-radius:20px;border:1.5px solid var(--border);box-shadow:0 6px 24px var(--shadow);padding:26px 22px 22px;text-align:center;position:relative;}
-.quiz-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:20px 20px 0 0;}
-.quiz-q-icon{font-size:3rem;margin-bottom:6px;}
-.quiz-q-ar{font-family:'Amiri',serif;font-size:2.9rem;color:var(--terracotta);direction:rtl;line-height:1.2;margin-bottom:3px;}
-.quiz-q-pr{font-size:0.8rem;color:var(--sage);font-style:italic;margin-bottom:14px;}
-.quiz-speak{background:rgba(192,138,46,0.1);border:1.5px solid rgba(192,138,46,0.3);border-radius:20px;padding:4px 12px;cursor:pointer;font-size:0.73rem;color:var(--gold);margin-bottom:14px;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s;}
-.quiz-speak:hover{background:var(--terracotta);color:white;border-color:var(--terracotta);}
-.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px;}
-.quiz-opt{background:white;border:1.5px solid var(--border);border-radius:12px;padding:12px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.86rem;transition:all 0.18s;text-align:center;line-height:1.3;}
-.quiz-opt:hover{border-color:var(--gold);background:var(--gold-pale);}
-.quiz-opt.correct{background:#f0fff4;border-color:var(--green);color:var(--green);}
-.quiz-opt.wrong{background:#fff5f5;border-color:var(--red);color:var(--red);}
-.quiz-opt.reveal{background:#f0fff4;border-color:var(--green);color:var(--green);}
-.quiz-opt:disabled{cursor:default;}
-.quiz-feedback{margin-top:11px;font-size:0.84rem;min-height:22px;font-style:italic;}
-.quiz-feedback.ok{color:var(--green);}
-.quiz-feedback.no{color:var(--red);}
-.quiz-next{margin-top:12px;background:var(--terracotta);color:white;border:none;padding:8px 26px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;display:none;}
-.quiz-next:hover{background:var(--terra-dark);}
-.quiz-progress{text-align:center;font-size:0.72rem;color:var(--sage);margin-bottom:10px;letter-spacing:1px;}
-.quiz-result{max-width:360px;margin:0 auto;text-align:center;background:var(--card-bg);border-radius:20px;padding:30px 22px;border:1.5px solid var(--border);box-shadow:0 6px 24px var(--shadow);}
-.quiz-result .result-emoji{font-size:3.5rem;}
-.quiz-result h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--terracotta);margin:10px 0 6px;}
-.quiz-result p{font-size:0.88rem;color:var(--sage);margin-bottom:14px;}
-.quiz-result button{background:var(--terracotta);color:white;border:none;padding:9px 26px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;}
-
-/* ══════════════════════════════
-   WRITE MODE
-══════════════════════════════ */
-#write-mode{display:none;}
-.write-settings{display:flex;justify-content:center;gap:8px;padding:10px 0 14px;flex-wrap:wrap;}
-.write-card{max-width:440px;margin:0 auto;background:var(--card-bg);border-radius:20px;border:1.5px solid var(--border);box-shadow:0 6px 24px var(--shadow);padding:26px 22px 22px;text-align:center;position:relative;}
-.write-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--terracotta),var(--gold));border-radius:20px 20px 0 0;}
-.write-q-label{font-size:0.68rem;color:var(--sage);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-weight:600;}
-.write-turkish{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
-.write-pr{font-size:0.8rem;color:var(--sage);font-style:italic;margin-bottom:14px;}
-.write-hint-btn{background:transparent;border:1px dashed var(--gold);color:var(--gold);padding:3px 10px;border-radius:10px;font-size:0.68rem;cursor:pointer;margin-bottom:10px;transition:all 0.2s;}
-.write-hint-btn:hover{background:var(--gold-pale);}
-.write-hint-ar{font-family:'Amiri',serif;font-size:1.8rem;color:rgba(194,91,53,0.28);direction:rtl;letter-spacing:4px;margin-bottom:10px;min-height:40px;}
-.write-input{width:100%;font-family:'Amiri',serif;font-size:1.8rem;direction:rtl;text-align:center;background:white;border:2px solid var(--border);border-radius:12px;padding:10px 14px;color:var(--ink);outline:none;transition:border 0.2s;margin-bottom:10px;}
-.write-input:focus{border-color:var(--gold);}
-.write-input.correct{border-color:var(--green);background:#f0fff4;}
-.write-input.wrong{border-color:var(--red);background:#fff5f5;}
-.write-submit{background:var(--terracotta);color:white;border:none;padding:8px 24px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;margin-right:6px;transition:background 0.2s;}
-.write-submit:hover{background:var(--terra-dark);}
-.write-skip{background:white;color:var(--sage);border:1.5px solid rgba(90,122,92,0.3);padding:8px 16px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;}
-.write-feedback{margin-top:10px;font-size:0.88rem;min-height:24px;}
-.write-feedback.ok{color:var(--green);}
-.write-feedback.no{color:var(--red);}
-.write-correct-ans{font-family:'Amiri',serif;font-size:1.6rem;direction:rtl;color:var(--terracotta);margin-top:4px;}
-.write-next{margin-top:12px;background:var(--ink);color:white;border:none;padding:8px 24px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;display:none;}
-.write-progress{text-align:center;font-size:0.72rem;color:var(--sage);margin-bottom:10px;letter-spacing:1px;}
-.write-score-bar{display:flex;justify-content:center;gap:20px;padding:0 0 10px;font-size:0.8rem;}
-.ar-keyboard{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin-top:10px;max-width:440px;margin-left:auto;margin-right:auto;}
-.ar-key{background:white;border:1.5px solid rgba(192,138,46,0.3);border-radius:6px;width:33px;height:33px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'Amiri',serif;font-size:1.05rem;color:var(--ink);transition:all 0.15s;}
-.ar-key:hover{background:var(--gold);color:white;border-color:var(--gold);}
-.ar-key.wide{width:54px;font-size:0.68rem;font-family:'DM Sans',sans-serif;letter-spacing:0.5px;}
-
-/* ══════════════════════════════
-   SHARED UTILS
-══════════════════════════════ */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--gold-pale);padding:10px 20px;border-radius:20px;font-size:0.8rem;letter-spacing:1px;z-index:999;transition:transform 0.3s ease;pointer-events:none;border:1px solid rgba(192,138,46,0.3);}
-.toast.show{transform:translateX(-50%) translateY(0);}
-.section-title{text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--sage);letter-spacing:2px;text-transform:uppercase;padding:10px 0 14px;}
-
-/* ══════════════════════════════
-   MOBILE RESPONSIVE
-══════════════════════════════ */
-
-/* ── Small phones (≤360px) ── */
-@media(max-width:360px){
-  .header-title{font-size:1.25rem;}
-  .header-icon{width:38px;height:38px;font-size:1.1rem;}
-  .mode-tab{padding:11px 10px;font-size:0.65rem;letter-spacing:0.8px;}
-  .mode-tab .tab-icon{display:none;}
-  .grid{grid-template-columns:repeat(2,1fr);gap:8px;}
-  .card{height:175px;}
-  .arabic-word{font-size:1.55rem;}
-  .card-icon{font-size:2rem;}
-  .turkish{font-size:1rem;}
-  .quiz-q-ar{font-size:2.2rem;}
-  .cp-verb-ar{font-size:2.2rem;}
-  .swipe-ar{font-size:2rem;}
+:root {
+  --bg: #0d0d14;
+  --surface: #16161f;
+  --surface2: #1e1e2a;
+  --surface3: #252535;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --gold: #f0c040;
+  --gold2: #e8a820;
+  --gold-dim: rgba(240,192,64,0.15);
+  --gold-glow: rgba(240,192,64,0.25);
+  --coral: #ff6b6b;
+  --coral2: #e85555;
+  --teal: #4ecdc4;
+  --teal2: #2bb5ac;
+  --purple: #a78bfa;
+  --green: #34d399;
+  --red: #f87171;
+  --text: #f0ede8;
+  --text2: rgba(240,237,232,0.65);
+  --text3: rgba(240,237,232,0.35);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.6);
 }
 
-/* ── All phones (≤480px) ── */
-@media(max-width:480px){
-  /* Header */
-  header{padding:14px 16px 12px;}
-  header::after{display:none;}
-  .header-inner{gap:10px;}
-  .header-icon{width:42px;height:42px;font-size:1.25rem;border-radius:10px;}
-  .header-title{font-size:1.45rem;}
-  .ar-subtitle{font-size:0.9rem;}
-  .header-pill{font-size:0.6rem;padding:2px 8px;}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior: smooth; }
 
-  /* Nav */
-  .mode-tabs{gap:0;padding:0 4px;justify-content:stretch;}
-  .mode-tab{flex:1;padding:11px 4px;font-size:0.62rem;letter-spacing:0.5px;text-align:center;}
-  .mode-tab .tab-icon{display:block;font-size:1rem;margin:0 0 2px 0;}
-  .mode-tab-text{display:block;font-size:0.55rem;letter-spacing:0.5px;}
-
-  /* Filters */
-  .filters-wrap{padding:8px 10px;}
-  .filter-btn{font-size:0.65rem;padding:4px 10px;}
-
-  /* Progress */
-  .progress-wrap{padding:8px 14px 7px;}
-  .progress-text{font-size:0.68rem;}
-
-  /* Section */
-  .section-wrap{padding:12px 10px 80px;}
-
-  /* Grid */
-  .grid{grid-template-columns:repeat(2,1fr);gap:9px;}
-  .card{height:185px;}
-  .arabic-word{font-size:1.7rem;}
-  .card-icon{font-size:2.2rem;}
-  .turkish{font-size:1.05rem;}
-  .pronunciation{font-size:0.68rem;}
-  .arabic-back{font-size:1.05rem;}
-  .cat-chip{font-size:0.45rem;padding:1px 5px;}
-  .speak-btn{width:26px;height:26px;font-size:0.75rem;top:6px;right:6px;}
-  .verb-badge{font-size:0.5rem;padding:1px 5px;bottom:6px;right:6px;}
-
-  /* Swipe */
-  .swipe-settings{gap:6px;padding:8px 0 10px;}
-  .swipe-settings label{font-size:0.65rem;}
-  .swipe-count-select{font-size:0.72rem;padding:4px 9px;}
-  .swipe-start-btn{font-size:0.72rem;padding:5px 14px;}
-  .swipe-arena{height:300px;}
-  .swipe-card{width:min(290px,90vw);height:275px;}
-  .swipe-ar{font-size:2.1rem;}
-  .swipe-icon{font-size:2.8rem;}
-  .swipe-tr{font-size:1.35rem;}
-  .swipe-pr{font-size:0.75rem;}
-  .swipe-btn{width:50px;height:50px;font-size:1.2rem;}
-  .btn-flip{width:40px;height:40px;font-size:1rem;}
-
-  /* Quiz */
-  .quiz-settings{gap:6px;}
-  .quiz-settings select,.quiz-settings button{font-size:0.72rem;padding:5px 10px;}
-  .quiz-q-ar{font-size:2.5rem;}
-  .quiz-options{grid-template-columns:1fr 1fr;gap:7px;}
-  .quiz-opt{font-size:0.8rem;padding:10px 7px;}
-  .quiz-card{padding:20px 14px 18px;}
-
-  /* Write */
-  .write-card{padding:20px 14px 18px;}
-  .write-turkish{font-size:1.5rem;}
-  .write-input{font-size:1.55rem;padding:8px 10px;}
-  .ar-key{width:30px;height:30px;font-size:0.95rem;}
-  .ar-key.wide{width:48px;font-size:0.62rem;}
-
-  /* Conjugation Practice */
-  .cp-card{padding:18px 14px 18px;}
-  .cp-verb-ar{font-size:2.4rem;}
-  .cp-verb-tr{font-size:1.1rem;}
-  .cp-pronoun{font-size:1.25rem;}
-  .cp-pronoun-ar{font-size:1.1rem;}
-  .cp-options{grid-template-columns:1fr 1fr;gap:7px;}
-  .cp-opt{font-size:1.15rem;padding:10px 6px;}
-  .conjpractice-settings{gap:6px;}
-  .cp-select,.cp-btn{font-size:0.72rem;padding:5px 11px;}
-
-  /* Modal */
-  .modal{margin:0;border-radius:20px 20px 0 0;max-height:85vh;position:fixed;bottom:0;left:0;right:0;}
-  .modal-overlay.open .modal{transform:translateY(0);}
-  .modal-overlay{align-items:flex-end;padding:0;}
-  .modal-ar{font-size:2rem;}
-  .modal-tr{font-size:0.9rem;}
-  .modal-pr{font-size:0.7rem;}
-  .modal-header{padding:14px 16px 12px;}
-  .modal-body{padding:12px 12px 24px;}
-  .tense-tabs{gap:5px;}
-  .tense-tab{font-size:0.65rem;padding:4px 10px;}
-  .conj-table th{font-size:0.58rem;padding:5px 6px;}
-  .conj-table td{padding:6px 6px;font-size:0.82rem;}
-  .conj-ar{font-size:1.2rem;}
-  .conj-pronoun{font-size:0.75rem;}
-  .conj-pronoun.ar-pron{font-size:0.9rem;}
-  .conj-meaning{font-size:0.7rem;}
-
-  /* Hard panel */
-  .hard-words-panel{font-size:0.7rem;padding:9px 12px;}
+body {
+  background: var(--bg);
+  font-family: 'Outfit', sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* ── Tablets (481px–768px) ── */
-@media(min-width:481px) and (max-width:768px){
-  .header-title{font-size:1.6rem;}
-  .mode-tabs{justify-content:center;}
-  .mode-tab{padding:11px 14px;font-size:0.7rem;}
-  .grid{grid-template-columns:repeat(3,1fr);gap:10px;}
-  .card{height:195px;}
-  .section-wrap{padding:14px 14px 60px;}
-  .modal{max-width:520px;}
-  .conj-table th{font-size:0.6rem;}
-  .conj-table td{font-size:0.84rem;}
+/* === ANIMATED BACKGROUND === */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 10%, rgba(240,192,64,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(78,205,196,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(167,139,250,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* ── Touch: bigger tap targets ── */
-@media(pointer:coarse){
-  .filter-btn{padding:7px 14px;min-height:36px;}
-  .mode-tab{min-height:46px;}
-  .quiz-opt,.cp-opt{min-height:52px;}
-  .swipe-btn{width:58px;height:58px;}
-  .btn-flip{width:48px;height:48px;}
-  .speak-btn{width:32px;height:32px;}
-  .ar-key{width:36px;height:36px;}
-  .write-submit,.write-skip{padding:10px 20px;}
+/* Arabic geometric pattern overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30Z' fill='none' stroke='rgba(240,192,64,0.03)' stroke-width='1'/%3E%3Cpath d='M30 10 L50 30 L30 50 L10 30Z' fill='none' stroke='rgba(240,192,64,0.025)' stroke-width='0.5'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* ── Landscape phones ── */
-@media(max-width:768px) and (orientation:landscape){
-  header{padding:10px 16px;}
-  .header-title{font-size:1.3rem;}
-  .ar-subtitle{display:none;}
-  .header-meta{margin-top:2px;}
-  .swipe-arena{height:260px;}
-  .swipe-card{height:240px;}
-  .quiz-card,.write-card,.cp-card{max-width:520px;}
-  .modal{max-height:95vh;}
+/* === HEADER === */
+header {
+  position: relative;
+  z-index: 10;
+  padding: 20px 20px 16px;
+  background: linear-gradient(180deg, rgba(13,13,20,0.98) 0%, rgba(13,13,20,0.85) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
 }
 
-/* PRINT */
-@media print{
-  body{background:white!important;}
-  body::before,body::after,.nav-wrap,.filters-wrap,.progress-wrap,#swipe-mode,#quiz-mode,#write-mode,#conjpractice-mode,.speak-btn,.toast,.modal-overlay{display:none!important;}
-  #grid-mode{display:block!important;}
-  .section-wrap{padding:0!important;}
-  .grid{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:6px!important;}
-  .card{perspective:none!important;height:auto!important;page-break-inside:avoid;break-inside:avoid;}
-  .card-inner{transform:none!important;position:static!important;}
-  .card-front{position:static!important;backface-visibility:visible!important;border:1.5px solid #c9933a!important;box-shadow:none!important;padding:8px 8px 12px!important;}
-  .card-back{display:none!important;}
-  .card-icon,.card-front .print-answer,.card-front .print-pron{display:block!important;}
-  .card-front .print-answer{font-size:0.82rem;font-family:'Cormorant Garamond',serif;font-weight:700;margin-top:3px;}
-  .card-front .print-pron{font-size:0.6rem;color:#7a8c6e;font-style:italic;}
-  .arabic-word{font-size:1.4rem!important;}
-  .card-icon{font-size:1.6rem!important;}
-  .tap-hint,.speak-btn,.learned-star,.cat-chip,.verb-badge{display:none!important;}
-  header{background:#1a1008!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
-.print-answer{display:none;}
-.print-pron{display:none;}
 
-/* RESPONSIVE */
-@media(max-width:480px){
-  .grid{grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:9px;}
-  .header-title{font-size:1.5rem;}
-  .modal{margin:8px;}
+.header-badge {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Amiri', serif;
+  font-size: 1.6rem;
+  color: #0d0d14;
+  box-shadow: 0 4px 20px rgba(240,192,64,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
 }
+
+.header-text { flex: 1; min-width: 0; }
+
+.header-ar {
+  font-family: 'Amiri', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  direction: rtl;
+  opacity: 0.8;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.header-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-pills {
+  display: flex;
+  gap: 6px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+
+.pill-gold { color: var(--gold); border-color: rgba(240,192,64,0.3); background: rgba(240,192,64,0.08); }
+.pill-coral { color: var(--coral); border-color: rgba(255,107,107,0.3); background: rgba(255,107,107,0.08); }
+
+/* === NAV TABS === */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13,13,20,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.mode-tabs {
+  display: flex;
+  max-width: 960px;
+  margin: 0 auto;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 0 8px;
+}
+
+.mode-tabs::-webkit-scrollbar { display: none; }
+
+.mode-tab {
+  flex: 1;
+  min-width: 60px;
+  background: transparent;
+  border: none;
+  color: var(--text3);
+  padding: 12px 8px;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.mode-tab:hover { color: var(--text2); }
+.mode-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+.tab-icon { font-size: 1rem; }
+
+/* === FILTERS === */
+.filters-wrap {
+  position: relative;
+  z-index: 1;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.filters-wrap::-webkit-scrollbar { display: none; }
+
+.filters {
+  display: flex;
+  gap: 6px;
+  max-width: 960px;
+  margin: 0 auto;
+  width: max-content;
+  min-width: 100%;
+}
+
+.filter-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+
+.filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+.filter-btn.active { background: var(--gold); border-color: var(--gold); color: #0d0d14; font-weight: 700; }
+
+/* === PROGRESS === */
+.progress-wrap {
+  position: relative;
+  z-index: 1;
+  padding: 8px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.progress-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-track {
+  flex: 1;
+  height: 4px;
+  background: var(--surface3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+  border-radius: 4px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+.progress-text {
+  font-size: 0.7rem;
+  color: var(--text3);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* === SECTION WRAPPER === */
+.section-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 12px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* === GRID MODE === */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  perspective: 1000px;
+  height: 195px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card.flipped .card-inner { transform: rotateY(180deg); }
+
+.card-front, .card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px 18px;
+}
+
+.card-front {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.card-front::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* Shimmer on hover */
+.card-front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.card:hover .card-front::after { opacity: 1; }
+
+.cat-chip {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  font-size: 0.48rem;
+  padding: 2px 7px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: var(--gold-dim);
+  color: var(--gold);
+  border: 1px solid rgba(240,192,64,0.2);
+}
+
+.card-icon { font-size: 2.2rem; line-height: 1; margin-bottom: 5px; }
+
+.arabic-word {
+  font-family: 'Amiri', serif;
+  font-size: 1.75rem;
+  color: var(--gold);
+  direction: rtl;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.color-swatch {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  border: 3px solid rgba(255,255,255,0.1);
+}
+
+.tap-hint {
+  position: absolute;
+  bottom: 6px;
+  font-size: 0.5rem;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.speak-btn {
+  position: absolute;
+  top: 8px; right: 8px;
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 10;
+  color: var(--gold);
+  font-size: 0.75rem;
+}
+
+.speak-btn:hover, .speak-btn.speaking {
+  background: var(--gold);
+  color: #0d0d14;
+  border-color: var(--gold);
+}
+
+.speak-btn.speaking { animation: pulse 0.6s infinite alternate; }
+@keyframes pulse { from { transform: scale(1); } to { transform: scale(1.2); } }
+
+.learned-star {
+  position: absolute;
+  top: 8px; left: 8px;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card.flipped .learned-star { opacity: 1; }
+
+.card-back {
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(78,205,196,0.2);
+  transform: rotateY(180deg);
+  color: var(--text);
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(78,205,196,0.1);
+}
+
+.card-back::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--purple));
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.back-icon { font-size: 1.9rem; opacity: 0.9; margin-bottom: 3px; }
+.back-swatch { width: 40px; height: 40px; border-radius: 50%; margin-bottom: 6px; border: 3px solid rgba(255,255,255,0.15); }
+
+.turkish {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--teal);
+}
+
+.pronunciation {
+  font-size: 0.68rem;
+  opacity: 0.7;
+  font-style: italic;
+  margin-top: 2px;
+  color: var(--text2);
+}
+
+.arabic-back {
+  font-family: 'Amiri', serif;
+  font-size: 1.1rem;
+  direction: rtl;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+
+.card-back .tap-hint { color: rgba(255,255,255,0.2); }
+
+.verb-badge {
+  position: absolute;
+  bottom: 7px; right: 7px;
+  font-size: 0.5rem;
+  background: rgba(167,139,250,0.1);
+  color: var(--purple);
+  border: 1px solid rgba(167,139,250,0.3);
+  padding: 2px 6px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.verb-badge:hover { background: var(--purple); color: white; border-color: var(--purple); }
+
+/* === VERB CONJUGATION MODAL === */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 500;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 0;
+}
+
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--surface);
+  border-radius: 24px 24px 0 0;
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(30px);
+  transition: transform 0.3s cubic-bezier(0.34,1.2,0.64,1);
+  border: 1px solid var(--border2);
+  border-bottom: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-overlay.open .modal { transform: translateY(0); }
+
+/* Drag handle */
+.modal-handle {
+  width: 40px;
+  height: 4px;
+  background: var(--surface3);
+  border-radius: 2px;
+  margin: 10px auto 0;
+}
+
+.modal-header {
+  padding: 16px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.modal-verb-icon {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--purple), #7c3aed);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.modal-info { flex: 1; min-width: 0; }
+.modal-ar {
+  font-family: 'Amiri', serif;
+  font-size: 2.2rem;
+  color: var(--gold);
+  direction: rtl;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.modal-tr { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--text); }
+.modal-pr { font-size: 0.72rem; color: var(--text3); margin-top: 2px; }
+
+.modal-root {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(167,139,250,0.1);
+  border: 1px solid rgba(167,139,250,0.2);
+  border-radius: 8px;
+  padding: 3px 10px;
+  margin-top: 5px;
+}
+.modal-root .root-ar { font-family: 'Amiri', serif; font-size: 1rem; color: var(--purple); direction: rtl; }
+.modal-root .root-label { font-size: 0.6rem; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; }
+
+.modal-close {
+  position: absolute;
+  top: 14px; right: 16px;
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.modal-close:hover { background: var(--surface3); color: var(--text); border-color: var(--border2); }
+
+.modal-body { padding: 16px 16px 24px; }
+
+/* Pattern card */
+.pattern-card {
+  background: linear-gradient(135deg, rgba(240,192,64,0.08), rgba(167,139,250,0.08));
+  border: 1px solid rgba(240,192,64,0.15);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pattern-ar {
+  font-family: 'Amiri', serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  direction: rtl;
+}
+
+.pattern-info { flex: 1; min-width: 120px; }
+.pattern-name { font-size: 0.75rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.pattern-desc { font-size: 0.68rem; color: var(--text3); }
+
+/* Tense tabs */
+.tense-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.tense-tab {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 7px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.18s;
+  flex: 1;
+  text-align: center;
+}
+
+.tense-tab.active { background: var(--coral); border-color: var(--coral); color: white; }
+.tense-tab:hover:not(.active) { border-color: var(--coral); color: var(--coral); }
+
+/* Conjugation table */
+.conj-table { width: 100%; border-collapse: collapse; }
+
+.conj-table th {
+  background: var(--surface3);
+  color: var(--text3);
+  font-size: 0.6rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+.conj-table th.ar-col { text-align: right; }
+
+.conj-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.conj-table tr:last-child td { border-bottom: none; }
+
+.conj-table tr { transition: background 0.15s; }
+.conj-table tr:hover td { background: var(--surface2); }
+
+.conj-ar {
+  font-family: 'Amiri', serif;
+  font-size: 1.4rem;
+  direction: rtl;
+  color: var(--gold);
+  text-align: right;
+}
+
+.conj-pr { font-size: 0.68rem; color: var(--text3); font-style: italic; margin-top: 1px; direction: rtl; text-align: right; }
+
+.conj-pronoun { font-size: 0.82rem; color: var(--text); font-weight: 500; }
+.conj-pronoun .ar-pron { font-family: 'Amiri', serif; font-size: 1rem; direction: rtl; color: var(--teal); display: block; margin-top: 1px; }
+.conj-meaning { font-size: 0.74rem; color: var(--text2); }
+
+.conj-speak-btn {
+  background: none;
+  border: none;
+  color: var(--gold);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 2px 4px;
+  vertical-align: middle;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.conj-speak-btn:hover { opacity: 1; }
+
+/* Tense info note */
+.tense-note {
+  background: var(--surface2);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  margin-top: 12px;
+  font-size: 0.76rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+.tense-note strong { color: var(--teal); }
+
+/* === CONJUGATION PRACTICE MODE === */
+.conjpractice-settings {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0;
+  flex-wrap: wrap;
+}
+
+.cp-select {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.cp-btn {
+  background: linear-gradient(135deg, var(--coral), var(--coral2));
+  color: white;
+  border: none;
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(255,107,107,0.3);
+}
+.cp-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,107,107,0.4); }
+
+.cp-card {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--surface2);
+  border-radius: 22px;
+  border: 1px solid var(--border2);
+  box-shadow: var(--shadow-lg);
+  padding: 26px 22px 22px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cp-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--purple), var(--coral), var(--gold));
+}
+
+.cp-verb-ar { font-family: 'Amiri', serif; font-size: 2.8rem; color: var(--gold); direction: rtl; margin-bottom: 3px; }
+.cp-verb-tr { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--text2); }
+.cp-divider { height: 1px; background: var(--border); margin: 14px 0; }
+.cp-question { font-size: 0.72rem; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; font-weight: 600; }
+.cp-pronoun { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.cp-pronoun-ar { font-family: 'Amiri', serif; font-size: 1.2rem; direction: rtl; color: var(--teal); }
+.cp-tense-label {
+  display: inline-block;
+  background: rgba(167,139,250,0.12);
+  color: var(--purple);
+  border: 1px solid rgba(167,139,250,0.25);
+  font-size: 0.62rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.cp-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.cp-opt {
+  background: var(--surface3);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 8px;
+  cursor: pointer;
+  font-family: 'Amiri', serif;
+  font-size: 1.3rem;
+  direction: rtl;
+  transition: all 0.18s;
+  color: var(--text);
+}
+
+.cp-opt:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+.cp-opt.correct { background: rgba(52,211,153,0.1); border-color: var(--green); color: var(--green); }
+.cp-opt.wrong { background: rgba(248,113,113,0.1); border-color: var(--red); color: var(--red); }
+.cp-opt.reveal { background: rgba(52,211,153,0.1); border-color: var(--green); color: var(--green); }
+.cp-opt:disabled { cursor: default; }
+
+.cp-feedback { margin-top: 12px; font-size: 0.85rem; min-height: 22px; font-weight: 500; }
+.cp-feedback.ok { color: var(--green); }
+.cp-feedback.no { color: var(--red); }
+
+.cp-next {
+  margin-top: 12px;
+  background: var(--surface3);
+  color: var(--text);
+  border: 1px solid var(--border2);
+  padding: 8px 26px;
+  border-radius: 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: none;
+  transition: all 0.2s;
+}
+.cp-next:hover { background: var(--gold); color: #0d0d14; border-color: var(--gold); }
+
+.cp-score { display: flex; justify-content: center; gap: 20px; font-size: 0.8rem; padding: 0 0 10px; }
+.cp-progress { text-align: center; font-size: 0.72rem; color: var(--text3); margin-bottom: 10px; letter-spacing: 1px; }
+
+/* === SWIPE MODE === */
+.swipe-settings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0 12px;
+  flex-wrap: wrap;
+}
+
+.swipe-settings label { font-size: 0.72rem; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+
+.swipe-count-select {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.swipe-start-btn {
+  background: linear-gradient(135deg, var(--teal), var(--teal2));
+  color: #0d0d14;
+  border: none;
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(78,205,196,0.3);
+}
+.swipe-start-btn:hover { transform: translateY(-1px); }
+
+.swipe-counter { text-align: center; font-size: 0.78rem; color: var(--text3); letter-spacing: 1px; padding: 4px 0 12px; }
+
+.swipe-arena {
+  position: relative;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swipe-card {
+  position: absolute;
+  width: min(300px, 88vw);
+  height: 290px;
+  border-radius: 22px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  box-shadow: var(--shadow-lg);
+}
+.swipe-card:active { cursor: grabbing; }
+
+.swipe-front {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.swipe-front::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+}
+
+.swipe-ar { font-family: 'Amiri', serif; font-size: 2.3rem; color: var(--gold); direction: rtl; line-height: 1.2; }
+.swipe-icon { font-size: 3rem; line-height: 1; }
+.swipe-tap { font-size: 0.55rem; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; position: absolute; bottom: 12px; }
+
+.swipe-speak {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--gold);
+  transition: all 0.2s;
+}
+.swipe-speak:hover, .swipe-speak.speaking { background: var(--gold); color: #0d0d14; border-color: var(--gold); }
+
+.hard-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--red);
+  color: white;
+  font-size: 0.55rem;
+  padding: 3px 8px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  display: none;
+}
+.swipe-card.is-hard .hard-badge { display: block; }
+
+.swipe-card.revealed .swipe-front { display: none; }
+
+.swipe-back {
+  display: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #1a1a2e, #0d0d20);
+  border: 1px solid rgba(78,205,196,0.2);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.swipe-back::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--purple));
+  border-radius: 22px 22px 0 0;
+}
+
+.swipe-card.revealed .swipe-back { display: flex; }
+.swipe-tr { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--teal); }
+.swipe-pr { font-size: 0.8rem; color: var(--text3); font-style: italic; }
+.swipe-ar-back { font-family: 'Amiri', serif; font-size: 1.4rem; direction: rtl; color: rgba(255,255,255,0.35); }
+
+.swipe-card .like-label, .swipe-card .nope-label {
+  position: absolute;
+  top: 22px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  opacity: 0;
+  border: 3px solid;
+  padding: 5px 12px;
+  border-radius: 10px;
+}
+
+.swipe-card .like-label { left: 14px; color: var(--green); border-color: var(--green); transform: rotate(-12deg); }
+.swipe-card .nope-label { right: 14px; color: var(--red); border-color: var(--red); transform: rotate(12deg); }
+
+.swipe-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.swipe-btn {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.swipe-btn:hover { transform: scale(1.1); }
+
+.btn-no { background: rgba(248,113,113,0.15); color: var(--red); border: 2px solid rgba(248,113,113,0.3); }
+.btn-flip { background: var(--surface2); color: var(--gold); width: 46px; height: 46px; font-size: 1.2rem; border: 2px solid var(--border2); }
+.btn-yes { background: rgba(52,211,153,0.15); color: var(--green); border: 2px solid rgba(52,211,153,0.3); }
+
+.swipe-hint { display: flex; justify-content: center; gap: 24px; margin-top: 8px; font-size: 0.65rem; color: var(--text3); letter-spacing: 1px; }
+
+.swipe-bg { pointer-events: none; transform: scale(0.94) translateY(10px); z-index: -1; opacity: 0.4; }
+.swipe-bg2 { pointer-events: none; transform: scale(0.88) translateY(20px); z-index: -2; opacity: 0.2; }
+
+.hard-words-panel {
+  background: rgba(248,113,113,0.06);
+  border: 1px solid rgba(248,113,113,0.2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin: 10px 0 0;
+  font-size: 0.75rem;
+  color: var(--text2);
+}
+.hard-words-panel strong { color: var(--red); font-size: 0.77rem; }
+
+/* === QUIZ MODE === */
+.quiz-settings { display: flex; justify-content: center; gap: 8px; padding: 10px 0 14px; flex-wrap: wrap; }
+
+.quiz-settings select {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.quiz-settings button {
+  background: linear-gradient(135deg, var(--coral), var(--coral2));
+  border: none;
+  color: white;
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255,107,107,0.3);
+}
+
+.quiz-score-bar { display: flex; justify-content: center; gap: 20px; padding: 0 0 10px; font-size: 0.8rem; }
+.q-correct { color: var(--green); font-weight: 600; }
+.q-wrong { color: var(--red); font-weight: 600; }
+
+.quiz-card {
+  max-width: 440px;
+  margin: 0 auto;
+  background: var(--surface2);
+  border-radius: 22px;
+  border: 1px solid var(--border2);
+  box-shadow: var(--shadow-lg);
+  padding: 26px 20px 22px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+}
+
+.quiz-q-icon { font-size: 2.8rem; margin-bottom: 8px; }
+.quiz-q-ar { font-family: 'Amiri', serif; font-size: 2.8rem; color: var(--gold); direction: rtl; line-height: 1.2; margin-bottom: 3px; }
+.quiz-q-pr { font-size: 0.78rem; color: var(--text3); font-style: italic; margin-bottom: 14px; }
+
+.quiz-speak {
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 5px 14px;
+  cursor: pointer;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+  font-family: 'Outfit', sans-serif;
+}
+.quiz-speak:hover { background: var(--gold); color: #0d0d14; border-color: var(--gold); }
+
+.quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 4px; }
+
+.quiz-opt {
+  background: var(--surface3);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 10px;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  transition: all 0.18s;
+  text-align: center;
+  line-height: 1.3;
+  color: var(--text);
+  font-weight: 500;
+}
+.quiz-opt:hover { border-color: var(--gold); background: var(--gold-dim); color: var(--gold); }
+.quiz-opt.correct { background: rgba(52,211,153,0.1); border-color: var(--green); color: var(--green); }
+.quiz-opt.wrong { background: rgba(248,113,113,0.1); border-color: var(--red); color: var(--red); }
+.quiz-opt.reveal { background: rgba(52,211,153,0.1); border-color: var(--green); color: var(--green); }
+.quiz-opt:disabled { cursor: default; }
+
+.quiz-feedback { margin-top: 11px; font-size: 0.84rem; min-height: 22px; font-style: italic; font-weight: 500; }
+.quiz-feedback.ok { color: var(--green); }
+.quiz-feedback.no { color: var(--red); }
+
+.quiz-next {
+  margin-top: 12px;
+  background: var(--coral);
+  color: white;
+  border: none;
+  padding: 9px 28px;
+  border-radius: 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(255,107,107,0.25);
+}
+.quiz-next:hover { background: var(--coral2); }
+
+.quiz-progress { text-align: center; font-size: 0.72rem; color: var(--text3); margin-bottom: 10px; letter-spacing: 1px; }
+
+.quiz-result {
+  max-width: 360px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--surface2);
+  border-radius: 22px;
+  padding: 32px 24px;
+  border: 1px solid var(--border2);
+  box-shadow: var(--shadow-lg);
+}
+.quiz-result .result-emoji { font-size: 3.5rem; }
+.quiz-result h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin: 10px 0 6px; }
+.quiz-result p { font-size: 0.88rem; color: var(--text2); margin-bottom: 14px; }
+.quiz-result button {
+  background: linear-gradient(135deg, var(--coral), var(--coral2));
+  color: white; border: none;
+  padding: 10px 28px; border-radius: 20px;
+  font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 700;
+  cursor: pointer; box-shadow: 0 4px 14px rgba(255,107,107,0.3);
+}
+
+/* === WRITE MODE === */
+.write-settings { display: flex; justify-content: center; gap: 8px; padding: 10px 0 14px; flex-wrap: wrap; }
+
+.write-card {
+  max-width: 460px;
+  margin: 0 auto;
+  background: var(--surface2);
+  border-radius: 22px;
+  border: 1px solid var(--border2);
+  box-shadow: var(--shadow-lg);
+  padding: 26px 20px 22px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.write-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--purple), var(--teal));
+}
+
+.write-q-label { font-size: 0.68rem; color: var(--text3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+.write-turkish { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.write-pr { font-size: 0.78rem; color: var(--text3); font-style: italic; margin-bottom: 12px; }
+
+.write-hint-btn {
+  background: transparent;
+  border: 1px dashed rgba(240,192,64,0.3);
+  color: var(--gold);
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 0.68rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.2s;
+  font-family: 'Outfit', sans-serif;
+}
+.write-hint-btn:hover { background: var(--gold-dim); }
+
+.write-hint-ar { font-family: 'Amiri', serif; font-size: 1.8rem; color: rgba(240,192,64,0.2); direction: rtl; letter-spacing: 4px; margin-bottom: 10px; min-height: 44px; }
+
+.write-input {
+  width: 100%;
+  font-family: 'Amiri', serif;
+  font-size: 1.8rem;
+  direction: rtl;
+  text-align: center;
+  background: var(--surface3);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: var(--text);
+  outline: none;
+  transition: border 0.2s;
+  margin-bottom: 10px;
+}
+.write-input:focus { border-color: var(--gold); }
+.write-input.correct { border-color: var(--green); background: rgba(52,211,153,0.06); }
+.write-input.wrong { border-color: var(--red); background: rgba(248,113,113,0.06); }
+
+.write-submit {
+  background: linear-gradient(135deg, var(--coral), var(--coral2));
+  color: white; border: none;
+  padding: 9px 22px; border-radius: 20px;
+  font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 700;
+  cursor: pointer; margin-right: 6px;
+  box-shadow: 0 4px 14px rgba(255,107,107,0.25);
+}
+
+.write-skip {
+  background: var(--surface3);
+  color: var(--text2);
+  border: 1px solid var(--border2);
+  padding: 9px 16px; border-radius: 20px;
+  font-family: 'Outfit', sans-serif; font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.write-feedback { margin-top: 10px; font-size: 0.88rem; min-height: 24px; font-weight: 500; }
+.write-feedback.ok { color: var(--green); }
+.write-feedback.no { color: var(--red); }
+
+.write-correct-ans { font-family: 'Amiri', serif; font-size: 1.6rem; direction: rtl; color: var(--gold); margin-top: 4px; }
+
+.write-next {
+  margin-top: 12px;
+  background: var(--surface3);
+  color: var(--text);
+  border: 1px solid var(--border2);
+  padding: 9px 26px; border-radius: 20px;
+  font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; display: none; transition: all 0.2s;
+}
+.write-next:hover { background: var(--gold); color: #0d0d14; border-color: var(--gold); }
+
+.write-progress { text-align: center; font-size: 0.72rem; color: var(--text3); margin-bottom: 10px; letter-spacing: 1px; }
+.write-score-bar { display: flex; justify-content: center; gap: 20px; padding: 0 0 10px; font-size: 0.8rem; }
+
+.ar-keyboard { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-top: 12px; max-width: 460px; margin-left: auto; margin-right: auto; }
+
+.ar-key {
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-family: 'Amiri', serif;
+  font-size: 1rem;
+  color: var(--text);
+  transition: all 0.15s;
+}
+.ar-key:hover { background: var(--gold); color: #0d0d14; border-color: var(--gold); }
+.ar-key.wide { width: 56px; font-size: 0.65rem; font-family: 'Outfit', sans-serif; letter-spacing: 0.5px; }
+
+/* === TOAST === */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--surface2);
+  color: var(--text);
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  z-index: 999;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+  border: 1px solid var(--border2);
+  box-shadow: var(--shadow);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* === MOBILE RESPONSIVE === */
+@media (max-width: 480px) {
+  header { padding: 14px 14px 12px; }
+  .header-badge { width: 44px; height: 44px; font-size: 1.3rem; border-radius: 12px; }
+  .header-title { font-size: 1.3rem; }
+  .header-ar { font-size: 0.8rem; }
+  header::after { display: none; }
+
+  .mode-tab { padding: 10px 4px; font-size: 0.58rem; }
+  .tab-icon { font-size: 1rem; }
+
+  .filters-wrap { padding: 8px 12px; }
+  .filter-btn { font-size: 0.65rem; padding: 5px 11px; }
+
+  .section-wrap { padding: 12px 10px 80px; }
+
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .card { height: 180px; }
+  .arabic-word { font-size: 1.6rem; }
+  .card-icon { font-size: 2rem; }
+  .turkish { font-size: 1rem; }
+
+  .swipe-arena { height: 295px; }
+  .swipe-card { width: min(285px, 90vw); height: 268px; }
+  .swipe-ar { font-size: 2rem; }
+  .swipe-icon { font-size: 2.7rem; }
+  .swipe-tr { font-size: 1.3rem; }
+  .swipe-btn { width: 50px; height: 50px; font-size: 1.2rem; }
+  .btn-flip { width: 42px; height: 42px; }
+
+  .quiz-q-ar { font-size: 2.4rem; }
+  .quiz-card { padding: 20px 14px 18px; }
+  .quiz-opt { font-size: 0.78rem; padding: 11px 7px; }
+
+  .write-card, .cp-card { padding: 20px 14px 18px; }
+  .write-turkish { font-size: 1.5rem; }
+  .write-input { font-size: 1.55rem; }
+  .ar-key { width: 31px; height: 31px; font-size: 0.95rem; }
+  .ar-key.wide { width: 50px; font-size: 0.6rem; }
+
+  .cp-verb-ar { font-size: 2.4rem; }
+  .cp-pronoun { font-size: 1.2rem; }
+  .cp-opt { font-size: 1.15rem; padding: 10px 6px; }
+
+  .modal { border-radius: 24px 24px 0 0; }
+  .modal-ar { font-size: 2rem; }
+  .modal-tr { font-size: 1rem; }
+  .modal-header { padding: 14px 16px 12px; gap: 10px; }
+  .modal-verb-icon { width: 46px; height: 46px; font-size: 1.3rem; border-radius: 12px; }
+  .modal-body { padding: 12px 12px 24px; }
+  .tense-tab { font-size: 0.65rem; padding: 6px 10px; }
+  .conj-table th { font-size: 0.56px; padding: 6px 7px; }
+  .conj-table td { padding: 7px 7px; font-size: 0.8rem; }
+  .conj-ar { font-size: 1.2rem; }
+  .pattern-card { padding: 10px 12px; }
+  .pattern-ar { font-size: 1.3rem; }
+}
+
+@media (max-width: 360px) {
+  .header-title { font-size: 1.1rem; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 7px; }
+  .card { height: 168px; }
+  .arabic-word { font-size: 1.45rem; }
+  .mode-tab { padding: 9px 3px; font-size: 0.54rem; }
+  .cp-options { grid-template-columns: 1fr 1fr; }
+  .cp-opt { font-size: 1.1rem; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .card { height: 190px; }
+  .section-wrap { padding: 14px 14px 60px; }
+}
+
+@media (pointer: coarse) {
+  .filter-btn { padding: 8px 14px; min-height: 36px; }
+  .mode-tab { min-height: 48px; }
+  .quiz-opt, .cp-opt { min-height: 52px; }
+  .swipe-btn { width: 60px; height: 60px; }
+  .speak-btn { width: 32px; height: 32px; }
+  .ar-key { width: 38px; height: 38px; }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  header { padding: 10px 16px; }
+  .header-title { font-size: 1.2rem; }
+  .header-ar { display: none; }
+  .swipe-arena { height: 255px; }
+  .swipe-card { height: 240px; }
+  .quiz-card, .write-card, .cp-card { max-width: 540px; }
+  .modal { max-height: 95vh; }
+}
+
+/* Print */
+@media print {
+  body { background: white !important; }
+  body::before, body::after, .nav-wrap, .filters-wrap, .progress-wrap,
+  #swipe-mode, #quiz-mode, #write-mode, #conjpractice-mode,
+  .speak-btn, .toast, .modal-overlay { display: none !important; }
+  #grid-mode { display: block !important; }
+  .section-wrap { padding: 0 !important; }
+  .grid { display: grid !important; grid-template-columns: repeat(4,1fr) !important; gap: 6px !important; }
+  .card { perspective: none !important; height: auto !important; break-inside: avoid; }
+  .card-inner { transform: none !important; position: static !important; }
+  .card-front { position: static !important; backface-visibility: visible !important; border: 1.5px solid #c0392b !important; box-shadow: none !important; padding: 8px !important; background: white !important; }
+  .card-back { display: none !important; }
+  .arabic-word { font-size: 1.4rem !important; color: #c0392b !important; }
+  .card-icon { font-size: 1.6rem !important; }
+  .print-answer { display: block !important; font-size: 0.82rem; font-weight: 700; margin-top: 3px; color: #333; }
+  .print-pron { display: block !important; font-size: 0.6rem; color: #777; font-style: italic; }
+  .tap-hint, .speak-btn, .learned-star, .cat-chip, .verb-badge { display: none !important; }
+}
+
+.print-answer, .print-pron { display: none; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="header-inner">
-    <div class="header-icon">ع</div>
+    <div class="header-badge">ع</div>
     <div class="header-text">
-      <div class="ar-subtitle">المُفْرَدَات العَرَبِيَّة</div>
+      <div class="header-ar">المُفْرَدَات العَرَبِيَّة</div>
       <div class="header-title">Arapça Kelime Kartları</div>
-      <div class="header-meta">
-        <span class="header-pill">Fasih Arapça</span>
-        <span class="header-pill">12 Konu</span>
-        <span class="header-pill count" id="total-badge">… Kelime</span>
+      <div class="header-pills">
+        <span class="pill pill-gold">Fasih Arapça</span>
+        <span class="pill pill-coral" id="total-badge">… Kelime</span>
       </div>
     </div>
   </div>
@@ -505,11 +1456,11 @@ header::after{content:'بسم الله';position:absolute;right:24px;top:50%;tra
 
 <div class="nav-wrap">
   <div class="mode-tabs">
-    <button class="mode-tab active" id="tab-grid" onclick="setMode('grid')"><span class="tab-icon">⊞</span><span class="mode-tab-text">Kartlar</span></button>
-    <button class="mode-tab" id="tab-swipe" onclick="setMode('swipe')"><span class="tab-icon">👆</span><span class="mode-tab-text">Swipe</span></button>
-    <button class="mode-tab" id="tab-quiz" onclick="setMode('quiz')"><span class="tab-icon">🧩</span><span class="mode-tab-text">Quiz</span></button>
-    <button class="mode-tab" id="tab-write" onclick="setMode('write')"><span class="tab-icon">✍️</span><span class="mode-tab-text">Yaz</span></button>
-    <button class="mode-tab" id="tab-conjpractice" onclick="setMode('conjpractice')"><span class="tab-icon">🔤</span><span class="mode-tab-text">Çekim</span></button>
+    <button class="mode-tab active" id="tab-grid" onclick="setMode('grid')"><span class="tab-icon">⊞</span>Kartlar</button>
+    <button class="mode-tab" id="tab-swipe" onclick="setMode('swipe')"><span class="tab-icon">👆</span>Swipe</button>
+    <button class="mode-tab" id="tab-quiz" onclick="setMode('quiz')"><span class="tab-icon">🧩</span>Quiz</button>
+    <button class="mode-tab" id="tab-write" onclick="setMode('write')"><span class="tab-icon">✍️</span>Yaz</button>
+    <button class="mode-tab" id="tab-conjpractice" onclick="setMode('conjpractice')"><span class="tab-icon">🔤</span>Çekim</button>
   </div>
 </div>
 
@@ -548,7 +1499,7 @@ header::after{content:'بسم الله';position:absolute;right:24px;top:50%;tra
 </div>
 
 <!-- SWIPE MODE -->
-<div id="swipe-mode">
+<div id="swipe-mode" style="display:none">
   <div class="section-wrap">
     <div class="swipe-settings">
       <label>Kart:</label>
@@ -582,7 +1533,7 @@ header::after{content:'بسم الله';position:absolute;right:24px;top:50%;tra
 </div>
 
 <!-- QUIZ MODE -->
-<div id="quiz-mode">
+<div id="quiz-mode" style="display:none">
   <div class="section-wrap">
     <div class="quiz-settings">
       <select id="quiz-count-sel"><option value="10">10 Soru</option><option value="20" selected>20 Soru</option><option value="30">30 Soru</option><option value="50">50 Soru</option></select>
@@ -596,7 +1547,7 @@ header::after{content:'بسم الله';position:absolute;right:24px;top:50%;tra
 </div>
 
 <!-- WRITE MODE -->
-<div id="write-mode">
+<div id="write-mode" style="display:none">
   <div class="section-wrap">
     <div class="write-settings">
       <select id="write-count-sel" class="swipe-count-select"><option value="10">10</option><option value="20" selected>20</option><option value="30">30</option><option value="50">50</option></select>
@@ -609,8 +1560,10 @@ header::after{content:'بسم الله';position:absolute;right:24px;top:50%;tra
 </div>
 
 <!-- CONJUGATION PRACTICE MODE -->
-<div id="conjpractice-mode">
+<div id="conjpractice-mode" style="display:none">
   <div class="section-wrap">
+    <!-- Lesson intro cards -->
+    <div id="cp-lesson-area"></div>
     <div class="conjpractice-settings">
       <select class="cp-select" id="cp-tense-sel">
         <option value="madi">Mâzi (Geçmiş)</option>
@@ -623,7 +1576,7 @@ header::after{content:'بسم الله';position:absolute;right:24px;top:50%;tra
         <option value="20" selected>20 Soru</option>
         <option value="30">30 Soru</option>
       </select>
-      <button class="cp-btn" onclick="initConjPractice()">▶ Başla</button>
+      <button class="cp-btn" onclick="initConjPractice()">▶ Alıştırma Başlat</button>
     </div>
     <div class="cp-score">
       <span class="q-correct">✓ <span id="cp-ok">0</span></span>
@@ -637,10 +1590,18 @@ header::after{content:'بسم الله';position:absolute;right:24px;top:50%;tra
 <!-- VERB CONJUGATION MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" id="modal">
+    <div class="modal-handle"></div>
     <div class="modal-header">
-      <div class="modal-ar" id="modal-ar"></div>
-      <div class="modal-tr" id="modal-tr"></div>
-      <div class="modal-pr" id="modal-pr"></div>
+      <div class="modal-verb-icon" id="modal-icon">🔤</div>
+      <div class="modal-info">
+        <div class="modal-ar" id="modal-ar"></div>
+        <div class="modal-tr" id="modal-tr"></div>
+        <div class="modal-pr" id="modal-pr"></div>
+        <div class="modal-root" id="modal-root" style="display:none">
+          <span class="root-label">KÖK</span>
+          <span class="root-ar" id="modal-root-ar"></span>
+        </div>
+      </div>
       <button class="modal-close" onclick="closeModalBtn()">✕</button>
     </div>
     <div class="modal-body" id="modal-body"></div>
@@ -652,267 +1613,127 @@ header::after{content:'بسم الله';position:absolute;right:24px;top:50%;tra
 <script>
 // ═══════════════════════════════════════════
 // VERB CONJUGATION DATA
-// Pattern: فَعَلَ / يَفْعَلُ — base verb object
-// conj: { madi:{}, mudari:{}, emir:{} }
-// madi keys: ana, anta, anti, huwa, hiya, nahnu, antum, antunna, hum, hunna
 // ═══════════════════════════════════════════
 const PRONOUNS = {
-  ana:   {tr:"Ben",        ar:"أَنَا",      en:"I"},
-  anta:  {tr:"Sen (E)",    ar:"أَنْتَ",     en:"you m."},
-  anti:  {tr:"Sen (K)",    ar:"أَنْتِ",     en:"you f."},
-  huwa:  {tr:"O (E)",      ar:"هُوَ",       en:"he"},
-  hiya:  {tr:"O (K)",      ar:"هِيَ",       en:"she"},
-  nahnu: {tr:"Biz",        ar:"نَحْنُ",     en:"we"},
-  antum: {tr:"Siz (E)",    ar:"أَنْتُمْ",   en:"you pl.m."},
-  antunna:{tr:"Siz (K)",   ar:"أَنْتُنَّ",  en:"you pl.f."},
-  hum:   {tr:"Onlar (E)",  ar:"هُمْ",       en:"they m."},
-  hunna: {tr:"Onlar (K)",  ar:"هُنَّ",      en:"they f."},
+  ana:    {tr:"Ben",         ar:"أَنَا"},
+  anta:   {tr:"Sen (E)",     ar:"أَنْتَ"},
+  anti:   {tr:"Sen (K)",     ar:"أَنْتِ"},
+  huwa:   {tr:"O (E)",       ar:"هُوَ"},
+  hiya:   {tr:"O (K)",       ar:"هِيَ"},
+  nahnu:  {tr:"Biz",         ar:"نَحْنُ"},
+  antum:  {tr:"Siz (E)",     ar:"أَنْتُمْ"},
+  antunna:{tr:"Siz (K)",     ar:"أَنْتُنَّ"},
+  hum:    {tr:"Onlar (E)",   ar:"هُمْ"},
+  hunna:  {tr:"Onlar (K)",   ar:"هُنَّ"},
 };
 
-// Conjugation tables for common verbs
 const VERB_CONJ = {
-  // ذَهَبَ — Gitmek
   "ذَهَبَ": {
-    root:"ذ-ه-ب", pattern:"فَعَلَ / يَفْعَلُ",
-    madi:{
-      ana:"ذَهَبْتُ", anta:"ذَهَبْتَ", anti:"ذَهَبْتِ", huwa:"ذَهَبَ", hiya:"ذَهَبَتْ",
-      nahnu:"ذَهَبْنَا", antum:"ذَهَبْتُمْ", antunna:"ذَهَبْتُنَّ", hum:"ذَهَبُوا", hunna:"ذَهَبْنَ"
-    },
-    mudari:{
-      ana:"أَذْهَبُ", anta:"تَذْهَبُ", anti:"تَذْهَبِينَ", huwa:"يَذْهَبُ", hiya:"تَذْهَبُ",
-      nahnu:"نَذْهَبُ", antum:"تَذْهَبُونَ", antunna:"تَذْهَبْنَ", hum:"يَذْهَبُونَ", hunna:"يَذْهَبْنَ"
-    },
-    emir:{
-      anta:"اِذْهَبْ", anti:"اِذْهَبِي", antum:"اِذْهَبُوا", antunna:"اِذْهَبْنَ"
-    }
+    root:"ذ-ه-ب", pattern:"فَعَلَ / يَفْعَلُ", icon:"🚶", type:"Sağlam",
+    madi:{ ana:"ذَهَبْتُ",anta:"ذَهَبْتَ",anti:"ذَهَبْتِ",huwa:"ذَهَبَ",hiya:"ذَهَبَتْ",nahnu:"ذَهَبْنَا",antum:"ذَهَبْتُمْ",antunna:"ذَهَبْتُنَّ",hum:"ذَهَبُوا",hunna:"ذَهَبْنَ" },
+    mudari:{ ana:"أَذْهَبُ",anta:"تَذْهَبُ",anti:"تَذْهَبِينَ",huwa:"يَذْهَبُ",hiya:"تَذْهَبُ",nahnu:"نَذْهَبُ",antum:"تَذْهَبُونَ",antunna:"تَذْهَبْنَ",hum:"يَذْهَبُونَ",hunna:"يَذْهَبْنَ" },
+    emir:{ anta:"اِذْهَبْ",anti:"اِذْهَبِي",antum:"اِذْهَبُوا",antunna:"اِذْهَبْنَ" }
   },
-  // أَكَلَ — Yemek
   "أَكَلَ": {
-    root:"أ-ك-ل", pattern:"فَعَلَ / يَفْعَلُ",
-    madi:{
-      ana:"أَكَلْتُ", anta:"أَكَلْتَ", anti:"أَكَلْتِ", huwa:"أَكَلَ", hiya:"أَكَلَتْ",
-      nahnu:"أَكَلْنَا", antum:"أَكَلْتُمْ", antunna:"أَكَلْتُنَّ", hum:"أَكَلُوا", hunna:"أَكَلْنَ"
-    },
-    mudari:{
-      ana:"آكُلُ", anta:"تَأْكُلُ", anti:"تَأْكُلِينَ", huwa:"يَأْكُلُ", hiya:"تَأْكُلُ",
-      nahnu:"نَأْكُلُ", antum:"تَأْكُلُونَ", antunna:"تَأْكُلْنَ", hum:"يَأْكُلُونَ", hunna:"يَأْكُلْنَ"
-    },
-    emir:{
-      anta:"كُلْ", anti:"كُلِي", antum:"كُلُوا", antunna:"كُلْنَ"
-    }
+    root:"أ-ك-ل", pattern:"فَعَلَ / يَفْعُلُ", icon:"🍽️", type:"Sağlam",
+    madi:{ ana:"أَكَلْتُ",anta:"أَكَلْتَ",anti:"أَكَلْتِ",huwa:"أَكَلَ",hiya:"أَكَلَتْ",nahnu:"أَكَلْنَا",antum:"أَكَلْتُمْ",antunna:"أَكَلْتُنَّ",hum:"أَكَلُوا",hunna:"أَكَلْنَ" },
+    mudari:{ ana:"آكُلُ",anta:"تَأْكُلُ",anti:"تَأْكُلِينَ",huwa:"يَأْكُلُ",hiya:"تَأْكُلُ",nahnu:"نَأْكُلُ",antum:"تَأْكُلُونَ",antunna:"تَأْكُلْنَ",hum:"يَأْكُلُونَ",hunna:"يَأْكُلْنَ" },
+    emir:{ anta:"كُلْ",anti:"كُلِي",antum:"كُلُوا",antunna:"كُلْنَ" }
   },
-  // شَرِبَ — İçmek
   "شَرِبَ": {
-    root:"ش-ر-ب", pattern:"فَعِلَ / يَفْعَلُ",
-    madi:{
-      ana:"شَرِبْتُ", anta:"شَرِبْتَ", anti:"شَرِبْتِ", huwa:"شَرِبَ", hiya:"شَرِبَتْ",
-      nahnu:"شَرِبْنَا", antum:"شَرِبْتُمْ", antunna:"شَرِبْتُنَّ", hum:"شَرِبُوا", hunna:"شَرِبْنَ"
-    },
-    mudari:{
-      ana:"أَشْرَبُ", anta:"تَشْرَبُ", anti:"تَشْرَبِينَ", huwa:"يَشْرَبُ", hiya:"تَشْرَبُ",
-      nahnu:"نَشْرَبُ", antum:"تَشْرَبُونَ", antunna:"تَشْرَبْنَ", hum:"يَشْرَبُونَ", hunna:"يَشْرَبْنَ"
-    },
-    emir:{
-      anta:"اِشْرَبْ", anti:"اِشْرَبِي", antum:"اِشْرَبُوا", antunna:"اِشْرَبْنَ"
-    }
+    root:"ش-ر-ب", pattern:"فَعِلَ / يَفْعَلُ", icon:"🥤", type:"Sağlam",
+    madi:{ ana:"شَرِبْتُ",anta:"شَرِبْتَ",anti:"شَرِبْتِ",huwa:"شَرِبَ",hiya:"شَرِبَتْ",nahnu:"شَرِبْنَا",antum:"شَرِبْتُمْ",antunna:"شَرِبْتُنَّ",hum:"شَرِبُوا",hunna:"شَرِبْنَ" },
+    mudari:{ ana:"أَشْرَبُ",anta:"تَشْرَبُ",anti:"تَشْرَبِينَ",huwa:"يَشْرَبُ",hiya:"تَشْرَبُ",nahnu:"نَشْرَبُ",antum:"تَشْرَبُونَ",antunna:"تَشْرَبْنَ",hum:"يَشْرَبُونَ",hunna:"يَشْرَبْنَ" },
+    emir:{ anta:"اِشْرَبْ",anti:"اِشْرَبِي",antum:"اِشْرَبُوا",antunna:"اِشْرَبْنَ" }
   },
-  // كَتَبَ — Yazmak
   "كَتَبَ": {
-    root:"ك-ت-ب", pattern:"فَعَلَ / يَفْعُلُ",
-    madi:{
-      ana:"كَتَبْتُ", anta:"كَتَبْتَ", anti:"كَتَبْتِ", huwa:"كَتَبَ", hiya:"كَتَبَتْ",
-      nahnu:"كَتَبْنَا", antum:"كَتَبْتُمْ", antunna:"كَتَبْتُنَّ", hum:"كَتَبُوا", hunna:"كَتَبْنَ"
-    },
-    mudari:{
-      ana:"أَكْتُبُ", anta:"تَكْتُبُ", anti:"تَكْتُبِينَ", huwa:"يَكْتُبُ", hiya:"تَكْتُبُ",
-      nahnu:"نَكْتُبُ", antum:"تَكْتُبُونَ", antunna:"تَكْتُبْنَ", hum:"يَكْتُبُونَ", hunna:"يَكْتُبْنَ"
-    },
-    emir:{
-      anta:"اُكْتُبْ", anti:"اُكْتُبِي", antum:"اُكْتُبُوا", antunna:"اُكْتُبْنَ"
-    }
+    root:"ك-ت-ب", pattern:"فَعَلَ / يَفْعُلُ", icon:"✍️", type:"Sağlam",
+    madi:{ ana:"كَتَبْتُ",anta:"كَتَبْتَ",anti:"كَتَبْتِ",huwa:"كَتَبَ",hiya:"كَتَبَتْ",nahnu:"كَتَبْنَا",antum:"كَتَبْتُمْ",antunna:"كَتَبْتُنَّ",hum:"كَتَبُوا",hunna:"كَتَبْنَ" },
+    mudari:{ ana:"أَكْتُبُ",anta:"تَكْتُبُ",anti:"تَكْتُبِينَ",huwa:"يَكْتُبُ",hiya:"تَكْتُبُ",nahnu:"نَكْتُبُ",antum:"تَكْتُبُونَ",antunna:"تَكْتُبْنَ",hum:"يَكْتُبُونَ",hunna:"يَكْتُبْنَ" },
+    emir:{ anta:"اُكْتُبْ",anti:"اُكْتُبِي",antum:"اُكْتُبُوا",antunna:"اُكْتُبْنَ" }
   },
-  // قَرَأَ — Okumak
   "قَرَأَ": {
-    root:"ق-ر-أ", pattern:"فَعَلَ / يَفْعَلُ",
-    madi:{
-      ana:"قَرَأْتُ", anta:"قَرَأْتَ", anti:"قَرَأْتِ", huwa:"قَرَأَ", hiya:"قَرَأَتْ",
-      nahnu:"قَرَأْنَا", antum:"قَرَأْتُمْ", antunna:"قَرَأْتُنَّ", hum:"قَرَأُوا", hunna:"قَرَأْنَ"
-    },
-    mudari:{
-      ana:"أَقْرَأُ", anta:"تَقْرَأُ", anti:"تَقْرَئِينَ", huwa:"يَقْرَأُ", hiya:"تَقْرَأُ",
-      nahnu:"نَقْرَأُ", antum:"تَقْرَأُونَ", antunna:"تَقْرَأْنَ", hum:"يَقْرَأُونَ", hunna:"يَقْرَأْنَ"
-    },
-    emir:{
-      anta:"اِقْرَأْ", anti:"اِقْرَئِي", antum:"اِقْرَأُوا", antunna:"اِقْرَأْنَ"
-    }
+    root:"ق-ر-أ", pattern:"فَعَلَ / يَفْعَلُ", icon:"📖", type:"Hemzeli",
+    madi:{ ana:"قَرَأْتُ",anta:"قَرَأْتَ",anti:"قَرَأْتِ",huwa:"قَرَأَ",hiya:"قَرَأَتْ",nahnu:"قَرَأْنَا",antum:"قَرَأْتُمْ",antunna:"قَرَأْتُنَّ",hum:"قَرَأُوا",hunna:"قَرَأْنَ" },
+    mudari:{ ana:"أَقْرَأُ",anta:"تَقْرَأُ",anti:"تَقْرَئِينَ",huwa:"يَقْرَأُ",hiya:"تَقْرَأُ",nahnu:"نَقْرَأُ",antum:"تَقْرَأُونَ",antunna:"تَقْرَأْنَ",hum:"يَقْرَأُونَ",hunna:"يَقْرَأْنَ" },
+    emir:{ anta:"اِقْرَأْ",anti:"اِقْرَئِي",antum:"اِقْرَأُوا",antunna:"اِقْرَأْنَ" }
   },
-  // عَمِلَ — Çalışmak
   "عَمِلَ": {
-    root:"ع-م-ل", pattern:"فَعِلَ / يَفْعَلُ",
-    madi:{
-      ana:"عَمِلْتُ", anta:"عَمِلْتَ", anti:"عَمِلْتِ", huwa:"عَمِلَ", hiya:"عَمِلَتْ",
-      nahnu:"عَمِلْنَا", antum:"عَمِلْتُمْ", antunna:"عَمِلْتُنَّ", hum:"عَمِلُوا", hunna:"عَمِلْنَ"
-    },
-    mudari:{
-      ana:"أَعْمَلُ", anta:"تَعْمَلُ", anti:"تَعْمَلِينَ", huwa:"يَعْمَلُ", hiya:"تَعْمَلُ",
-      nahnu:"نَعْمَلُ", antum:"تَعْمَلُونَ", antunna:"تَعْمَلْنَ", hum:"يَعْمَلُونَ", hunna:"يَعْمَلْنَ"
-    },
-    emir:{
-      anta:"اِعْمَلْ", anti:"اِعْمَلِي", antum:"اِعْمَلُوا", antunna:"اِعْمَلْنَ"
-    }
+    root:"ع-م-ل", pattern:"فَعِلَ / يَفْعَلُ", icon:"💼", type:"Sağlam",
+    madi:{ ana:"عَمِلْتُ",anta:"عَمِلْتَ",anti:"عَمِلْتِ",huwa:"عَمِلَ",hiya:"عَمِلَتْ",nahnu:"عَمِلْنَا",antum:"عَمِلْتُمْ",antunna:"عَمِلْتُنَّ",hum:"عَمِلُوا",hunna:"عَمِلْنَ" },
+    mudari:{ ana:"أَعْمَلُ",anta:"تَعْمَلُ",anti:"تَعْمَلِينَ",huwa:"يَعْمَلُ",hiya:"تَعْمَلُ",nahnu:"نَعْمَلُ",antum:"تَعْمَلُونَ",antunna:"تَعْمَلْنَ",hum:"يَعْمَلُونَ",hunna:"يَعْمَلْنَ" },
+    emir:{ anta:"اِعْمَلْ",anti:"اِعْمَلِي",antum:"اِعْمَلُوا",antunna:"اِعْمَلْنَ" }
   },
-  // نَامَ — Uyumak
   "نَامَ": {
-    root:"ن-و-م", pattern:"فَعَلَ / يَفْعُلُ (أجوف)",
-    madi:{
-      ana:"نِمْتُ", anta:"نِمْتَ", anti:"نِمْتِ", huwa:"نَامَ", hiya:"نَامَتْ",
-      nahnu:"نِمْنَا", antum:"نِمْتُمْ", antunna:"نِمْتُنَّ", hum:"نَامُوا", hunna:"نِمْنَ"
-    },
-    mudari:{
-      ana:"أَنَامُ", anta:"تَنَامُ", anti:"تَنَامِينَ", huwa:"يَنَامُ", hiya:"تَنَامُ",
-      nahnu:"نَنَامُ", antum:"تَنَامُونَ", antunna:"تَنَمْنَ", hum:"يَنَامُونَ", hunna:"يَنَمْنَ"
-    },
-    emir:{
-      anta:"نَمْ", anti:"نَامِي", antum:"نَامُوا", antunna:"نَمْنَ"
-    }
+    root:"ن-و-م", pattern:"فَعَلَ / يَفْعُلُ (أجوف)", icon:"😴", type:"İçi Zayıf (و)",
+    madi:{ ana:"نِمْتُ",anta:"نِمْتَ",anti:"نِمْتِ",huwa:"نَامَ",hiya:"نَامَتْ",nahnu:"نِمْنَا",antum:"نِمْتُمْ",antunna:"نِمْتُنَّ",hum:"نَامُوا",hunna:"نِمْنَ" },
+    mudari:{ ana:"أَنَامُ",anta:"تَنَامُ",anti:"تَنَامِينَ",huwa:"يَنَامُ",hiya:"تَنَامُ",nahnu:"نَنَامُ",antum:"تَنَامُونَ",antunna:"تَنَمْنَ",hum:"يَنَامُونَ",hunna:"يَنَمْنَ" },
+    emir:{ anta:"نَمْ",anti:"نَامِي",antum:"نَامُوا",antunna:"نَمْنَ" }
   },
-  // جَاءَ — Gelmek
   "جَاءَ": {
-    root:"ج-ي-ء", pattern:"فَعَلَ / يَفْعِلُ (لفيف)",
-    madi:{
-      ana:"جِئْتُ", anta:"جِئْتَ", anti:"جِئْتِ", huwa:"جَاءَ", hiya:"جَاءَتْ",
-      nahnu:"جِئْنَا", antum:"جِئْتُمْ", antunna:"جِئْتُنَّ", hum:"جَاءُوا", hunna:"جِئْنَ"
-    },
-    mudari:{
-      ana:"أَجِيءُ", anta:"تَجِيءُ", anti:"تَجِيئِينَ", huwa:"يَجِيءُ", hiya:"تَجِيءُ",
-      nahnu:"نَجِيءُ", antum:"تَجِيئُونَ", antunna:"تَجِئْنَ", hum:"يَجِيئُونَ", hunna:"يَجِئْنَ"
-    },
-    emir:{
-      anta:"جِئْ", anti:"جِيئِي", antum:"جِيئُوا", antunna:"جِئْنَ"
-    }
+    root:"ج-ي-ء", pattern:"فَعَلَ / يَفْعِلُ", icon:"🚶‍♂️", type:"Düzensiz",
+    madi:{ ana:"جِئْتُ",anta:"جِئْتَ",anti:"جِئْتِ",huwa:"جَاءَ",hiya:"جَاءَتْ",nahnu:"جِئْنَا",antum:"جِئْتُمْ",antunna:"جِئْتُنَّ",hum:"جَاءُوا",hunna:"جِئْنَ" },
+    mudari:{ ana:"أَجِيءُ",anta:"تَجِيءُ",anti:"تَجِيئِينَ",huwa:"يَجِيءُ",hiya:"تَجِيءُ",nahnu:"نَجِيءُ",antum:"تَجِيئُونَ",antunna:"تَجِئْنَ",hum:"يَجِيئُونَ",hunna:"يَجِئْنَ" },
+    emir:{ anta:"جِئْ",anti:"جِيئِي",antum:"جِيئُوا",antunna:"جِئْنَ" }
   },
-  // قَالَ — Söylemek
   "قَالَ": {
-    root:"ق-و-ل", pattern:"فَعَلَ / يَفْعُلُ (أجوف)",
-    madi:{
-      ana:"قُلْتُ", anta:"قُلْتَ", anti:"قُلْتِ", huwa:"قَالَ", hiya:"قَالَتْ",
-      nahnu:"قُلْنَا", antum:"قُلْتُمْ", antunna:"قُلْتُنَّ", hum:"قَالُوا", hunna:"قُلْنَ"
-    },
-    mudari:{
-      ana:"أَقُولُ", anta:"تَقُولُ", anti:"تَقُولِينَ", huwa:"يَقُولُ", hiya:"تَقُولُ",
-      nahnu:"نَقُولُ", antum:"تَقُولُونَ", antunna:"تَقُلْنَ", hum:"يَقُولُونَ", hunna:"يَقُلْنَ"
-    },
-    emir:{
-      anta:"قُلْ", anti:"قُولِي", antum:"قُولُوا", antunna:"قُلْنَ"
-    }
+    root:"ق-و-ل", pattern:"فَعَلَ / يَفْعُلُ (أجوف)", icon:"💬", type:"İçi Zayıf (و)",
+    madi:{ ana:"قُلْتُ",anta:"قُلْتَ",anti:"قُلْتِ",huwa:"قَالَ",hiya:"قَالَتْ",nahnu:"قُلْنَا",antum:"قُلْتُمْ",antunna:"قُلْتُنَّ",hum:"قَالُوا",hunna:"قُلْنَ" },
+    mudari:{ ana:"أَقُولُ",anta:"تَقُولُ",anti:"تَقُولِينَ",huwa:"يَقُولُ",hiya:"تَقُولُ",nahnu:"نَقُولُ",antum:"تَقُولُونَ",antunna:"تَقُلْنَ",hum:"يَقُولُونَ",hunna:"يَقُلْنَ" },
+    emir:{ anta:"قُلْ",anti:"قُولِي",antum:"قُولُوا",antunna:"قُلْنَ" }
   },
-  // رَأَى — Görmek
   "رَأَى": {
-    root:"ر-أ-ي", pattern:"فَعَلَ / يَفْعَلُ (ناقص)",
-    madi:{
-      ana:"رَأَيْتُ", anta:"رَأَيْتَ", anti:"رَأَيْتِ", huwa:"رَأَى", hiya:"رَأَتْ",
-      nahnu:"رَأَيْنَا", antum:"رَأَيْتُمْ", antunna:"رَأَيْتُنَّ", hum:"رَأَوْا", hunna:"رَأَيْنَ"
-    },
-    mudari:{
-      ana:"أَرَى", anta:"تَرَى", anti:"تَرَيْنَ", huwa:"يَرَى", hiya:"تَرَى",
-      nahnu:"نَرَى", antum:"تَرَوْنَ", antunna:"تَرَيْنَ", hum:"يَرَوْنَ", hunna:"يَرَيْنَ"
-    },
-    emir:{
-      anta:"اِرَ", anti:"اِرَيْ", antum:"اِرَوْا", antunna:"اِرَيْنَ"
-    }
+    root:"ر-أ-ي", pattern:"فَعَلَ / يَفْعَلُ (ناقص)", icon:"👁️", type:"Sonu Zayıf",
+    madi:{ ana:"رَأَيْتُ",anta:"رَأَيْتَ",anti:"رَأَيْتِ",huwa:"رَأَى",hiya:"رَأَتْ",nahnu:"رَأَيْنَا",antum:"رَأَيْتُمْ",antunna:"رَأَيْتُنَّ",hum:"رَأَوْا",hunna:"رَأَيْنَ" },
+    mudari:{ ana:"أَرَى",anta:"تَرَى",anti:"تَرَيْنَ",huwa:"يَرَى",hiya:"تَرَى",nahnu:"نَرَى",antum:"تَرَوْنَ",antunna:"تَرَيْنَ",hum:"يَرَوْنَ",hunna:"يَرَيْنَ" },
+    emir:{ anta:"اِرَ",anti:"اِرَيْ",antum:"اِرَوْا",antunna:"اِرَيْنَ" }
   },
-  // أَحَبَّ — Sevmek
   "أَحَبَّ": {
-    root:"ح-ب-ب", pattern:"أَفْعَلَ / يُفْعِلُ (مضعف)",
-    madi:{
-      ana:"أَحْبَبْتُ", anta:"أَحْبَبْتَ", anti:"أَحْبَبْتِ", huwa:"أَحَبَّ", hiya:"أَحَبَّتْ",
-      nahnu:"أَحْبَبْنَا", antum:"أَحْبَبْتُمْ", antunna:"أَحْبَبْتُنَّ", hum:"أَحَبُّوا", hunna:"أَحْبَبْنَ"
-    },
-    mudari:{
-      ana:"أُحِبُّ", anta:"تُحِبُّ", anti:"تُحِبِّينَ", huwa:"يُحِبُّ", hiya:"تُحِبُّ",
-      nahnu:"نُحِبُّ", antum:"تُحِبُّونَ", antunna:"تُحِبِّينَ", hum:"يُحِبُّونَ", hunna:"يُحْبِبْنَ"
-    },
-    emir:{
-      anta:"أَحِبَّ", anti:"أَحِبِّي", antum:"أَحِبُّوا", antunna:"أَحْبِبْنَ"
-    }
+    root:"ح-ب-ب", pattern:"أَفْعَلَ / يُفْعِلُ", icon:"❤️", type:"Şeddeli (مضعف)",
+    madi:{ ana:"أَحْبَبْتُ",anta:"أَحْبَبْتَ",anti:"أَحْبَبْتِ",huwa:"أَحَبَّ",hiya:"أَحَبَّتْ",nahnu:"أَحْبَبْنَا",antum:"أَحْبَبْتُمْ",antunna:"أَحْبَبْتُنَّ",hum:"أَحَبُّوا",hunna:"أَحْبَبْنَ" },
+    mudari:{ ana:"أُحِبُّ",anta:"تُحِبُّ",anti:"تُحِبِّينَ",huwa:"يُحِبُّ",hiya:"تُحِبُّ",nahnu:"نُحِبُّ",antum:"تُحِبُّونَ",antunna:"تُحِبِّينَ",hum:"يُحِبُّونَ",hunna:"يُحْبِبْنَ" },
+    emir:{ anta:"أَحِبَّ",anti:"أَحِبِّي",antum:"أَحِبُّوا",antunna:"أَحْبِبْنَ" }
   },
-  // فَهِمَ — Anlamak
   "فَهِمَ": {
-    root:"ف-ه-م", pattern:"فَعِلَ / يَفْعَلُ",
-    madi:{
-      ana:"فَهِمْتُ", anta:"فَهِمْتَ", anti:"فَهِمْتِ", huwa:"فَهِمَ", hiya:"فَهِمَتْ",
-      nahnu:"فَهِمْنَا", antum:"فَهِمْتُمْ", antunna:"فَهِمْتُنَّ", hum:"فَهِمُوا", hunna:"فَهِمْنَ"
-    },
-    mudari:{
-      ana:"أَفْهَمُ", anta:"تَفْهَمُ", anti:"تَفْهَمِينَ", huwa:"يَفْهَمُ", hiya:"تَفْهَمُ",
-      nahnu:"نَفْهَمُ", antum:"تَفْهَمُونَ", antunna:"تَفْهَمْنَ", hum:"يَفْهَمُونَ", hunna:"يَفْهَمْنَ"
-    },
-    emir:{
-      anta:"اِفْهَمْ", anti:"اِفْهَمِي", antum:"اِفْهَمُوا", antunna:"اِفْهَمْنَ"
-    }
+    root:"ف-ه-م", pattern:"فَعِلَ / يَفْعَلُ", icon:"💡", type:"Sağlam",
+    madi:{ ana:"فَهِمْتُ",anta:"فَهِمْتَ",anti:"فَهِمْتِ",huwa:"فَهِمَ",hiya:"فَهِمَتْ",nahnu:"فَهِمْنَا",antum:"فَهِمْتُمْ",antunna:"فَهِمْتُنَّ",hum:"فَهِمُوا",hunna:"فَهِمْنَ" },
+    mudari:{ ana:"أَفْهَمُ",anta:"تَفْهَمُ",anti:"تَفْهَمِينَ",huwa:"يَفْهَمُ",hiya:"تَفْهَمُ",nahnu:"نَفْهَمُ",antum:"تَفْهَمُونَ",antunna:"تَفْهَمْنَ",hum:"يَفْهَمُونَ",hunna:"يَفْهَمْنَ" },
+    emir:{ anta:"اِفْهَمْ",anti:"اِفْهَمِي",antum:"اِفْهَمُوا",antunna:"اِفْهَمْنَ" }
   },
-  // طَبَخَ — Pişirmek
   "طَبَخَ": {
-    root:"ط-ب-خ", pattern:"فَعَلَ / يَفْعُلُ",
-    madi:{
-      ana:"طَبَخْتُ", anta:"طَبَخْتَ", anti:"طَبَخْتِ", huwa:"طَبَخَ", hiya:"طَبَخَتْ",
-      nahnu:"طَبَخْنَا", antum:"طَبَخْتُمْ", antunna:"طَبَخْتُنَّ", hum:"طَبَخُوا", hunna:"طَبَخْنَ"
-    },
-    mudari:{
-      ana:"أَطْبُخُ", anta:"تَطْبُخُ", anti:"تَطْبُخِينَ", huwa:"يَطْبُخُ", hiya:"تَطْبُخُ",
-      nahnu:"نَطْبُخُ", antum:"تَطْبُخُونَ", antunna:"تَطْبُخْنَ", hum:"يَطْبُخُونَ", hunna:"يَطْبُخْنَ"
-    },
-    emir:{
-      anta:"اُطْبُخْ", anti:"اُطْبُخِي", antum:"اُطْبُخُوا", antunna:"اُطْبُخْنَ"
-    }
+    root:"ط-ب-خ", pattern:"فَعَلَ / يَفْعُلُ", icon:"🍳", type:"Sağlam",
+    madi:{ ana:"طَبَخْتُ",anta:"طَبَخْتَ",anti:"طَبَخْتِ",huwa:"طَبَخَ",hiya:"طَبَخَتْ",nahnu:"طَبَخْنَا",antum:"طَبَخْتُمْ",antunna:"طَبَخْتُنَّ",hum:"طَبَخُوا",hunna:"طَبَخْنَ" },
+    mudari:{ ana:"أَطْبُخُ",anta:"تَطْبُخُ",anti:"تَطْبُخِينَ",huwa:"يَطْبُخُ",hiya:"تَطْبُخُ",nahnu:"نَطْبُخُ",antum:"تَطْبُخُونَ",antunna:"تَطْبُخْنَ",hum:"يَطْبُخُونَ",hunna:"يَطْبُخْنَ" },
+    emir:{ anta:"اُطْبُخْ",anti:"اُطْبُخِي",antum:"اُطْبُخُوا",antunna:"اُطْبُخْنَ" }
   },
-  // غَسَلَ — Yıkamak
   "غَسَلَ": {
-    root:"غ-س-ل", pattern:"فَعَلَ / يَفْعِلُ",
-    madi:{
-      ana:"غَسَلْتُ", anta:"غَسَلْتَ", anti:"غَسَلْتِ", huwa:"غَسَلَ", hiya:"غَسَلَتْ",
-      nahnu:"غَسَلْنَا", antum:"غَسَلْتُمْ", antunna:"غَسَلْتُنَّ", hum:"غَسَلُوا", hunna:"غَسَلْنَ"
-    },
-    mudari:{
-      ana:"أَغْسِلُ", anta:"تَغْسِلُ", anti:"تَغْسِلِينَ", huwa:"يَغْسِلُ", hiya:"تَغْسِلُ",
-      nahnu:"نَغْسِلُ", antum:"تَغْسِلُونَ", antunna:"تَغْسِلْنَ", hum:"يَغْسِلُونَ", hunna:"يَغْسِلْنَ"
-    },
-    emir:{
-      anta:"اِغْسِلْ", anti:"اِغْسِلِي", antum:"اِغْسِلُوا", antunna:"اِغْسِلْنَ"
-    }
+    root:"غ-س-ل", pattern:"فَعَلَ / يَفْعِلُ", icon:"🫧", type:"Sağlam",
+    madi:{ ana:"غَسَلْتُ",anta:"غَسَلْتَ",anti:"غَسَلْتِ",huwa:"غَسَلَ",hiya:"غَسَلَتْ",nahnu:"غَسَلْنَا",antum:"غَسَلْتُمْ",antunna:"غَسَلْتُنَّ",hum:"غَسَلُوا",hunna:"غَسَلْنَ" },
+    mudari:{ ana:"أَغْسِلُ",anta:"تَغْسِلُ",anti:"تَغْسِلِينَ",huwa:"يَغْسِلُ",hiya:"تَغْسِلُ",nahnu:"نَغْسِلُ",antum:"تَغْسِلُونَ",antunna:"تَغْسِلْنَ",hum:"يَغْسِلُونَ",hunna:"يَغْسِلْنَ" },
+    emir:{ anta:"اِغْسِلْ",anti:"اِغْسِلِي",antum:"اِغْسِلُوا",antunna:"اِغْسِلْنَ" }
   },
-  // سَمِعَ — Duymak
   "سَمِعَ": {
-    root:"س-م-ع", pattern:"فَعِلَ / يَفْعَلُ",
-    madi:{
-      ana:"سَمِعْتُ", anta:"سَمِعْتَ", anti:"سَمِعْتِ", huwa:"سَمِعَ", hiya:"سَمِعَتْ",
-      nahnu:"سَمِعْنَا", antum:"سَمِعْتُمْ", antunna:"سَمِعْتُنَّ", hum:"سَمِعُوا", hunna:"سَمِعْنَ"
-    },
-    mudari:{
-      ana:"أَسْمَعُ", anta:"تَسْمَعُ", anti:"تَسْمَعِينَ", huwa:"يَسْمَعُ", hiya:"تَسْمَعُ",
-      nahnu:"نَسْمَعُ", antum:"تَسْمَعُونَ", antunna:"تَسْمَعْنَ", hum:"يَسْمَعُونَ", hunna:"يَسْمَعْنَ"
-    },
-    emir:{
-      anta:"اِسْمَعْ", anti:"اِسْمَعِي", antum:"اِسْمَعُوا", antunna:"اِسْمَعْنَ"
-    }
+    root:"س-م-ع", pattern:"فَعِلَ / يَفْعَلُ", icon:"👂", type:"Sağlam",
+    madi:{ ana:"سَمِعْتُ",anta:"سَمِعْتَ",anti:"سَمِعْتِ",huwa:"سَمِعَ",hiya:"سَمِعَتْ",nahnu:"سَمِعْنَا",antum:"سَمِعْتُمْ",antunna:"سَمِعْتُنَّ",hum:"سَمِعُوا",hunna:"سَمِعْنَ" },
+    mudari:{ ana:"أَسْمَعُ",anta:"تَسْمَعُ",anti:"تَسْمَعِينَ",huwa:"يَسْمَعُ",hiya:"تَسْمَعُ",nahnu:"نَسْمَعُ",antum:"تَسْمَعُونَ",antunna:"تَسْمَعْنَ",hum:"يَسْمَعُونَ",hunna:"يَسْمَعْنَ" },
+    emir:{ anta:"اِسْمَعْ",anti:"اِسْمَعِي",antum:"اِسْمَعُوا",antunna:"اِسْمَعْنَ" }
   },
 };
 
-const TENSE_NAMES = {madi:"Mâzi — الماضي (Geçmiş)", mudari:"Muzâri — المضارع (Şimdiki/Gelecek)", emir:"Emir — الأمر"};
 const TENSE_SHORT = {madi:"Mâzi", mudari:"Muzâri", emir:"Emir"};
-const PRONOUN_ORDER_MADI  = ["ana","anta","anti","huwa","hiya","nahnu","antum","antunna","hum","hunna"];
-const PRONOUN_ORDER_MUDARI = ["ana","anta","anti","huwa","hiya","nahnu","antum","antunna","hum","hunna"];
+const PRONOUN_ORDER_FULL  = ["ana","anta","anti","huwa","hiya","nahnu","antum","antunna","hum","hunna"];
 const PRONOUN_ORDER_EMIR  = ["anta","anti","antum","antunna"];
 
-// Pronunciation hints for conjugated forms (simplified)
-const MADI_SUFFIX_NOTE  = "Şahıs eki mâziye eklenir.";
-const MUDARI_PREFIX_NOTE = "Şahıs ön eki muzâriye eklenir.";
+const TENSE_NOTES = {
+  madi: `<strong>Mâzi (الماضي)</strong> — Geçmiş zaman. Şahıs ekleri fiilin sonuna getirilir. هُوَ için ek yoktur; bu köktür. هِيَ için <strong>-تْ</strong> eklenir. هُمْ için <strong>-وا</strong> eklenir.`,
+  mudari: `<strong>Muzâri (المضارع)</strong> — Şimdiki/geniş zaman. أنا → <strong>أَ-</strong>, أنتَ/أنتِ → <strong>تَ-</strong>, هو → <strong>يَ-</strong>, هي → <strong>تَ-</strong>, نحن → <strong>نَ-</strong> ön ekleri kullanılır.`,
+  emir: `<strong>Emir (الأمر)</strong> — Yalnızca hitap şahısları (sen/siz) için kurulur. Erkek tekil: kısa form. Dişi tekil: <strong>-ي</strong> eklenir. Çoğul: <strong>-وا/-نَ</strong> eklenir.`
+};
 
 // ═══════════════════════════════════════════
 // WORDS DATABASE
 // ═══════════════════════════════════════════
 const words = [
-// BAŞLANGIÇ
 {ar:"مَرْحَبًا",tr:"Merhaba",pr:"Merhaben",cat:"baslangic",icon:"👋"},
 {ar:"أَهْلًا",tr:"Hoş geldin",pr:"Ehlen",cat:"baslangic",icon:"😊"},
 {ar:"شُكْرًا",tr:"Teşekkürler",pr:"Şükren",cat:"baslangic",icon:"🙏"},
@@ -943,7 +1764,6 @@ const words = [
 {ar:"هُوَ",tr:"O (erkek)",pr:"Hüve",cat:"baslangic",icon:"👉"},
 {ar:"هِيَ",tr:"O (kadın)",pr:"Hiye",cat:"baslangic",icon:"👈"},
 {ar:"نَحْنُ",tr:"Biz",pr:"Nahnu",cat:"baslangic",icon:"👫"},
-// RAKAMLAR
 {ar:"صِفْر",tr:"Sıfır — 0",pr:"Sıfr",cat:"rakam",icon:"0️⃣"},
 {ar:"وَاحِد",tr:"Bir — 1",pr:"Vâhid",cat:"rakam",icon:"1️⃣"},
 {ar:"اِثْنَان",tr:"İki — 2",pr:"İsnân",cat:"rakam",icon:"2️⃣"},
@@ -964,7 +1784,6 @@ const words = [
 {ar:"خَمْسُون",tr:"Elli — 50",pr:"Hamsûn",cat:"rakam",icon:"🔢"},
 {ar:"مِئَة",tr:"Yüz — 100",pr:"Mi'e",cat:"rakam",icon:"💯"},
 {ar:"أَلْف",tr:"Bin — 1000",pr:"Elf",cat:"rakam",icon:"🔢"},
-// EV GENEL
 {ar:"بَيْت",tr:"Ev",pr:"Bayt",cat:"genel",icon:"🏠"},
 {ar:"مَنْزِل",tr:"Konut",pr:"Menzil",cat:"genel",icon:"🏡"},
 {ar:"شَقَّة",tr:"Daire",pr:"Şakka",cat:"genel",icon:"🏢"},
@@ -982,7 +1801,6 @@ const words = [
 {ar:"مَخْرَج",tr:"Çıkış",pr:"Mahreç",cat:"genel",icon:"🚶‍♂️"},
 {ar:"مُرآب",tr:"Garaj",pr:"Mürâb",cat:"genel",icon:"🚗"},
 {ar:"سَطْح",tr:"Teras",pr:"Sath",cat:"genel",icon:"🌇"},
-// ODALAR
 {ar:"غُرْفَة",tr:"Oda",pr:"Gurfe",cat:"oda",icon:"🛏️"},
 {ar:"غُرْفَةُ النَّوْم",tr:"Yatak Odası",pr:"Gurfe-n-nevm",cat:"oda",icon:"🛌"},
 {ar:"غُرْفَةُ الجُلُوس",tr:"Oturma Odası",pr:"Gurfe-l-culûs",cat:"oda",icon:"🛋️"},
@@ -995,7 +1813,6 @@ const words = [
 {ar:"شُرْفَة",tr:"Balkon",pr:"Şurfe",cat:"oda",icon:"🌇"},
 {ar:"مَخْزَن",tr:"Depo",pr:"Mahzen",cat:"oda",icon:"📦"},
 {ar:"غُرْفَةُ الأَطْفَال",tr:"Çocuk Odası",pr:"Gurfe-l-etfâl",cat:"oda",icon:"🧸"},
-// MOBİLYA
 {ar:"سَرِير",tr:"Yatak",pr:"Serîr",cat:"mobilya",icon:"🛏️"},
 {ar:"وِسَادَة",tr:"Yastık",pr:"Visâde",cat:"mobilya",icon:"😴"},
 {ar:"أَرِيكَة",tr:"Kanepe",pr:"Erîke",cat:"mobilya",icon:"🛋️"},
@@ -1010,7 +1827,6 @@ const words = [
 {ar:"تَلْفَاز",tr:"Televizyon",pr:"Tilfâz",cat:"mobilya",icon:"📺"},
 {ar:"بِسَاط",tr:"Kilim",pr:"Bisât",cat:"mobilya",icon:"🟫"},
 {ar:"طَاوِلَةُ القَهْوَة",tr:"Sehpa",pr:"Tâviletü-l-kahve",cat:"mobilya",icon:"☕"},
-// MUTFAK
 {ar:"ثَلَّاجَة",tr:"Buzdolabı",pr:"Sellâce",cat:"mutfak",icon:"🧊"},
 {ar:"مَوْقِد",tr:"Ocak",pr:"Mevkid",cat:"mutfak",icon:"🔥"},
 {ar:"غَسَّالَة",tr:"Çamaşır Makinesi",pr:"Ğassâle",cat:"mutfak",icon:"🫧"},
@@ -1025,7 +1841,6 @@ const words = [
 {ar:"فُرْن",tr:"Fırın",pr:"Fürn",cat:"mutfak",icon:"🫙"},
 {ar:"مِيكْرُوِيف",tr:"Mikrodalga",pr:"Mikrûveyf",cat:"mutfak",icon:"📡"},
 {ar:"إِبْرِيق",tr:"Çaydanlık",pr:"İbrîk",cat:"mutfak",icon:"🫖"},
-// BANYO
 {ar:"مِنْشَفَة",tr:"Havlu",pr:"Mınşefe",cat:"banyo",icon:"🧺"},
 {ar:"صَابُون",tr:"Sabun",pr:"Sâbûn",cat:"banyo",icon:"🧼"},
 {ar:"حَوْض",tr:"Lavabo",pr:"Havd",cat:"banyo",icon:"🫧"},
@@ -1035,7 +1850,6 @@ const words = [
 {ar:"مَعْجُونُ الأَسْنَان",tr:"Diş Macunu",pr:"Ma'cûnu-l-esnân",cat:"banyo",icon:"🦷"},
 {ar:"شَامْبُو",tr:"Şampuan",pr:"Şâmbû",cat:"banyo",icon:"🧴"},
 {ar:"مِشْط",tr:"Tarak",pr:"Mişt",cat:"banyo",icon:"🪮"},
-// RENKLER
 {ar:"أَحْمَر",tr:"Kırmızı",pr:"Ahmer",cat:"renk",color:"#c0392b"},
 {ar:"أَزْرَق",tr:"Mavi",pr:"Ezrak",cat:"renk",color:"#2471a3"},
 {ar:"أَخْضَر",tr:"Yeşil",pr:"Ahdar",cat:"renk",color:"#1e8449"},
@@ -1052,7 +1866,6 @@ const words = [
 {ar:"زَيْتُونِيّ",tr:"Zeytin Yeşili",pr:"Zeytûnî",cat:"renk",color:"#4a5e23"},
 {ar:"سَمَاوِيّ",tr:"Açık Mavi",pr:"Semâvî",cat:"renk",color:"#2e86c1"},
 {ar:"بَيْجِيّ",tr:"Bej",pr:"Beycî",cat:"renk",color:"#c8a882",border:true},
-// SINIF
 {ar:"فَصْلٌ دِرَاسِيٌّ",tr:"Sınıf",pr:"Faslun dirâsî",cat:"sinif",icon:"🏫"},
 {ar:"سَبُّورَة",tr:"Tahta",pr:"Sabbûre",cat:"sinif",icon:"🖊️"},
 {ar:"كِتَاب",tr:"Kitap",pr:"Kitâb",cat:"sinif",icon:"📗"},
@@ -1071,7 +1884,6 @@ const words = [
 {ar:"وَاجِب",tr:"Ödev",pr:"Vâcib",cat:"sinif",icon:"📝"},
 {ar:"اِمْتِحَان",tr:"Sınav",pr:"İmtihân",cat:"sinif",icon:"📋"},
 {ar:"نَجَاح",tr:"Başarı",pr:"Necâh",cat:"sinif",icon:"🏆"},
-// HAYVANLAR
 {ar:"كَلْب",tr:"Köpek",pr:"Kelb",cat:"hayvan",icon:"🐕"},
 {ar:"قِطّ",tr:"Kedi",pr:"Kıtt",cat:"hayvan",icon:"🐈"},
 {ar:"حِصَان",tr:"At",pr:"Hısân",cat:"hayvan",icon:"🐴"},
@@ -1100,7 +1912,6 @@ const words = [
 {ar:"بَطَّة",tr:"Ördek",pr:"Batte",cat:"hayvan",icon:"🦆"},
 {ar:"حَمَامَة",tr:"Güvercin",pr:"Hamâme",cat:"hayvan",icon:"🕊️"},
 {ar:"عُصْفُور",tr:"Serçe",pr:"Usfûr",cat:"hayvan",icon:"🐤"},
-// MESLEKLER
 {ar:"طَبِيب",tr:"Doktor",pr:"Tabîb",cat:"meslek",icon:"👨‍⚕️"},
 {ar:"مُهَنْدِس",tr:"Mühendis",pr:"Mühendis",cat:"meslek",icon:"👷"},
 {ar:"مُعَلِّم",tr:"Öğretmen",pr:"Muallim",cat:"meslek",icon:"👨‍🏫"},
@@ -1118,7 +1929,6 @@ const words = [
 {ar:"خَبَّاز",tr:"Fırıncı",pr:"Habbâz",cat:"meslek",icon:"🍞"},
 {ar:"مُدِير",tr:"Müdür",pr:"Müdîr",cat:"meslek",icon:"👔"},
 {ar:"عَامِل",tr:"İşçi",pr:"Âmil",cat:"meslek",icon:"🔧"},
-// GIDA
 {ar:"خُبْز",tr:"Ekmek",pr:"Hubz",cat:"gida",icon:"🍞"},
 {ar:"أَرُزّ",tr:"Pirinç",pr:"Eruzz",cat:"gida",icon:"🍚"},
 {ar:"لَحْم",tr:"Et",pr:"Lahm",cat:"gida",icon:"🥩"},
@@ -1147,7 +1957,6 @@ const words = [
 {ar:"عَسَل",tr:"Bal",pr:"Asel",cat:"gida",icon:"🍯"},
 {ar:"حَلْوَى",tr:"Tatlı",pr:"Halvâ",cat:"gida",icon:"🍰"},
 {ar:"شَوْرَبَة",tr:"Çorba",pr:"Şorba",cat:"gida",icon:"🍜"},
-// FİİLLER
 {ar:"أَكَلَ",tr:"Yemek yemek",pr:"Ekele",cat:"fiil",icon:"🍽️",verb:true},
 {ar:"شَرِبَ",tr:"İçmek",pr:"Şeribe",cat:"fiil",icon:"🥤",verb:true},
 {ar:"ذَهَبَ",tr:"Gitmek",pr:"Zehebe",cat:"fiil",icon:"🚶",verb:true},
@@ -1187,7 +1996,6 @@ const words = [
 {ar:"وَقَفَ",tr:"Durmak",pr:"Vakafe",cat:"fiil",icon:"🛑"},
 {ar:"حَمَلَ",tr:"Taşımak",pr:"Hamele",cat:"fiil",icon:"📦"},
 {ar:"فَعَلَ",tr:"Yapmak",pr:"Fe'ale",cat:"fiil",icon:"⚡"},
-// VÜCUT
 {ar:"رَأْس",tr:"Baş",pr:"Re's",cat:"vucut",icon:"🗣️"},
 {ar:"وَجْه",tr:"Yüz",pr:"Veçh",cat:"vucut",icon:"😊"},
 {ar:"شَعْر",tr:"Saç",pr:"Şa'r",cat:"vucut",icon:"💇"},
@@ -1217,71 +2025,71 @@ const words = [
 // ═══════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════
-let learned=new Set(), currentCat='all', currentMode='grid';
-let hardWords=new Map();
+let learned = new Set(), currentCat = 'all', currentMode = 'grid';
+let hardWords = new Map();
 
-document.getElementById('total-badge').textContent=words.length+' Kelime';
-document.getElementById('prog').textContent='0 / '+words.length+' öğrenildi';
+document.getElementById('total-badge').textContent = words.length + ' Kelime';
+document.getElementById('prog').textContent = '0 / ' + words.length + ' öğrenildi';
 
 // ── SPEECH ──
-let voices=[];
-let voicesLoaded=false;
-function loadVoices(){if(!window.speechSynthesis)return;voices=window.speechSynthesis.getVoices();if(voices.length>0)voicesLoaded=true;}
-function getArVoice(){if(voices.length===0)loadVoices();return voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang&&v.lang.startsWith('ar'))||null;}
-if(window.speechSynthesis){loadVoices();window.speechSynthesis.onvoiceschanged=()=>{loadVoices();};setTimeout(loadVoices,300);setTimeout(loadVoices,1000);}
-function speakArabic(text,btn){
-  if(!window.speechSynthesis){showToast('Tarayıcınız sesi desteklemiyor.');return;}
+let voices = [], voicesLoaded = false;
+function loadVoices() { if (!window.speechSynthesis) return; voices = window.speechSynthesis.getVoices(); if (voices.length > 0) voicesLoaded = true; }
+function getArVoice() { if (voices.length === 0) loadVoices(); return voices.find(v => v.lang === 'ar-SA') || voices.find(v => v.lang && v.lang.startsWith('ar')) || null; }
+if (window.speechSynthesis) { loadVoices(); window.speechSynthesis.onvoiceschanged = () => { loadVoices(); }; setTimeout(loadVoices, 300); setTimeout(loadVoices, 1000); }
+
+function speakArabic(text, btn) {
+  if (!window.speechSynthesis) { showToast('Tarayıcınız sesi desteklemiyor.'); return; }
   window.speechSynthesis.cancel();
-  if(btn&&btn.classList.contains('speaking')){btn.classList.remove('speaking');btn.textContent='🔊';return;}
-  if(!voicesLoaded)loadVoices();
-  const utter=new SpeechSynthesisUtterance(text);
-  utter.lang='ar-SA';utter.rate=0.8;utter.pitch=1.0;
-  const arVoice=getArVoice();if(arVoice)utter.voice=arVoice;
-  if(btn){btn.classList.add('speaking');btn.textContent='🔉';}
-  utter.onend=()=>{if(btn){btn.classList.remove('speaking');btn.textContent='🔊';}};
-  utter.onerror=(e)=>{if(btn){btn.classList.remove('speaking');btn.textContent='🔊';}if(e.error==='not-allowed')showToast('Ses izni gerekiyor.');else if(!arVoice)showToast('Cihazınızda Arapça ses paketi yüklü değil.');};
-  setTimeout(()=>{try{window.speechSynthesis.speak(utter);}catch(e){}},50);
+  if (btn && btn.classList.contains('speaking')) { btn.classList.remove('speaking'); btn.textContent = '🔊'; return; }
+  if (!voicesLoaded) loadVoices();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'ar-SA'; utter.rate = 0.8; utter.pitch = 1.0;
+  const arVoice = getArVoice(); if (arVoice) utter.voice = arVoice;
+  if (btn) { btn.classList.add('speaking'); btn.textContent = '🔉'; }
+  utter.onend = () => { if (btn) { btn.classList.remove('speaking'); btn.textContent = '🔊'; } };
+  utter.onerror = (e) => { if (btn) { btn.classList.remove('speaking'); btn.textContent = '🔊'; } if (e.error === 'not-allowed') showToast('Ses izni gerekiyor.'); };
+  setTimeout(() => { try { window.speechSynthesis.speak(utter); } catch (e) {} }, 50);
 }
 
-// ── TOAST ──
-function showToast(msg,dur=2200){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
+function showToast(msg, dur = 2200) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), dur); }
 
 // ── MODE ──
-function setMode(m){
-  currentMode=m;
-  ['grid','swipe','quiz','write','conjpractice'].forEach(x=>{
-    const tab=document.getElementById('tab-'+x);
-    if(tab)tab.classList.toggle('active',x===m);
-    const el=document.getElementById(x+'-mode');
-    if(el)el.style.display=x===m?'block':'none';
+function setMode(m) {
+  currentMode = m;
+  ['grid','swipe','quiz','write','conjpractice'].forEach(x => {
+    const tab = document.getElementById('tab-' + x);
+    if (tab) tab.classList.toggle('active', x === m);
+    const el = document.getElementById(x + '-mode');
+    if (el) el.style.display = x === m ? 'block' : 'none';
   });
-  const fw=document.getElementById('filters-wrap');
-  if(fw)fw.style.display=(m==='conjpractice'?'none':'block');
-  if(m==='swipe')initSwipe();
-  if(m==='quiz')initQuiz();
-  if(m==='write')initWrite();
-  if(m==='conjpractice')initConjPractice();
+  const fw = document.getElementById('filters-wrap');
+  if (fw) fw.style.display = (m === 'conjpractice' ? 'none' : 'block');
+  if (m === 'swipe') initSwipe();
+  if (m === 'quiz') initQuiz();
+  if (m === 'write') initWrite();
+  if (m === 'conjpractice') renderConjLesson();
 }
 
 // ── FILTER ──
-function filter(cat,btn){currentCat=cat;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(currentMode==='grid')render();}
+function filter(cat, btn) { currentCat = cat; document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); if (currentMode === 'grid') render(); }
 
 // ── GRID RENDER ──
-function getList(){return currentCat==='all'?words:words.filter(w=>w.cat===currentCat);}
-function render(){
-  const grid=document.getElementById('grid');
-  grid.innerHTML='';
-  const catLabels={baslangic:'Başlangıç',rakam:'Rakam',genel:'Ev',oda:'Oda',mobilya:'Mobilya',mutfak:'Mutfak',banyo:'Banyo',renk:'Renk',sinif:'Sınıf',hayvan:'Hayvan',meslek:'Meslek',gida:'Gıda',fiil:'Fiil',vucut:'Vücut'};
-  getList().forEach(w=>{
-    const idx=words.indexOf(w);
-    const isColor=!!w.color;
-    const div=document.createElement('div');
-    div.className='card'+(learned.has(idx)?' flipped':'');
-    const fv=isColor?`<div class="color-swatch" style="background:${w.color};${w.border?'border:2px solid #aaa;':''}"></div>`:`<div class="card-icon">${w.icon}</div>`;
-    const bv=isColor?`<div class="back-swatch" style="background:${w.color};${w.border?'border:3px solid rgba(255,255,255,0.5);':''}"></div>`:`<div class="back-icon">${w.icon}</div>`;
-    const catLabel=catLabels[w.cat]||'';
-    const verbBadgeHTML=w.verb&&VERB_CONJ[w.ar]?`<button class="verb-badge" onclick="event.stopPropagation();openVerbModal(${idx})">⊞ Çekim</button>`:'';
-    div.innerHTML=`<div class="card-inner">
+function getList() { return currentCat === 'all' ? words : words.filter(w => w.cat === currentCat); }
+
+function render() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  const catLabels = {baslangic:'Başlangıç',rakam:'Rakam',genel:'Ev',oda:'Oda',mobilya:'Mobilya',mutfak:'Mutfak',banyo:'Banyo',renk:'Renk',sinif:'Sınıf',hayvan:'Hayvan',meslek:'Meslek',gida:'Gıda',fiil:'Fiil',vucut:'Vücut'};
+  getList().forEach(w => {
+    const idx = words.indexOf(w);
+    const isColor = !!w.color;
+    const div = document.createElement('div');
+    div.className = 'card' + (learned.has(idx) ? ' flipped' : '');
+    const fv = isColor ? `<div class="color-swatch" style="background:${w.color};${w.border ? 'border:2px solid rgba(255,255,255,0.3);' : ''}"></div>` : `<div class="card-icon">${w.icon}</div>`;
+    const bv = isColor ? `<div class="back-swatch" style="background:${w.color};${w.border ? 'border:3px solid rgba(255,255,255,0.15);' : ''}"></div>` : `<div class="back-icon">${w.icon}</div>`;
+    const catLabel = catLabels[w.cat] || '';
+    const verbBadgeHTML = w.verb && VERB_CONJ[w.ar] ? `<button class="verb-badge" onclick="event.stopPropagation();openVerbModal(${idx})">⊞ Çekim</button>` : '';
+    div.innerHTML = `<div class="card-inner">
       <div class="card-front">
         <span class="learned-star">⭐</span>
         <button class="speak-btn" title="Seslendir">🔊</button>
@@ -1301,157 +2109,181 @@ function render(){
         <div class="tap-hint">geri çevir</div>
       </div>
     </div>`;
-    div.querySelector('.speak-btn').addEventListener('click',e=>{e.stopPropagation();speakArabic(w.ar,e.currentTarget);});
-    div.addEventListener('click',()=>{div.classList.toggle('flipped');if(div.classList.contains('flipped'))learned.add(idx);else learned.delete(idx);updateProgress();});
+    div.querySelector('.speak-btn').addEventListener('click', e => { e.stopPropagation(); speakArabic(w.ar, e.currentTarget); });
+    div.addEventListener('click', () => { div.classList.toggle('flipped'); if (div.classList.contains('flipped')) learned.add(idx); else learned.delete(idx); updateProgress(); });
     grid.appendChild(div);
   });
   updateProgress();
 }
-function updateProgress(){
-  const t=words.length;
-  document.getElementById('fill').style.width=(learned.size/t*100)+'%';
-  document.getElementById('prog').textContent=`${learned.size} / ${t} öğrenildi`;
+
+function updateProgress() {
+  const t = words.length;
+  document.getElementById('fill').style.width = (learned.size / t * 100) + '%';
+  document.getElementById('prog').textContent = `${learned.size} / ${t} öğrenildi`;
 }
 
 // ═══════════════════════════════════════════
 // VERB CONJUGATION MODAL
 // ═══════════════════════════════════════════
-let currentVerbModal=null;
-let currentTense='madi';
+let currentVerbModal = null, currentTense = 'madi';
 
-function openVerbModal(wordIdx){
-  const w=words[wordIdx];
-  const conj=VERB_CONJ[w.ar];
-  if(!conj)return;
-  currentVerbModal=w;
-  currentTense='madi';
-  document.getElementById('modal-ar').textContent=w.ar;
-  document.getElementById('modal-tr').textContent=w.tr;
-  document.getElementById('modal-pr').innerHTML=`[ ${w.pr} ] &nbsp;·&nbsp; Kök: ${conj.root} &nbsp;·&nbsp; Kalıp: ${conj.pattern}`;
+function openVerbModal(wordIdx) {
+  const w = words[wordIdx];
+  const conj = VERB_CONJ[w.ar];
+  if (!conj) return;
+  currentVerbModal = w;
+  currentTense = 'madi';
+  document.getElementById('modal-ar').textContent = w.ar;
+  document.getElementById('modal-tr').textContent = w.tr;
+  document.getElementById('modal-pr').textContent = '[ ' + w.pr + ' ]';
+  document.getElementById('modal-icon').textContent = conj.icon || '🔤';
+  const rootEl = document.getElementById('modal-root');
+  const rootArEl = document.getElementById('modal-root-ar');
+  rootArEl.textContent = conj.root;
+  rootEl.style.display = 'inline-flex';
+  document.querySelector('#modal-root .root-label').textContent = 'KÖK: ' + conj.root + ' — ' + conj.type;
   renderModalBody();
   document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.body.style.overflow = 'hidden';
 }
 
-function renderModalBody(){
-  const w=currentVerbModal;
-  const conj=VERB_CONJ[w.ar];
-  const body=document.getElementById('modal-body');
-  const tenses=[
-    {key:'madi',label:'Mâzi (Geçmiş)'},
-    {key:'mudari',label:'Muzâri (Şimdiki/Gelen)'},
-    {key:'emir',label:'Emir'}
-  ];
-  const tabs=tenses.map(t=>`<button class="tense-tab${currentTense===t.key?' active':''}" onclick="switchTense('${t.key}')">${t.label}</button>`).join('');
+function renderModalBody() {
+  const w = currentVerbModal;
+  const conj = VERB_CONJ[w.ar];
+  const body = document.getElementById('modal-body');
+  const tenses = [{key:'madi',label:'Mâzi ماضي'},{key:'mudari',label:'Muzâri مضارع'},{key:'emir',label:'Emir أمر'}];
+  const tabs = tenses.map(t => `<button class="tense-tab${currentTense === t.key ? ' active' : ''}" onclick="switchTense('${t.key}')">${t.label}</button>`).join('');
+  const tData = conj[currentTense];
+  if (!tData) { body.innerHTML = `<div class="tense-tabs">${tabs}</div><p style="color:var(--text3);font-size:0.85rem;text-align:center;padding:20px;">Bu zaman için veri yok.</p>`; return; }
+  const order = currentTense === 'emir' ? PRONOUN_ORDER_EMIR : PRONOUN_ORDER_FULL;
 
-  let tableHTML='';
-  const tData=conj[currentTense];
-  if(!tData){body.innerHTML=`<div class="tense-tabs">${tabs}</div><p style="color:var(--sage);font-size:0.85rem;text-align:center;padding:20px;">Bu zaman için veri yok.</p>`;return;}
+  const patternCard = `<div class="pattern-card">
+    <div class="pattern-ar">${conj.pattern.split(' / ')[0] || conj.pattern}</div>
+    <div class="pattern-info">
+      <div class="pattern-name">${conj.pattern}</div>
+      <div class="pattern-desc">Fiil tipi: <strong style="color:var(--purple)">${conj.type}</strong> — Kök: <span style="font-family:'Amiri',serif;color:var(--teal);direction:rtl">${conj.root}</span></div>
+    </div>
+  </div>`;
 
-  const order=currentTense==='emir'?PRONOUN_ORDER_EMIR:(currentTense==='madi'?PRONOUN_ORDER_MADI:PRONOUN_ORDER_MUDARI);
-
-  tableHTML=`<table class="conj-table">
+  let tableHTML = `<table class="conj-table">
   <thead><tr>
-    <th>Şahıs</th>
+    <th>Türkçe Şahıs</th>
     <th class="ar-col">Arapça ضمير</th>
-    <th class="ar-col">Çekim</th>
-    <th>Türkçe</th>
+    <th class="ar-col">Çekim الصرف</th>
+    <th>Anlam</th>
   </tr></thead><tbody>`;
 
-  order.forEach(pKey=>{
-    if(!tData[pKey])return;
-    const p=PRONOUNS[pKey];
-    const form=tData[pKey];
-    const meaning=p.tr+' '+w.tr.replace('mek','').replace('mak','')+(currentTense==='madi'?'di':'');
-    tableHTML+=`<tr>
-      <td><span class="conj-pronoun">${p.tr}</span></td>
-      <td><span class="conj-pronoun ar-pron">${p.ar}</span></td>
+  order.forEach(pKey => {
+    if (!tData[pKey]) return;
+    const p = PRONOUNS[pKey];
+    const form = tData[pKey];
+    const verbBase = w.tr.split(' ')[0];
+    tableHTML += `<tr>
+      <td><span class="conj-pronoun">${p.tr}</span><span class="conj-pronoun ar-pron">${p.ar}</span></td>
+      <td></td>
       <td>
-        <span class="conj-ar">${form}</span>
-        <button class="conj-speak-btn" onclick="speakArabic('${form.replace(/'/g,"\\'")}',null)" title="Seslendir">🔊</button>
+        <div class="conj-ar">${form}</div>
+        <button class="conj-speak-btn" onclick="speakArabic('${form.replace(/'/g, "\\'")}',null)">🔊</button>
       </td>
-      <td><span class="conj-meaning">${p.tr} ${w.tr.split(' ')[0]}</span></td>
+      <td><span class="conj-meaning">${p.tr} ${verbBase}</span></td>
     </tr>`;
   });
-  tableHTML+='</tbody></table>';
+  tableHTML += '</tbody></table>';
 
-  // Pattern info
-  const patternNote=currentTense==='madi'
-    ?'<p style="font-size:0.75rem;color:var(--sage);margin-top:10px;padding:8px;background:var(--warm);border-radius:8px;">💡 Mâzi (geçmiş zaman): Şahıs ekleri fiilin sonuna getirilir. هُوَ için ek yoktur; bu kök form sayılır.</p>'
-    :currentTense==='mudari'
-    ?'<p style="font-size:0.75rem;color:var(--sage);margin-top:10px;padding:8px;background:var(--warm);border-radius:8px;">💡 Muzâri (şimdiki/geniş zaman): أ / ت / ي / ن ön ekleri şahsa göre eklenir.</p>'
-    :'<p style="font-size:0.75rem;color:var(--sage);margin-top:10px;padding:8px;background:var(--warm);border-radius:8px;">💡 Emir: Yalnızca hitap şahısları (sen, siz) için vardır. أَنَا / هُوَ vb. için emir kurulmaz.</p>';
+  const note = `<div class="tense-note">💡 ${TENSE_NOTES[currentTense]}</div>`;
 
-  body.innerHTML=`<div class="tense-tabs">${tabs}</div>${tableHTML}${patternNote}`;
+  body.innerHTML = `${patternCard}<div class="tense-tabs">${tabs}</div>${tableHTML}${note}`;
 }
 
-function switchTense(t){currentTense=t;renderModalBody();}
+function switchTense(t) { currentTense = t; renderModalBody(); }
+function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalBtn(); }
+function closeModalBtn() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
 
-function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalBtn();}
-function closeModalBtn(){document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow='';}
+// ═══════════════════════════════════════════
+// CONJUGATION LESSON CARDS (new feature)
+// ═══════════════════════════════════════════
+function renderConjLesson() {
+  const area = document.getElementById('cp-lesson-area');
+  const verbList = Object.entries(VERB_CONJ);
+  area.innerHTML = `
+  <div style="margin-bottom:14px;">
+    <div style="font-size:0.7rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;font-weight:600;text-align:center;margin-bottom:10px;">📚 Çekim Öğrenilen Fiiller</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;justify-content:center;">
+      ${verbList.map(([ar, data]) => `
+        <button onclick="openVerbModal(${words.findIndex(w=>w.ar===ar)})"
+          style="background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:8px 14px;cursor:pointer;color:var(--text);display:flex;align-items:center;gap:8px;transition:all 0.2s;"
+          onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+          onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text)'">
+          <span style="font-size:1.1rem;">${data.icon}</span>
+          <span style="font-family:'Amiri',serif;font-size:1.3rem;direction:rtl;">${ar}</span>
+          <span style="font-size:0.72rem;color:var(--text3)">${words.find(w=>w.ar===ar)?.tr||''}</span>
+        </button>
+      `).join('')}
+    </div>
+  </div>
+  <div style="height:1px;background:var(--border);margin:12px 0;"></div>
+  <div style="text-align:center;font-size:0.7rem;color:var(--text3);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;">Alıştırma Ayarları</div>
+  `;
+  // make sure modals work
+  document.getElementById('cp-prog').textContent = 'Başlamak için yukarıdan alıştırma seç';
+}
 
 // ═══════════════════════════════════════════
 // CONJUGATION PRACTICE MODE
 // ═══════════════════════════════════════════
-let cpList=[],cpIdx=0,cpOk=0,cpErr=0;
+let cpList = [], cpIdx = 0, cpOk = 0, cpErr = 0;
 
-function initConjPractice(){
-  const tenseSel=document.getElementById('cp-tense-sel').value;
-  const count=parseInt(document.getElementById('cp-count-sel').value);
-  const verbsWithConj=Object.keys(VERB_CONJ);
-  // Build question pool
-  cpList=[];
-  const tenses=tenseSel==='mix'?['madi','mudari','emir']:[tenseSel];
-  verbsWithConj.forEach(verbAr=>{
-    const conj=VERB_CONJ[verbAr];
-    const wordObj=words.find(w=>w.ar===verbAr);
-    tenses.forEach(tense=>{
-      const order=tense==='emir'?PRONOUN_ORDER_EMIR:PRONOUN_ORDER_MADI;
-      order.forEach(pKey=>{
-        if(conj[tense]&&conj[tense][pKey]){
-          cpList.push({verbAr,verbTr:wordObj?wordObj.tr:verbAr,tense,pronoun:pKey,correct:conj[tense][pKey]});
+function initConjPractice() {
+  const tenseSel = document.getElementById('cp-tense-sel').value;
+  const count = parseInt(document.getElementById('cp-count-sel').value);
+  const verbsWithConj = Object.keys(VERB_CONJ);
+  cpList = [];
+  const tenses = tenseSel === 'mix' ? ['madi','mudari','emir'] : [tenseSel];
+  verbsWithConj.forEach(verbAr => {
+    const conj = VERB_CONJ[verbAr];
+    const wordObj = words.find(w => w.ar === verbAr);
+    tenses.forEach(tense => {
+      const order = tense === 'emir' ? PRONOUN_ORDER_EMIR : PRONOUN_ORDER_FULL;
+      order.forEach(pKey => {
+        if (conj[tense] && conj[tense][pKey]) {
+          cpList.push({ verbAr, verbTr: wordObj ? wordObj.tr : verbAr, verbIcon: conj.icon || '🔤', tense, pronoun: pKey, correct: conj[tense][pKey] });
         }
       });
     });
   });
-  cpList=shuffle(cpList).slice(0,count);
-  cpIdx=0;cpOk=0;cpErr=0;
-  document.getElementById('cp-ok').textContent=0;
-  document.getElementById('cp-err').textContent=0;
+  cpList = shuffle(cpList).slice(0, count);
+  cpIdx = 0; cpOk = 0; cpErr = 0;
+  document.getElementById('cp-ok').textContent = 0;
+  document.getElementById('cp-err').textContent = 0;
   renderConjPractice();
 }
 
-function renderConjPractice(){
-  const area=document.getElementById('cp-area');
-  if(cpIdx>=cpList.length){
-    const pct=Math.round(cpOk/cpList.length*100);
-    area.innerHTML=`<div class="quiz-result">
-      <div class="result-emoji">${pct>=80?'🏆':pct>=60?'📚':'💪'}</div>
+function renderConjPractice() {
+  const area = document.getElementById('cp-area');
+  if (cpIdx >= cpList.length) {
+    const pct = Math.round(cpOk / cpList.length * 100);
+    area.innerHTML = `<div class="quiz-result">
+      <div class="result-emoji">${pct >= 80 ? '🏆' : pct >= 60 ? '📚' : '💪'}</div>
       <h2>${pct}% Başarı</h2>
       <p>${cpOk} doğru / ${cpErr} yanlış</p>
       <button onclick="initConjPractice()">Tekrar Dene</button>
     </div>`;
-    document.getElementById('cp-prog').textContent='✓ Tamamlandı';
+    document.getElementById('cp-prog').textContent = '✓ Tamamlandı';
     return;
   }
-  document.getElementById('cp-prog').textContent=`Soru ${cpIdx+1} / ${cpList.length}`;
-  const q=cpList[cpIdx];
-  const p=PRONOUNS[q.pronoun];
+  document.getElementById('cp-prog').textContent = `Soru ${cpIdx + 1} / ${cpList.length}`;
+  const q = cpList[cpIdx];
+  const p = PRONOUNS[q.pronoun];
+  const conj = VERB_CONJ[q.verbAr];
+  const allForms = [];
+  const order = q.tense === 'emir' ? PRONOUN_ORDER_EMIR : PRONOUN_ORDER_FULL;
+  order.forEach(pk => { if (conj[q.tense] && conj[q.tense][pk] && conj[q.tense][pk] !== q.correct) allForms.push(conj[q.tense][pk]); });
+  Object.values(VERB_CONJ).forEach(vc => { order.forEach(pk => { if (vc[q.tense] && vc[q.tense][pk] && vc[q.tense][pk] !== q.correct) allForms.push(vc[q.tense][pk]); }); });
+  const wrongOpts = shuffle([...new Set(allForms)]).slice(0, 3);
+  const opts = shuffle([q.correct, ...wrongOpts]);
 
-  // Generate wrong options from same tense/different pronouns & same verb or other verbs
-  const conj=VERB_CONJ[q.verbAr];
-  const allForms=[];
-  const order=q.tense==='emir'?PRONOUN_ORDER_EMIR:PRONOUN_ORDER_MADI;
-  order.forEach(pk=>{if(conj[q.tense]&&conj[q.tense][pk]&&conj[q.tense][pk]!==q.correct)allForms.push(conj[q.tense][pk]);});
-  // Also add from other verbs
-  Object.values(VERB_CONJ).forEach(vc=>{
-    order.forEach(pk=>{if(vc[q.tense]&&vc[q.tense][pk]&&vc[q.tense][pk]!==q.correct)allForms.push(vc[q.tense][pk]);});
-  });
-  const uniqueForms=[...new Set(allForms)];
-  const wrongOpts=shuffle(uniqueForms).slice(0,3);
-  const opts=shuffle([q.correct,...wrongOpts]);
-
-  area.innerHTML=`<div class="cp-card">
+  area.innerHTML = `<div class="cp-card">
+    <div style="position:absolute;top:14px;right:14px;font-size:1.5rem;">${q.verbIcon}</div>
     <div class="cp-verb-ar">${q.verbAr}</div>
     <div class="cp-verb-tr">${q.verbTr}</div>
     <div class="cp-divider"></div>
@@ -1460,69 +2292,72 @@ function renderConjPractice(){
     <div class="cp-pronoun">${p.tr}</div>
     <div class="cp-pronoun-ar">${p.ar}</div>
     <div class="cp-options">
-      ${opts.map((o,i)=>`<button class="cp-opt" data-ans="${o}" onclick="answerConj('${o}','${q.correct}',this)">${o}</button>`).join('')}
+      ${opts.map(o => `<button class="cp-opt" data-ans="${o}" onclick="answerConj('${o}','${q.correct}',this)">${o}</button>`).join('')}
     </div>
     <div class="cp-feedback" id="cpfeed"></div>
     <button class="cp-next" id="cpnext" onclick="nextConj()">Devam →</button>
   </div>`;
 }
 
-function answerConj(chosen,correct,btn){
-  document.querySelectorAll('.cp-opt').forEach(b=>b.disabled=true);
-  const feed=document.getElementById('cpfeed');
-  const nxt=document.getElementById('cpnext');
-  if(chosen===correct){
+function answerConj(chosen, correct, btn) {
+  document.querySelectorAll('.cp-opt').forEach(b => b.disabled = true);
+  const feed = document.getElementById('cpfeed');
+  const nxt = document.getElementById('cpnext');
+  if (chosen === correct) {
     btn.classList.add('correct');
-    feed.textContent='✓ Doğru!';feed.className='cp-feedback ok';
-    cpOk++;document.getElementById('cp-ok').textContent=cpOk;
+    feed.textContent = '✓ Doğru!'; feed.className = 'cp-feedback ok';
+    cpOk++; document.getElementById('cp-ok').textContent = cpOk;
   } else {
     btn.classList.add('wrong');
-    document.querySelectorAll('.cp-opt').forEach(b=>{if(b.dataset.ans===correct)b.classList.add('reveal');});
-    feed.textContent=`✗ Yanlış! Doğrusu: ${correct}`;feed.className='cp-feedback no';
-    cpErr++;document.getElementById('cp-err').textContent=cpErr;
+    document.querySelectorAll('.cp-opt').forEach(b => { if (b.dataset.ans === correct) b.classList.add('reveal'); });
+    feed.textContent = `✗ Yanlış! Doğrusu: ${correct}`; feed.className = 'cp-feedback no';
+    cpErr++; document.getElementById('cp-err').textContent = cpErr;
   }
-  speakArabic(correct,null);
-  if(nxt)nxt.style.display='inline-block';
+  speakArabic(correct, null);
+  if (nxt) nxt.style.display = 'inline-block';
 }
-function nextConj(){cpIdx++;renderConjPractice();}
+function nextConj() { cpIdx++; renderConjPractice(); }
 
 // ═══════════════════════════════════════════
 // SWIPE MODE
 // ═══════════════════════════════════════════
-let swipeList=[],swipeIdx=0,swipeRevealed=false,swipeDragging=false;
-function initSwipe(){
-  const countSel=document.getElementById('swipe-count-sel').value;
-  const orderSel=document.getElementById('swipe-order-sel').value;
-  let base=currentCat==='all'?[...words]:[...words.filter(w=>w.cat===currentCat)];
-  if(orderSel==='random')base=shuffle(base);
-  else if(orderSel==='hard'){base.sort((a,b)=>{const ia=words.indexOf(a),ib=words.indexOf(b);return(hardWords.get(ib)||0)-(hardWords.get(ia)||0);});}
-  const count=countSel==='all'?base.length:Math.min(parseInt(countSel),base.length);
-  swipeList=base.slice(0,count);swipeIdx=0;swipeRevealed=false;
-  renderSwipeCard();updateHardPanel();
+let swipeList = [], swipeIdx = 0, swipeRevealed = false, swipeDragging = false;
+
+function initSwipe() {
+  const countSel = document.getElementById('swipe-count-sel').value;
+  const orderSel = document.getElementById('swipe-order-sel').value;
+  let base = currentCat === 'all' ? [...words] : [...words.filter(w => w.cat === currentCat)];
+  if (orderSel === 'random') base = shuffle(base);
+  else if (orderSel === 'hard') { base.sort((a, b) => { const ia = words.indexOf(a), ib = words.indexOf(b); return (hardWords.get(ib) || 0) - (hardWords.get(ia) || 0); }); }
+  const count = countSel === 'all' ? base.length : Math.min(parseInt(countSel), base.length);
+  swipeList = base.slice(0, count); swipeIdx = 0; swipeRevealed = false;
+  renderSwipeCard(); updateHardPanel();
 }
-function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function renderSwipeCard(){
-  const main=document.getElementById('swipe-main');
-  const bg=document.getElementById('swipe-bg');
-  const bg2=document.getElementById('swipe-bg2');
-  const counter=document.getElementById('swipe-counter');
-  if(swipeIdx>=swipeList.length){
-    const total=swipeList.length;
-    const okCount=swipeList.filter(w=>learned.has(words.indexOf(w))).length;
-    main.innerHTML=`<div class="swipe-front" style="display:flex;"><div style="text-align:center;padding:20px;"><div style="font-size:3rem;">${okCount===total?'🎉':'📚'}</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-top:10px;color:var(--terracotta);">Tur Bitti!</div><div style="font-size:0.85rem;color:var(--sage);margin-top:6px;">${okCount} / ${total} öğrenildi</div><button onclick="initSwipe()" style="margin-top:14px;background:var(--terracotta);color:white;border:none;padding:8px 22px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;">Tekrar Oyna</button></div></div><div class="swipe-back"></div>`;
-    bg.innerHTML='';bg2.innerHTML='';counter.textContent='✓ Tamamlandı';
-    updateHardPanel();return;
+
+function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+function renderSwipeCard() {
+  const main = document.getElementById('swipe-main');
+  const bg = document.getElementById('swipe-bg');
+  const bg2 = document.getElementById('swipe-bg2');
+  const counter = document.getElementById('swipe-counter');
+  if (swipeIdx >= swipeList.length) {
+    const total = swipeList.length;
+    const okCount = swipeList.filter(w => learned.has(words.indexOf(w))).length;
+    main.innerHTML = `<div class="swipe-front" style="display:flex;"><div style="text-align:center;padding:20px;"><div style="font-size:3rem;">${okCount === total ? '🎉' : '📚'}</div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-top:10px;color:var(--gold);">Tur Bitti!</div><div style="font-size:0.85rem;color:var(--text3);margin-top:6px;">${okCount} / ${total} öğrenildi</div><button onclick="initSwipe()" style="margin-top:14px;background:var(--coral);color:white;border:none;padding:9px 22px;border-radius:20px;font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;">Tekrar Oyna</button></div></div><div class="swipe-back"></div>`;
+    bg.innerHTML = ''; bg2.innerHTML = ''; counter.textContent = '✓ Tamamlandı';
+    updateHardPanel(); return;
   }
-  counter.textContent=`${swipeIdx+1} / ${swipeList.length}`;
-  const w=swipeList[swipeIdx];
-  const idx=words.indexOf(w);
-  const isHard=(hardWords.get(idx)||0)>=5;
-  const isColor=!!w.color;
-  const visual=isColor?`<div style="width:64px;height:64px;background:${w.color};${w.border?'border:2px solid #aaa;':''}border-radius:50%;box-shadow:0 2px 10px rgba(0,0,0,0.15);"></div>`:`<div class="swipe-icon">${w.icon}</div>`;
-  main.className='swipe-card'+(isHard?' is-hard':'');
-  main.style.transform='';main.style.opacity='';main.style.transition='';
-  main.innerHTML=`<div class="swipe-front">
-    <button class="swipe-speak" title="Seslendir">🔊</button>
+  counter.textContent = `${swipeIdx + 1} / ${swipeList.length}`;
+  const w = swipeList[swipeIdx];
+  const idx = words.indexOf(w);
+  const isHard = (hardWords.get(idx) || 0) >= 5;
+  const isColor = !!w.color;
+  const visual = isColor ? `<div style="width:64px;height:64px;background:${w.color};${w.border ? 'border:2px solid rgba(255,255,255,0.2);' : ''}border-radius:50%;box-shadow:0 4px 16px rgba(0,0,0,0.3);"></div>` : `<div class="swipe-icon">${w.icon}</div>`;
+  main.className = 'swipe-card' + (isHard ? ' is-hard' : '');
+  main.style.transform = ''; main.style.opacity = ''; main.style.transition = '';
+  main.innerHTML = `<div class="swipe-front">
+    <button class="swipe-speak">🔊</button>
     <div class="hard-badge">TEKRAR</div>
     <span class="like-label">ÖĞRENDIM ✓</span>
     <span class="nope-label">✗ BİLMİYORUM</span>
@@ -1531,115 +2366,124 @@ function renderSwipeCard(){
     <div class="swipe-tap">kartı çevir veya kaydır</div>
   </div>
   <div class="swipe-back">
-    ${isColor?`<div style="width:54px;height:54px;background:${w.color};border-radius:50%;border:3px solid rgba(255,255,255,0.4);margin-bottom:6px;"></div>`:`<div style="font-size:2.8rem;opacity:0.9;margin-bottom:4px;">${w.icon}</div>`}
+    ${isColor ? `<div style="width:54px;height:54px;background:${w.color};border-radius:50%;border:3px solid rgba(255,255,255,0.15);margin-bottom:6px;"></div>` : `<div style="font-size:2.8rem;margin-bottom:5px;">${w.icon}</div>`}
     <div class="swipe-tr">${w.tr}</div>
     <div class="swipe-pr">[ ${w.pr} ]</div>
     <div class="swipe-ar-back">${w.ar}</div>
   </div>`;
-  main.querySelector('.swipe-speak').addEventListener('click',e=>{e.stopPropagation();speakArabic(w.ar,e.currentTarget);});
-  const next=swipeList[swipeIdx+1];
-  bg.innerHTML=next?`<div class="swipe-front" style="display:flex;justify-content:center;align-items:center;font-size:2.2rem;">${next.icon||'◆'}</div><div class="swipe-back"></div>`:'';
-  bg2.innerHTML='';swipeRevealed=false;setupDrag(main);
+  main.querySelector('.swipe-speak').addEventListener('click', e => { e.stopPropagation(); speakArabic(w.ar, e.currentTarget); });
+  const next = swipeList[swipeIdx + 1];
+  bg.innerHTML = next ? `<div class="swipe-front" style="display:flex;justify-content:center;align-items:center;font-size:2.2rem;">${next.icon || '◆'}</div><div class="swipe-back"></div>` : '';
+  bg2.innerHTML = ''; swipeRevealed = false; setupDrag(main);
 }
-function flipSwipeCard(){const main=document.getElementById('swipe-main');swipeRevealed=!swipeRevealed;main.classList.toggle('revealed',swipeRevealed);if(swipeRevealed&&swipeList[swipeIdx])speakArabic(swipeList[swipeIdx].ar,null);}
-function swipeCard(dir){
-  const main=document.getElementById('swipe-main');
-  if(swipeIdx>=swipeList.length)return;
-  const w=swipeList[swipeIdx];const idx=words.indexOf(w);
-  if(dir==='right'){learned.add(idx);if(hardWords.has(idx))hardWords.delete(idx);}
-  else{learned.delete(idx);hardWords.set(idx,(hardWords.get(idx)||0)+1);if((hardWords.get(idx))>=5){const pos=swipeIdx+Math.floor(Math.random()*4)+2;if(pos<swipeList.length)swipeList.splice(pos,0,w);else swipeList.push(w);}}
+
+function flipSwipeCard() { const main = document.getElementById('swipe-main'); swipeRevealed = !swipeRevealed; main.classList.toggle('revealed', swipeRevealed); if (swipeRevealed && swipeList[swipeIdx]) speakArabic(swipeList[swipeIdx].ar, null); }
+
+function swipeCard(dir) {
+  const main = document.getElementById('swipe-main');
+  if (swipeIdx >= swipeList.length) return;
+  const w = swipeList[swipeIdx]; const idx = words.indexOf(w);
+  if (dir === 'right') { learned.add(idx); if (hardWords.has(idx)) hardWords.delete(idx); }
+  else { learned.delete(idx); hardWords.set(idx, (hardWords.get(idx) || 0) + 1); if ((hardWords.get(idx)) >= 5) { const pos = swipeIdx + Math.floor(Math.random() * 4) + 2; if (pos < swipeList.length) swipeList.splice(pos, 0, w); else swipeList.push(w); } }
   updateProgress();
-  const tx=dir==='right'?500:-500;
-  main.style.transition='transform 0.4s ease, opacity 0.4s ease';
-  main.style.transform=`translateX(${tx}px) rotate(${dir==='right'?18:-18}deg)`;
-  main.style.opacity='0';
-  setTimeout(()=>{swipeIdx++;renderSwipeCard();},360);
+  const tx = dir === 'right' ? 500 : -500;
+  main.style.transition = 'transform 0.38s ease, opacity 0.38s ease';
+  main.style.transform = `translateX(${tx}px) rotate(${dir === 'right' ? 18 : -18}deg)`;
+  main.style.opacity = '0';
+  setTimeout(() => { swipeIdx++; renderSwipeCard(); }, 340);
 }
-function setupDrag(el){
-  let startX,startY,startTime,moved=false;
-  function onStart(e){if(e.target.closest('.swipe-speak'))return;swipeDragging=true;moved=false;const pt=e.touches?e.touches[0]:e;startX=pt.clientX;startY=pt.clientY;startTime=Date.now();el.style.transition='none';}
-  function onMove(e){if(!swipeDragging)return;const pt=e.touches?e.touches[0]:e;const dx=pt.clientX-startX;moved=true;el.style.transform=`translateX(${dx}px) rotate(${dx*0.06}deg)`;const like=el.querySelector('.like-label');const nope=el.querySelector('.nope-label');if(like&&nope){like.style.opacity=dx>10?Math.min(dx/80,1):0;nope.style.opacity=dx<-10?Math.min(-dx/80,1):0;}}
-  function onEnd(e){if(!swipeDragging)return;swipeDragging=false;const pt=e.changedTouches?e.changedTouches[0]:e;const dx=pt.clientX-startX;el.style.transition='transform 0.3s ease, opacity 0.3s ease';if(Math.abs(dx)>85){swipeCard(dx>0?'right':'left');}else{el.style.transform='';const like=el.querySelector('.like-label');const nope=el.querySelector('.nope-label');if(like)like.style.opacity=0;if(nope)nope.style.opacity=0;if(!moved||(Math.abs(dx)<10&&(Date.now()-startTime)<350))flipSwipeCard();}}
-  el.addEventListener('mousedown',onStart);el.addEventListener('touchstart',onStart,{passive:true});
-  document.addEventListener('mousemove',onMove);document.addEventListener('touchmove',onMove,{passive:true});
-  document.addEventListener('mouseup',onEnd);document.addEventListener('touchend',onEnd);
+
+function setupDrag(el) {
+  let startX, startY, startTime, moved = false;
+  function onStart(e) { if (e.target.closest('.swipe-speak')) return; swipeDragging = true; moved = false; const pt = e.touches ? e.touches[0] : e; startX = pt.clientX; startY = pt.clientY; startTime = Date.now(); el.style.transition = 'none'; }
+  function onMove(e) { if (!swipeDragging) return; const pt = e.touches ? e.touches[0] : e; const dx = pt.clientX - startX; moved = true; el.style.transform = `translateX(${dx}px) rotate(${dx * 0.06}deg)`; const like = el.querySelector('.like-label'); const nope = el.querySelector('.nope-label'); if (like && nope) { like.style.opacity = dx > 10 ? Math.min(dx / 80, 1) : 0; nope.style.opacity = dx < -10 ? Math.min(-dx / 80, 1) : 0; } }
+  function onEnd(e) { if (!swipeDragging) return; swipeDragging = false; const pt = e.changedTouches ? e.changedTouches[0] : e; const dx = pt.clientX - startX; el.style.transition = 'transform 0.3s ease, opacity 0.3s ease'; if (Math.abs(dx) > 85) { swipeCard(dx > 0 ? 'right' : 'left'); } else { el.style.transform = ''; const like = el.querySelector('.like-label'); const nope = el.querySelector('.nope-label'); if (like) like.style.opacity = 0; if (nope) nope.style.opacity = 0; if (!moved || (Math.abs(dx) < 10 && (Date.now() - startTime) < 350)) flipSwipeCard(); } }
+  el.addEventListener('mousedown', onStart); el.addEventListener('touchstart', onStart, { passive: true });
+  document.addEventListener('mousemove', onMove); document.addEventListener('touchmove', onMove, { passive: true });
+  document.addEventListener('mouseup', onEnd); document.addEventListener('touchend', onEnd);
 }
-function updateHardPanel(){const panel=document.getElementById('hard-panel');const list=document.getElementById('hard-list');const entries=[...hardWords.entries()].filter(([,v])=>v>=5).sort((a,b)=>b[1]-a[1]).slice(0,8);if(entries.length===0){panel.style.display='none';return;}panel.style.display='block';list.innerHTML=entries.map(([idx,cnt])=>`<span style="display:inline-flex;align-items:center;gap:3px;margin:2px 4px;background:#fff5f5;border:1px solid #feb2b2;border-radius:6px;padding:2px 7px;font-family:'Amiri',serif;font-size:1rem;direction:rtl;">${words[idx].ar} <small style="font-family:'DM Sans',sans-serif;font-size:0.6rem;color:#c0392b;direction:ltr;">${cnt}✗</small></span>`).join('');}
+
+function updateHardPanel() { const panel = document.getElementById('hard-panel'); const list = document.getElementById('hard-list'); const entries = [...hardWords.entries()].filter(([, v]) => v >= 5).sort((a, b) => b[1] - a[1]).slice(0, 8); if (entries.length === 0) { panel.style.display = 'none'; return; } panel.style.display = 'block'; list.innerHTML = entries.map(([idx, cnt]) => `<span style="display:inline-flex;align-items:center;gap:3px;margin:2px 4px;background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3);border-radius:6px;padding:2px 8px;font-family:'Amiri',serif;font-size:1rem;direction:rtl;">${words[idx].ar}<small style="font-family:'Outfit',sans-serif;font-size:0.6rem;color:var(--red);direction:ltr;margin-left:3px;">${cnt}✗</small></span>`).join(''); }
 
 // ═══════════════════════════════════════════
 // QUIZ MODE
 // ═══════════════════════════════════════════
-let quizList=[],quizIdx=0,quizOk=0,quizErr=0;
-function initQuiz(){
-  const count=parseInt(document.getElementById('quiz-count-sel').value);
-  const base=currentCat==='all'?[...words]:[...words.filter(w=>w.cat===currentCat)];
-  quizList=shuffle(base).slice(0,Math.min(count,base.length));
-  quizIdx=0;quizOk=0;quizErr=0;
-  document.getElementById('q-ok').textContent=0;document.getElementById('q-err').textContent=0;
+let quizList = [], quizIdx = 0, quizOk = 0, quizErr = 0;
+
+function initQuiz() {
+  const count = parseInt(document.getElementById('quiz-count-sel').value);
+  const base = currentCat === 'all' ? [...words] : [...words.filter(w => w.cat === currentCat)];
+  quizList = shuffle(base).slice(0, Math.min(count, base.length));
+  quizIdx = 0; quizOk = 0; quizErr = 0;
+  document.getElementById('q-ok').textContent = 0; document.getElementById('q-err').textContent = 0;
   renderQuiz();
 }
-function renderQuiz(){
-  const area=document.getElementById('quiz-area');
-  if(quizIdx>=quizList.length){
-    const pct=Math.round(quizOk/quizList.length*100);
-    area.innerHTML=`<div class="quiz-result"><div class="result-emoji">${pct>=80?'🏆':pct>=60?'📚':'💪'}</div><h2>${pct}% Başarı</h2><p>${quizOk} doğru / ${quizErr} yanlış</p><button onclick="initQuiz()">Tekrar Dene</button></div>`;
-    document.getElementById('quiz-prog').textContent='✓ Tamamlandı';return;
+
+function renderQuiz() {
+  const area = document.getElementById('quiz-area');
+  if (quizIdx >= quizList.length) {
+    const pct = Math.round(quizOk / quizList.length * 100);
+    area.innerHTML = `<div class="quiz-result"><div class="result-emoji">${pct >= 80 ? '🏆' : pct >= 60 ? '📚' : '💪'}</div><h2>${pct}% Başarı</h2><p>${quizOk} doğru / ${quizErr} yanlış</p><button onclick="initQuiz()">Tekrar Dene</button></div>`;
+    document.getElementById('quiz-prog').textContent = '✓ Tamamlandı'; return;
   }
-  document.getElementById('quiz-prog').textContent=`Soru ${quizIdx+1} / ${quizList.length}`;
-  const dir=document.getElementById('quiz-dir-sel').value;
-  const w=quizList[quizIdx];const isColor=!!w.color;
-  const pool=words.filter(x=>x!==w);const wrongs=shuffle(pool).slice(0,3);const opts=shuffle([w,...wrongs]);const correctIdx=opts.indexOf(w);
-  const visual=isColor?`<div class="color-swatch" style="width:68px;height:68px;background:${w.color};${w.border?'border:2px solid #aaa;':''}border-radius:50%;margin:0 auto 8px;box-shadow:0 2px 10px rgba(0,0,0,0.15);"></div>`:`<div class="quiz-q-icon">${w.icon}</div>`;
-  const question=dir==='ar2tr'?`${visual}<div class="quiz-q-ar">${w.ar}</div><div class="quiz-q-pr">[ ${w.pr} ]</div>`:`<div class="quiz-q-icon">🤔</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--ink);margin-bottom:4px;">${w.tr}</div>`;
-  const optLabel=dir==='ar2tr'?opts.map(o=>o.tr):opts.map(o=>`<span style="font-family:'Amiri',serif;font-size:1.3rem;direction:rtl;">${o.ar}</span>`);
-  area.innerHTML=`<div class="quiz-card">
-    <button class="quiz-speak" onclick="speakArabic('${w.ar.replace(/'/g,"\\'")}',this)">🔊 Seslendir</button>
+  document.getElementById('quiz-prog').textContent = `Soru ${quizIdx + 1} / ${quizList.length}`;
+  const dir = document.getElementById('quiz-dir-sel').value;
+  const w = quizList[quizIdx]; const isColor = !!w.color;
+  const pool = words.filter(x => x !== w); const wrongs = shuffle(pool).slice(0, 3); const opts = shuffle([w, ...wrongs]); const correctIdx = opts.indexOf(w);
+  const visual = isColor ? `<div style="width:68px;height:68px;background:${w.color};${w.border ? 'border:2px solid rgba(255,255,255,0.2);' : ''}border-radius:50%;margin:0 auto 8px;box-shadow:0 4px 16px rgba(0,0,0,0.3);"></div>` : `<div class="quiz-q-icon">${w.icon}</div>`;
+  const question = dir === 'ar2tr' ? `${visual}<div class="quiz-q-ar">${w.ar}</div><div class="quiz-q-pr">[ ${w.pr} ]</div>` : `<div class="quiz-q-icon">🤔</div><div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:4px;">${w.tr}</div>`;
+  const optLabel = dir === 'ar2tr' ? opts.map(o => o.tr) : opts.map(o => `<span style="font-family:'Amiri',serif;font-size:1.3rem;direction:rtl;">${o.ar}</span>`);
+  area.innerHTML = `<div class="quiz-card">
+    <button class="quiz-speak" onclick="speakArabic('${w.ar.replace(/'/g, "\\'")}',this)">🔊 Seslendir</button>
     ${question}
-    <div class="quiz-options">${opts.map((o,i)=>`<button class="quiz-opt" data-i="${i}" onclick="answerQuiz(${i},${correctIdx},this)">${optLabel[i]}</button>`).join('')}</div>
+    <div class="quiz-options">${opts.map((o, i) => `<button class="quiz-opt" data-i="${i}" onclick="answerQuiz(${i},${correctIdx},this)">${optLabel[i]}</button>`).join('')}</div>
     <div class="quiz-feedback" id="qfeed"></div>
     <button class="quiz-next" id="qnext" onclick="nextQuiz()">Devam →</button>
   </div>`;
 }
-function answerQuiz(chosen,correct,btn){
-  document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
-  const feed=document.getElementById('qfeed');const nxt=document.getElementById('qnext');const w=quizList[quizIdx];
-  if(chosen===correct){btn.classList.add('correct');feed.textContent='✓ Doğru! Harika!';feed.className='quiz-feedback ok';quizOk++;document.getElementById('q-ok').textContent=quizOk;learned.add(words.indexOf(w));updateProgress();}
-  else{btn.classList.add('wrong');document.querySelectorAll('.quiz-opt')[correct].classList.add('reveal');feed.textContent=`✗ Yanlış! Doğrusu: ${w.tr} [${w.pr}]`;feed.className='quiz-feedback no';quizErr++;document.getElementById('q-err').textContent=quizErr;const idx=words.indexOf(w);hardWords.set(idx,(hardWords.get(idx)||0)+1);}
-  nxt.style.display='inline-block';
+
+function answerQuiz(chosen, correct, btn) {
+  document.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+  const feed = document.getElementById('qfeed'); const nxt = document.getElementById('qnext'); const w = quizList[quizIdx];
+  if (chosen === correct) { btn.classList.add('correct'); feed.textContent = '✓ Doğru! Harika!'; feed.className = 'quiz-feedback ok'; quizOk++; document.getElementById('q-ok').textContent = quizOk; learned.add(words.indexOf(w)); updateProgress(); }
+  else { btn.classList.add('wrong'); document.querySelectorAll('.quiz-opt')[correct].classList.add('reveal'); feed.textContent = `✗ Yanlış! Doğrusu: ${w.tr} [${w.pr}]`; feed.className = 'quiz-feedback no'; quizErr++; document.getElementById('q-err').textContent = quizErr; const idx = words.indexOf(w); hardWords.set(idx, (hardWords.get(idx) || 0) + 1); }
+  nxt.style.display = 'inline-block';
 }
-function nextQuiz(){quizIdx++;renderQuiz();}
+function nextQuiz() { quizIdx++; renderQuiz(); }
 
 // ═══════════════════════════════════════════
 // WRITE MODE
 // ═══════════════════════════════════════════
-let writeList=[],writeIdx=0,writeOk=0,writeErr=0,writeAnswered=false;
-function initWrite(){
-  const count=parseInt(document.getElementById('write-count-sel').value);
-  const base=currentCat==='all'?[...words]:[...words.filter(w=>w.cat===currentCat)];
-  const eligible=base.filter(w=>!w.color);
-  writeList=shuffle(eligible).slice(0,Math.min(count,eligible.length));
-  writeIdx=0;writeOk=0;writeErr=0;
-  document.getElementById('w-ok').textContent=0;document.getElementById('w-err').textContent=0;
+let writeList = [], writeIdx = 0, writeOk = 0, writeErr = 0, writeAnswered = false;
+
+function initWrite() {
+  const count = parseInt(document.getElementById('write-count-sel').value);
+  const base = currentCat === 'all' ? [...words] : [...words.filter(w => w.cat === currentCat)];
+  const eligible = base.filter(w => !w.color);
+  writeList = shuffle(eligible).slice(0, Math.min(count, eligible.length));
+  writeIdx = 0; writeOk = 0; writeErr = 0;
+  document.getElementById('w-ok').textContent = 0; document.getElementById('w-err').textContent = 0;
   renderWrite();
 }
-function renderWrite(){
-  const area=document.getElementById('write-area');
-  if(writeIdx>=writeList.length){
-    const pct=Math.round(writeOk/writeList.length*100);
-    area.innerHTML=`<div class="quiz-result"><div class="result-emoji">${pct>=80?'🏆':pct>=60?'📚':'💪'}</div><h2>${pct}% Başarı</h2><p>${writeOk} doğru / ${writeErr} yanlış</p><button onclick="initWrite()">Tekrar Dene</button></div>`;
-    document.getElementById('write-prog').textContent='✓ Tamamlandı';return;
+
+function renderWrite() {
+  const area = document.getElementById('write-area');
+  if (writeIdx >= writeList.length) {
+    const pct = Math.round(writeOk / writeList.length * 100);
+    area.innerHTML = `<div class="quiz-result"><div class="result-emoji">${pct >= 80 ? '🏆' : pct >= 60 ? '📚' : '💪'}</div><h2>${pct}% Başarı</h2><p>${writeOk} doğru / ${writeErr} yanlış</p><button onclick="initWrite()">Tekrar Dene</button></div>`;
+    document.getElementById('write-prog').textContent = '✓ Tamamlandı'; return;
   }
-  document.getElementById('write-prog').textContent=`${writeIdx+1} / ${writeList.length}`;
-  const w=writeList[writeIdx];writeAnswered=false;
-  area.innerHTML=`<div class="write-card">
+  document.getElementById('write-prog').textContent = `${writeIdx + 1} / ${writeList.length}`;
+  const w = writeList[writeIdx]; writeAnswered = false;
+  area.innerHTML = `<div class="write-card">
     <div class="write-q-label">Bu kelimeyi Arapça yazınız:</div>
     <div class="write-turkish">${w.tr}</div>
     <div class="write-pr">[ ${w.pr} ]</div>
-    <button class="write-hint-btn" onclick="showWriteHint('${w.ar.replace(/'/g,"\\'")}')">💡 İpucu</button>
+    <button class="write-hint-btn" onclick="showWriteHint('${w.ar.replace(/'/g, "\\'")}')">💡 İpucu</button>
     <div class="write-hint-ar" id="whint"></div>
     <input class="write-input" id="winput" type="text" placeholder="اكتب هنا..." dir="rtl" autocomplete="off" autocorrect="off" spellcheck="false" />
     <div>
-      <button class="write-submit" onclick="checkWrite('${w.ar.replace(/'/g,"\\'")}')">Kontrol Et</button>
+      <button class="write-submit" onclick="checkWrite('${w.ar.replace(/'/g, "\\'")}')">Kontrol Et</button>
       <button class="write-skip" onclick="skipWrite()">Geç</button>
     </div>
     <div class="write-feedback" id="wfeed"></div>
@@ -1648,47 +2492,37 @@ function renderWrite(){
   </div>
   <div class="ar-keyboard" id="ar-kb"></div>`;
   buildArKeyboard(w.ar);
-  const inp=document.getElementById('winput');
-  inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkWrite(w.ar);});
+  const inp = document.getElementById('winput');
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') checkWrite(w.ar); });
   inp.focus();
 }
-function buildArKeyboard(targetWord){
-  const kb=document.getElementById('ar-kb');if(!kb)return;
-  const targetChars=[...new Set(targetWord.replace(/[\s\u064B-\u065F]/g,'').split(''))];
-  const allAr='ابتثجحخدذرزسشصضطظعغفقكلمنهويءأإآةى';
-  const extras=shuffle([...allAr].filter(c=>!targetChars.includes(c))).slice(0,10);
-  const keyChars=shuffle([...targetChars,...extras]);
-  kb.innerHTML=keyChars.map(c=>`<button class="ar-key" onclick="insertArChar('${c}')">${c}</button>`).join('')+`<button class="ar-key wide" onclick="deleteArChar()">⌫</button><button class="ar-key wide" onclick="clearArInput()">Temizle</button>`;
-}
-function insertArChar(c){const inp=document.getElementById('winput');if(!inp||writeAnswered)return;inp.value+=c;inp.focus();}
-function deleteArChar(){const inp=document.getElementById('winput');if(!inp||writeAnswered)return;inp.value=inp.value.slice(0,-1);inp.focus();}
-function clearArInput(){const inp=document.getElementById('winput');if(inp&&!writeAnswered){inp.value='';inp.focus();}}
-function showWriteHint(ar){const hint=document.getElementById('whint');if(!hint)return;const chars=[...ar.replace(/[\u064B-\u065F]/g,'')];const hinted=chars.map((c,i)=>i%2===0?c:'_').join('\u200B');hint.textContent=hinted;}
-function normalizeAr(s){return s.replace(/[\u064B-\u065F\u0640]/g,'').replace(/أ|إ|آ/g,'ا').trim();}
-function checkWrite(correct){
-  if(writeAnswered)return;writeAnswered=true;
-  const inp=document.getElementById('winput');const feed=document.getElementById('wfeed');const correctEl=document.getElementById('wcorrect');const nxt=document.getElementById('wnext');
-  const val=inp?inp.value.trim():'';const ok=normalizeAr(val)===normalizeAr(correct);
-  if(ok){if(inp)inp.classList.add('correct');feed.textContent='✓ Mükemmel! Doğru yazdın!';feed.className='write-feedback ok';writeOk++;document.getElementById('w-ok').textContent=writeOk;learned.add(words.indexOf(writeList[writeIdx]));updateProgress();}
-  else{if(inp)inp.classList.add('wrong');feed.textContent='✗ Yanlış. Doğru yazım:';feed.className='write-feedback no';if(correctEl)correctEl.style.display='block';writeErr++;document.getElementById('w-err').textContent=writeErr;const idx=words.indexOf(writeList[writeIdx]);hardWords.set(idx,(hardWords.get(idx)||0)+1);}
-  if(nxt)nxt.style.display='inline-block';speakArabic(correct,null);
-}
-function skipWrite(){if(writeAnswered)return;writeAnswered=true;const correctEl=document.getElementById('wcorrect');const feed=document.getElementById('wfeed');const nxt=document.getElementById('wnext');if(feed){feed.textContent='Atlandı.';feed.className='write-feedback';}if(correctEl)correctEl.style.display='block';if(nxt)nxt.style.display='inline-block';}
-function nextWrite(){writeIdx++;renderWrite();}
 
-// ── PRINT ──
-function printCat(cat){
-  const list=cat==='all'?words:words.filter(w=>w.cat===cat);
-  const grid=document.getElementById('grid');const prev=grid.innerHTML;
-  document.getElementById('grid-mode').style.display='block';grid.innerHTML='';
-  list.forEach(w=>{
-    const isColor=!!w.color;const div=document.createElement('div');div.className='card';
-    const fv=isColor?`<div class="color-swatch" style="background:${w.color};${w.border?'border:2px solid #aaa;':''}"></div>`:`<div class="card-icon">${w.icon}</div>`;
-    div.innerHTML=`<div class="card-inner"><div class="card-front">${fv}<div class="arabic-word">${w.ar}</div><div class="print-answer">${w.tr}</div><div class="print-pron">[ ${w.pr} ]</div></div><div class="card-back"></div></div>`;
-    grid.appendChild(div);
-  });
-  setTimeout(()=>{window.print();setTimeout(()=>{grid.innerHTML=prev;if(currentMode==='grid')render();},600);},100);
+function buildArKeyboard(targetWord) {
+  const kb = document.getElementById('ar-kb'); if (!kb) return;
+  const targetChars = [...new Set(targetWord.replace(/[\s\u064B-\u065F]/g, '').split(''))];
+  const allAr = 'ابتثجحخدذرزسشصضطظعغفقكلمنهويءأإآةى';
+  const extras = shuffle([...allAr].filter(c => !targetChars.includes(c))).slice(0, 10);
+  const keyChars = shuffle([...targetChars, ...extras]);
+  kb.innerHTML = keyChars.map(c => `<button class="ar-key" onclick="insertArChar('${c}')">${c}</button>`).join('') + `<button class="ar-key wide" onclick="deleteArChar()">⌫</button><button class="ar-key wide" onclick="clearArInput()">Temizle</button>`;
 }
+
+function insertArChar(c) { const inp = document.getElementById('winput'); if (!inp || writeAnswered) return; inp.value += c; inp.focus(); }
+function deleteArChar() { const inp = document.getElementById('winput'); if (!inp || writeAnswered) return; inp.value = inp.value.slice(0, -1); inp.focus(); }
+function clearArInput() { const inp = document.getElementById('winput'); if (inp && !writeAnswered) { inp.value = ''; inp.focus(); } }
+function showWriteHint(ar) { const hint = document.getElementById('whint'); if (!hint) return; const chars = [...ar.replace(/[\u064B-\u065F]/g, '')]; const hinted = chars.map((c, i) => i % 2 === 0 ? c : '_').join('\u200B'); hint.textContent = hinted; }
+function normalizeAr(s) { return s.replace(/[\u064B-\u065F\u0640]/g, '').replace(/أ|إ|آ/g, 'ا').trim(); }
+
+function checkWrite(correct) {
+  if (writeAnswered) return; writeAnswered = true;
+  const inp = document.getElementById('winput'); const feed = document.getElementById('wfeed'); const correctEl = document.getElementById('wcorrect'); const nxt = document.getElementById('wnext');
+  const val = inp ? inp.value.trim() : ''; const ok = normalizeAr(val) === normalizeAr(correct);
+  if (ok) { if (inp) inp.classList.add('correct'); feed.textContent = '✓ Mükemmel! Doğru yazdın!'; feed.className = 'write-feedback ok'; writeOk++; document.getElementById('w-ok').textContent = writeOk; learned.add(words.indexOf(writeList[writeIdx])); updateProgress(); }
+  else { if (inp) inp.classList.add('wrong'); feed.textContent = '✗ Yanlış. Doğru yazım:'; feed.className = 'write-feedback no'; if (correctEl) correctEl.style.display = 'block'; writeErr++; document.getElementById('w-err').textContent = writeErr; const idx = words.indexOf(writeList[writeIdx]); hardWords.set(idx, (hardWords.get(idx) || 0) + 1); }
+  if (nxt) nxt.style.display = 'inline-block'; speakArabic(correct, null);
+}
+
+function skipWrite() { if (writeAnswered) return; writeAnswered = true; const correctEl = document.getElementById('wcorrect'); const feed = document.getElementById('wfeed'); const nxt = document.getElementById('wnext'); if (feed) { feed.textContent = 'Atlandı.'; feed.className = 'write-feedback'; } if (correctEl) correctEl.style.display = 'block'; if (nxt) nxt.style.display = 'inline-block'; }
+function nextWrite() { writeIdx++; renderWrite(); }
 
 // ── INIT ──
 render();
