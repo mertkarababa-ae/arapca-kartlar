@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Arapça Kelime Kartları</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1c1510">
+
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════════════════
@@ -2467,6 +2470,13 @@ if (_sc) _sc.checked = soundEnabled;
 render();
 setMode('grid');
 </script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/arapca-kartlar/sw.js');
+  }
+</script>
+
+
 </body>
 </html>
 
